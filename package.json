@@ -1,0 +1,52 @@
+{
+  "name": "@ericrovell/rational",
+  "version": "0.1.0",
+  "description": "Rational is rational numbers library written in JavaScript",
+  "main": "index.js",
+  "module": "./index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "rm -rf ./dist/* && rollup --config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericrovell/blossom.git"
+  },
+  "keywords": [
+    "math",
+    "numbers",
+    "rational",
+    "fraction",
+    "parser"
+  ],
+  "author": "Eric Rovell",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
+    "rollup": "^2.53.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^27.0.4",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)": "<rootDir>/src/$1"
+    },
+    "testEnvironment": "node"
+  },
+  "homepage": "https://github.com/ericrovell/rational#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">=14.0"
+  }
+}
