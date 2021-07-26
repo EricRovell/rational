@@ -5,7 +5,7 @@
   "main": "index.js",
   "module": "./index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --config ./jest.config.json --coverage",
     "build": "rm -rf ./dist/* && rollup --config"
   },
   "repository": {
@@ -31,16 +31,6 @@
     "ts-jest": "^27.0.4",
     "tslib": "^2.3.0",
     "typescript": "^4.3.5"
-  },
-  "jest": {
-    "verbose": true,
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "moduleNameMapper": {
-      "^@/(.*)": "<rootDir>/src/$1"
-    },
-    "testEnvironment": "node"
   },
   "homepage": "https://github.com/ericrovell/rational#readme",
   "directories": {
