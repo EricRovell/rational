@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@util/(.*)": "<rootDir>/src/util/$1",
+    "^@/(.*)": "<rootDir>/src/$1",
+    "^@$": "<rootDir>/src/index.ts"  
+  },
+  "testEnvironment": "node"
+}
