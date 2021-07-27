@@ -40,6 +40,23 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   ```  
 </details>
 
+
+### Representation
+
+<details>
+  <summary>
+    <code>.toString()</code>
+  </summary>
+
+  Returns a string representing a ratio.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2).toString() // -> "1/2";
+  ```
+</details>
+
 ### Properties
 
 <details>
@@ -131,5 +148,135 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational(1, -2).sign;  // -> -1
   rational(-1, -2).sign; // ->  1
   rational(1, 2).sign;   // ->  1
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.proper</code>
+  </summary>
+
+  Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2).proper; // -> true;
+  rational(3, 2).proper; // -> false;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.reciprocal</code>
+  </summary>
+
+  Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2).reciprocal.toString(); // -> "2/1";
+  rational(3, 2).reciprocal.toString(); // -> "3/2";
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.opposite</code>
+  </summary>
+
+  Returns the opposite rational number as new `Rational` instance..
+
+  ```js
+  import { rational } from "rational";
+
+  rational(0, 2).opposite.toString();   // -> "0/2"
+  rational(-1, 2).opposite.toString();  // -> "1/2"
+  rational(1, -2).opposite.toString();  // -> "1/2"
+  rational(-1, -2).opposite.toString(); // -> "-1/2"
+  rational(1, 2).opposite.toString();   // -> "-1/2"
+  ```
+</details>
+
+### Operations
+
+<details>
+  <summary>
+    <code>.add(rational | Input)</code>
+  </summary>
+
+  Performs the addition and returns the sum as new `Rational` instance.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2)
+    .add(1, 4)
+    .toString(); // -> "3/4"
+
+  rational(1, 2)
+    .add(rational(1, 4))
+    .toString(); // -> "3/4"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.sub(rational | Input)</code>
+  </summary>
+
+  Performs the subtraction and returns the difference as new `Rational` instance.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2)
+    .sub(1, 4)
+    .toString(); // -> "1/4"
+
+  rational(1, 2)
+    .sub(rational(1, 4))
+    .toString(); // -> "1/4"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.mul(rational | Input)</code>
+  </summary>
+
+  Performs the multiplication and returns the product as new `Rational` instance.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2)
+    .mul(1, 4)
+    .toString(); // -> "1/8"
+
+  rational(1, 2)
+    .mul(rational(1, 4))
+    .toString(); // -> "1/8"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.div(rational | Input)</code>
+  </summary>
+
+  Performs the division and returns the quotien as new `Rational` instance.
+
+  ```js
+  import { rational } from "rational";
+
+  rational(1, 2)
+    .div(1, 4)
+    .toString(); // -> "2/1"
+
+  rational(1, 2)
+    .div(rational(1, 4))
+    .toString(); // -> "2/1"
   ```
 </details>
