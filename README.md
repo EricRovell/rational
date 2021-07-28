@@ -1,5 +1,38 @@
 # Rational
 
+<div align="center">
+  <a href="https://www.npmjs.com/package/@ericrovell/rational">
+    <img alt="npm package version" src="https://badgen.net/npm/v/@ericrovell/rational/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/rational">
+    <img alt="types included" src="https://badgen.net/npm/types/@ericrovell/rational/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/rational">
+    <img alt="downloads count" src="https://badgen.net/npm/dt/@ericrovell/rational/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/rational">
+    <img alt="node version" src="https://badgen.net/npm/node/@ericrovell/rational/" />
+  </a>
+  <a href="https://www.npmjs.com/package/@ericrovell/rational">
+    <img alt="licence" src="https://badgen.net/npm/license/@ericrovell/rational/" />
+  </a>
+</div>
+
+<div align="center">
+  <a href="https://bundlephobia.com/package/@ericrovell/rational">
+    <img alt="minified size" src="https://badgen.net/bundlephobia/min/@ericrovell/rational/" />
+  </a>
+  <a href="https://bundlephobia.com/package/@ericrovell/rational">
+    <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/@ericrovell/rational/" />
+  </a>
+  <a href="https://bundlephobia.com/package/@ericrovell/rational">
+    <img alt="dependency count" src="https://badgen.net/bundlephobia/dependency-count/@ericrovell/rational/" />
+  </a>
+  <a href="https://bundlephobia.com/package/@ericrovell/rational">
+    <img alt="tree-shaking" src="https://badgen.net/bundlephobia/tree-shaking/@ericrovell/rational/" />
+  </a>
+</div>
+
 Rational is JavaScript library for rational numbers manipulations.
 
 ## Features
@@ -10,6 +43,12 @@ Rational is JavaScript library for rational numbers manipulations.
 - Dependency-free;
 
 ## Getting started
+
+Package available via [npm](https://www.npmjs.com/package/@ericrovell/rational):
+
+```
+npm i @ericrovell/rational
+```
 
 ```js
 import { rational } from "rational";
