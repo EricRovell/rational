@@ -33,9 +33,15 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   ```js
   import { rational } from "rational";
 
+  // two integer input
   rational(1, 2);
+  // float input
   rational(0.5);
+  // ratio tuple input
   rational([ 1, 2 ]);
+  // integer ratio tuple input (denominator default to 1)
+  rational([ 1 ]);
+  // fraction object input
   rational({ n: 1, d: 2 });
   ```  
 </details>
