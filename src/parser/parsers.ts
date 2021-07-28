@@ -31,11 +31,11 @@ export const parseFloat: Parser = (float) => {
  * Parses a ratio from tuple integer input.
  */
 export const parseArray: Parser = (input) => {
-  if (!Array.isArray(input) || !input.every(Number.isInteger)) {
+  if (!Array.isArray(input) || !input.every(Number.isInteger) || input.length > 2) {
     return null;
   }
 
-  const [ n, d ] = input.map(Number);
+  const [ n, d = 1 ] = input.map(Number);
   return roundRatio(n, d);
 };
 
