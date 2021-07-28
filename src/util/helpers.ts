@@ -41,3 +41,10 @@ export function roundRatio(numerator: number, denominator: number): Ratio {
     Math.floor(denominator)
   ];
 }
+
+/**
+ * Validates the ratio for Zero Division Error.
+ */
+ export function validRatio([ a, b ]: Ratio): boolean {
+  return b !== 0;
+}
