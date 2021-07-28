@@ -4,6 +4,11 @@
 export type Ratio = [ numerator: number, denominator: number ];
 
 /**
+ * Defines an integer ratio when the "denominator" equals 1.
+ */
+export type IntegerRatio = [ numerator: number ];
+
+/**
  * Represents a fraction.
  */
 export interface Fraction {
@@ -17,6 +22,7 @@ export interface Fraction {
 export type Input =
   | Fraction
   | Ratio
+  | IntegerRatio
   | number;
 
 /**
