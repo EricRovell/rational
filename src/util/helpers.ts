@@ -18,7 +18,7 @@ export function gcd(number1: number, number2: number): number {
  * Calculates the Least Common Multiple of the natural numbers.
  */
 export function lcm(a: number, b: number): number {
-  return a * b / gcd(a, b);
+  return Math.abs(a * b) / gcd(a, b);
 }
 
 /**
@@ -35,7 +35,7 @@ export function handleRatioSign([ a, b ]: Ratio): Ratio {
 /**
  * Renders the parsed data to an RationalNumber object.
  */
- export function roundRatio(numerator: number, denominator: number): Ratio {
+export function roundRatio(numerator: number, denominator: number): Ratio {
   return [
     Math.floor(numerator),
     Math.floor(denominator)
