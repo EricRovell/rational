@@ -1,6 +1,27 @@
 import { Ratio } from "@types";
 
 /**
+ * Round the number up to the desired precision.
+ */
+ export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.round(number * base) / base + 0;
+}
+
+/**
+ * Round the number up to the desired precision.
+ */
+export function ceil(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.ceil(number * base) / base + 0;
+}
+
+/**
+ * Round the number up to the desired precision.
+ */
+export function floor(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.floor(number * base) / base + 0;
+}
+
+/**
  * Calculates the Greatest Common Divisor.
  * 
  * Euclidean Algorithm is used.
