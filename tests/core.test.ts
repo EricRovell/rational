@@ -118,4 +118,40 @@ describe("Operations", () => {
 		expect(rational({ n: 25, d: -8 }).abs.sign).toBe(1);
 		expect(rational({ n: -89, d: -2 }).abs.sign).toBe(1);
 	});
+	it("Rounds the value of rational number", () => {
+		expect(rational(1, 2).round()).toBe(1);
+		expect(rational(1, 3).round()).toBe(0);
+		expect(rational(3, 4).round()).toBe(1);
+		expect(rational(9, 5).round()).toBe(2);
+		expect(rational(21, -4).round()).toBe(-5);
+		expect(rational(23, 8).round(1)).toBe(2.9);
+		expect(rational(23, 8).round(2)).toBe(2.88);
+		expect(rational(23, 8).round(3)).toBe(2.875);
+		expect(rational(23, 8).round(5)).toBe(2.875);
+		expect(rational(43, 9).round(7)).toBe(4.7777778);
+	});
+	it("Ceils the value of rational number", () => {
+		expect(rational(1, 2).ceil()).toBe(1);
+		expect(rational(1, 3).ceil()).toBe(1);
+		expect(rational(3, 4).ceil()).toBe(1);
+		expect(rational(9, 5).ceil()).toBe(2);
+		expect(rational(21, -4).ceil()).toBe(-5);
+		expect(rational(29, 7).ceil(1)).toBe(4.2);
+		expect(rational(29, 7).ceil(2)).toBe(4.15);
+		expect(rational(29, 7).ceil(3)).toBe(4.143);
+		expect(rational(29, 7).ceil(5)).toBe(4.14286);
+		expect(rational(43, 9).ceil(7)).toBe(4.7777778);
+	});
+	it("Ceils the value of rational number", () => {
+		expect(rational(1, 2).floor()).toBe(0);
+		expect(rational(1, 3).floor()).toBe(0);
+		expect(rational(3, 4).floor()).toBe(0);
+		expect(rational(9, 5).floor()).toBe(1);
+		expect(rational(21, -4).floor()).toBe(-6);
+		expect(rational(29, 7).floor(1)).toBe(4.1);
+		expect(rational(29, 7).floor(2)).toBe(4.14);
+		expect(rational(29, 7).floor(3)).toBe(4.142);
+		expect(rational(29, 7).floor(5)).toBe(4.14285);
+		expect(rational(43, 9).floor(7)).toBe(4.7777777);
+	});
 });

@@ -325,3 +325,51 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
     .toString(); // -> "2/1"
   ```
 </details>
+
+<details>
+  <summary>
+    <code>.round(places = 0)</code>
+  </summary>
+
+  Returns the rational number rounded to fixed decimal places.
+
+  ```js
+  import { rational } from "@ericrovell/rational";
+
+  expect(rational(23, 8).round()).toBe(3);
+  expect(rational(23, 8).round(1)).toBe(2.9);
+  expect(rational(23, 8).round(2)).toBe(2.88);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.ceil(places = 0)</code>
+  </summary>
+
+  Returns the rational number rounded up to the next largest decimal place.
+
+  ```js
+  import { rational } from "@ericrovell/rational";
+
+  expect(rational(29, 7).ceil()).toBe(5);
+  expect(rational(29, 7).ceil(1)).toBe(4.2);
+  expect(rational(29, 7).ceil(2)).toBe(4.15);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.floor(places = 0)</code>
+  </summary>
+
+  Returns the rational number rounded down to the next smallest or equal decimal place.
+
+  ```js
+  import { rational } from "@ericrovell/rational";
+
+  expect(rational(29, 7).floor()).toBe(4);
+  expect(rational(29, 7).floor(1)).toBe(4.1);
+  expect(rational(29, 7).floor(2)).toBe(4.14);
+  ```
+</details>

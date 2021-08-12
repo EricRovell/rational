@@ -1,5 +1,5 @@
 import { parse } from "./parser";
-import { gcd, lcm } from "@util/helpers";
+import { gcd, lcm, round, ceil, floor } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {
@@ -134,6 +134,27 @@ export class Rational {
 			Math.abs(this.n),
 			Math.abs(this.d)
 		);
+	}
+
+	/**
+	 * Returns the rational number rounded to fixed decimal places.
+	 */
+	round(places = 0): number {
+		return round(this.n / this.d, places);
+	}
+
+	/**
+	 * Returns the rational number rounded up to the next largest decimal place.
+	 */
+	ceil(places = 0): number {
+		return ceil(this.n / this.d, places);
+	}
+
+	/**
+	 * Returns the rational number rounded down to the next smallest or equal decimal place.
+	 */
+	floor(places = 0): number {
+		return floor(this.n / this.d, places);
 	}
 }
 
