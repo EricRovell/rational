@@ -4,6 +4,7 @@
 
 - CommonJS support;
 - `.abs` property to get absolute value of the rational number;
+- comparison beyween rational numbers via `.compare(rational)` method;
 
 ## 0.1.0 (2021-07-29)
 
