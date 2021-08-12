@@ -9,9 +9,8 @@
     "check-types": "tsc --noEmit true",
     "test": "jest --config ./jest.config.json --coverage",
     "build": "rm -rf ./dist/* && rollup --config",
-    "build:copy": "cp *.json dist && cp *.md dist",
-    "publish": "cd dist && npm publish --access public",
-    "release": "npm run build && npm run build:copy && npm run publish"
+    "build:post": "cp *.json dist && cp *.md dist",
+    "release": "cd dist && npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -28,23 +27,30 @@
   "types": "index.d.ts",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "eslint": "^7.31.0",
+    "@types/jest": "^27.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
     "jest": "^27.0.6",
-    "rollup": "^2.53.3",
+    "rollup": "^2.56.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.4",
-    "tslib": "^2.3.0",
+    "tslib": "^2.3.1",
     "typescript": "^4.3.5"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.mjs"
+    }
   },
   "homepage": "https://github.com/ericrovell/rational#readme",
   "directories": {
     "test": "tests"
   },
   "engines": {
-    "node": ">=14.0"
+    "node": ">=12.0"
   }
 }
