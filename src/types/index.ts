@@ -1,3 +1,5 @@
+import type { Rational } from "../rational";
+
 /**
  * Represents a ratio.
  */
@@ -24,6 +26,12 @@ export type Input =
   | Ratio
   | IntegerRatio
   | number;
+
+/**
+ * Defines an input for operations where
+ * Rational or input that can be transformed to Rational.
+ */
+export type InputRational = Input | Rational;
 
 /**
  * Parser function that attempts to produce a Ratio.
