@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import { gcd, lcm } from "@util/helpers";
-import type { Input, Ratio } from "@types";
+import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {
 	private readonly parsed: Ratio | null;
@@ -90,7 +90,7 @@ export class Rational {
 	/**
 	 * Performs the addition and returns the sum as new `Rational` instance.
 	 */
-	add(input: Rational | Input, arg2?: number): Rational {
+	add(input: InputRational, arg2?: number): Rational {
 		const addend = rational(input, arg2);
 		const multiple = lcm(this.denominator, addend.denominator);
 
@@ -103,14 +103,14 @@ export class Rational {
 	/**
 	 * Performs the subtraction and returns the difference as new `Rational` instance.
 	 */
-	sub(input: Rational | Input, arg2?: number): Rational {
+	sub(input: InputRational, arg2?: number): Rational {
 		return this.add(rational(input, arg2).opposite);
 	}
 
 	/**
 	 * Performs the multiplication and returns the product as new `Rational` instance.
 	 */
-	mul(input: Rational | Input, arg2?: number): Rational {
+	mul(input: InputRational, arg2?: number): Rational {
 		const factor = rational(input, arg2);
 
 		return new Rational({
@@ -122,8 +122,18 @@ export class Rational {
 	/**
 	 * Performs the division and returns the quotien as new `Rational` instance.
 	 */
-	div(input: Rational | Input, arg2?: number): Rational {
+	div(input: InputRational, arg2?: number): Rational {
 		return this.mul(rational(input, arg2).reciprocal);
+	}
+
+	/**
+	 * Returns the absolute value of the rational number as new `Rational` instance.
+	 */
+	get abs(): Rational {
+		return new Rational(
+			Math.abs(this.n),
+			Math.abs(this.d)
+		);
 	}
 }
 

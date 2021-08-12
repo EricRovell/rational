@@ -112,4 +112,10 @@ describe("Operations", () => {
 		expect(rational(7, 8).div({ n: 5, d: 6 }).toString()).toBe("21/20");
 		expect(rational([ 7, 8 ]).div(5, 6).toString()).toBe("21/20");
 	});
+	it("Returns the absolute value of the rational number", () => {
+		expect(rational(1, 2).abs.sign).toBe(1);
+		expect(rational([ -5, 8 ]).abs.sign).toBe(1);
+		expect(rational({ n: 25, d: -8 }).abs.sign).toBe(1);
+		expect(rational({ n: -89, d: -2 }).abs.sign).toBe(1);
+	});
 });
