@@ -135,6 +135,27 @@ export class Rational {
 			Math.abs(this.d)
 		);
 	}
+  
+  /** Compares the rational number with another.
+	 * Results are interpreted as:
+	 * 
+	 * 	- comparable is greater ->  1;
+	 *  - comparable is smaller -> -1;
+	 *  - comparable is equal   ->  0.
+	 * 
+	 * Non-strict inequalities can be performed as such:
+	 * 
+	 *  - rational.compare(1/2) >= 0 the same as >=
+	 *  - rational.compare(1/2) <= 0 the same as <=
+	 */
+	compare(input: InputRational, arg2?: number): -1 | 0 | 1 {
+		const comparable = rational(input, arg2);
+		const difference = this.numerator * comparable.denominator - comparable.numerator * this.denominator;
+		return difference === 0
+			? 0
+			: difference > 0
+				? 1
+				: -1;
 
 	/**
 	 * Returns the rational number rounded to fixed decimal places.

@@ -118,6 +118,17 @@ describe("Operations", () => {
 		expect(rational({ n: 25, d: -8 }).abs.sign).toBe(1);
 		expect(rational({ n: -89, d: -2 }).abs.sign).toBe(1);
 	});
+  it("Compares the rational numbers", () => {
+		expect(rational(1, 2).compare(1, 2)).toBe(0);
+		expect(rational(1, 2).compare(8, 2)).toBe(-1);
+		expect(rational(1, 2).compare(1, 3)).toBe(1);
+		expect(rational([ 14, 16 ]).compare([ 7, 8 ])).toBe(0);
+		expect(rational([ 21, 5 ]).compare([ 28, 6 ])).toBe(-1);
+		expect(rational([ 25, 2 ]).compare([ 121, 11 ])).toBe(1);
+		expect(rational(4.35).compare(4.350)).toBe(0);
+		expect(rational(-4.25).compare(10.11)).toBe(-1);
+		expect(rational(4.250001).compare(4.25)).toBe(1);
+	});
 	it("Rounds the value of rational number", () => {
 		expect(rational(1, 2).round()).toBe(1);
 		expect(rational(1, 3).round()).toBe(0);
@@ -153,5 +164,5 @@ describe("Operations", () => {
 		expect(rational(29, 7).floor(3)).toBe(4.142);
 		expect(rational(29, 7).floor(5)).toBe(4.14285);
 		expect(rational(43, 9).floor(7)).toBe(4.7777777);
-	});
+  });
 });
