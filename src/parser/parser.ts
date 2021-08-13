@@ -6,7 +6,7 @@ import {
 } from "./parsers";
 
 import { handleRatioSign, validRatio } from "@util/helpers";
-import type { Input, Ratio } from "@types";
+import type { Input, Ratio } from "../types";
 
 const parsers = [
 	parseIntegers,

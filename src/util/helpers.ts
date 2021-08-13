@@ -1,4 +1,4 @@
-import { Ratio } from "@types";
+import { Ratio } from "../types";
 
 /**
  * Round the number up to the desired precision.

@@ -1,5 +1,5 @@
 import { roundRatio } from "@util/helpers";
-import { Parser } from "@types";
+import { Parser } from "../types";
 
 /**
  * Parses a ratio from two integers.
