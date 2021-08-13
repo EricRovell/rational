@@ -1,6 +1,6 @@
 {
   "name": "@ericrovell/rational",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Rational is rational numbers library written in JavaScript",
   "main": "index.js",
   "module": "./index.js",
