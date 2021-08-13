@@ -51,7 +51,7 @@ npm i @ericrovell/rational
 ```
 
 ```js
-import { rational } from "rational";
+import { rational } from "@ericrovell/rational";
 
 rational(2, 3).toString();           // -> "2/3"
 rational([ 2, 3] ).toString();       // -> "2/3"
@@ -70,7 +70,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Parses the given input and created a new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   // two integer input
   rational(1, 2);
@@ -96,7 +96,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns a string representing a ratio.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).toString() // -> "1/2";
   ```
@@ -113,7 +113,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   On failed attempt the rational number defaults to 0.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).valid;  // -> true
   rational("hi!").valid; // -> false
@@ -128,7 +128,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the numerator value of the rational number.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).numerator; // -> 1
   ```
@@ -142,7 +142,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the denominator value of the rational number.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).denominator; // -> 2
   ```
@@ -156,7 +156,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the integral part of the rational number.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).integralPart; // -> 0
   rational(3, 2).integralPart; // -> 1
@@ -171,7 +171,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the fractional part of the rational number as a new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).fractionalPart.toString(); // -> "1/2"
   rational(3, 2).fractionalPart.toString(); // -> "1/2"
@@ -186,7 +186,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the sign of the rational number.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(0, 2).sign;   // ->  0
   rational(-1, 2).sign;  // -> -1
@@ -204,7 +204,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).proper; // -> true;
   rational(3, 2).proper; // -> false;
@@ -219,7 +219,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2).reciprocal.toString(); // -> "2/1";
   rational(3, 2).reciprocal.toString(); // -> "3/2";
@@ -231,16 +231,34 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
     <code>.opposite</code>
   </summary>
 
-  Returns the opposite rational number as new `Rational` instance..
+  Returns the opposite rational number as new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(0, 2).opposite.toString();   // -> "0/2"
   rational(-1, 2).opposite.toString();  // -> "1/2"
   rational(1, -2).opposite.toString();  // -> "1/2"
   rational(-1, -2).opposite.toString(); // -> "-1/2"
   rational(1, 2).opposite.toString();   // -> "-1/2"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.abs</code>
+  </summary>
+
+  Returns the absolute value of the rational number as new `Rational` instance.
+
+  ```js
+  import { rational } from "@ericrovell/rational";
+
+  rational(0, 2).abs.toString();   // -> "0/2"
+  rational(-1, 2).abs.toString();  // -> "1/2"
+  rational(1, -2).abs.toString();  // -> "1/2"
+  rational(-1, -2).abs.toString(); // -> "1/2"
+  rational(1, 2).abs.toString();   // -> "1/2"
   ```
 </details>
 
@@ -254,7 +272,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the addition and returns the sum as new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2)
     .add(1, 4)
@@ -274,7 +292,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the subtraction and returns the difference as new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2)
     .sub(1, 4)
@@ -294,7 +312,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the multiplication and returns the product as new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2)
     .mul(1, 4)
@@ -314,7 +332,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the division and returns the quotien as new `Rational` instance.
 
   ```js
-  import { rational } from "rational";
+  import { rational } from "@ericrovell/rational";
 
   rational(1, 2)
     .div(1, 4)
@@ -323,6 +341,31 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational(1, 2)
     .div(rational(1, 4))
     .toString(); // -> "2/1"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.compare(rational | Input)</code>
+  </summary>
+
+  Compares the rational number with another. Results are interpreted as:
+	
+	- comparable is greater ->  1;
+	- comparable is smaller -> -1;
+	- comparable is equal   ->  0.
+
+  ```js
+  rational(1, 2).compare(2, 4); // ->  0
+  rational(1, 2).compare(3, 4); // -> -1
+  rational(1, 2).compare(1, 4); // ->  1
+  ```
+
+  Non-strict inequalities can be performed as such:
+
+  ```js
+  rational.compare(1/2) >= 0 the same as >=
+  rational.compare(1/2) <= 0 the same as <=
   ```
 </details>
 
