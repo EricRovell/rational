@@ -1,5 +1,3 @@
-import { Ratio } from "../types";
-
 /**
  * Round the number up to the desired precision.
  */
@@ -40,32 +38,4 @@ export function gcd(number1: number, number2: number): number {
  */
 export function lcm(a: number, b: number): number {
 	return Math.abs(a * b) / gcd(a, b);
-}
-
-/**
- * Handles the sign of the input ratio.
- * If the ratio is negative, the numerator should hold the sign,
- * the denominator is always positive (Q = Z / N).
- */
-export function handleRatioSign([ a, b ]: Ratio): Ratio {
-	return (a / b >= 0)
-		? [ Math.abs(a), Math.abs(b) ]
-		: [ -Math.abs(a), Math.abs(b) ];
-}
-
-/**
- * Renders the parsed data to an RationalNumber object.
- */
-export function roundRatio(numerator: number, denominator: number): Ratio {
-	return [
-		Math.floor(numerator),
-		Math.floor(denominator)
-	];
-}
-
-/**
- * Validates the ratio for Zero Division Error.
- */
-export function validRatio([ a, b ]: Ratio): boolean {
-	return Number.isSafeInteger(a) && b !== 0;
 }

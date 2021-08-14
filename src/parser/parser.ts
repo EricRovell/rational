@@ -2,17 +2,18 @@ import {
 	parseIntegers,
 	parseFloat,
 	parseArray,
-	parseObject
+	parseObject,
+	parseString
 } from "./parsers";
 
-import { handleRatioSign, validRatio } from "@util/helpers";
 import type { Input, Ratio } from "../types";
 
 const parsers = [
 	parseIntegers,
 	parseFloat,
 	parseArray,
-	parseObject
+	parseObject,
+	parseString
 ];
 
 /**
@@ -27,8 +28,8 @@ const parsers = [
 export function parse(numerator: Input, denominator: number | undefined): Ratio | null {
 	for (const parser of parsers) {
 		const parsed = parser(numerator, denominator);
-		if (parsed && validRatio(parsed)) {
-			return handleRatioSign(parsed);
+		if (parsed) {
+			return parsed;
 		}
 	}
 

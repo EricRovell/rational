@@ -1,4 +1,5 @@
-import { roundRatio } from "@util/helpers";
+import { getRatio } from "@util/ratio";
+import { stringParsers } from "./parsers-string";
 import { Parser } from "../types";
 
 /**
@@ -9,13 +10,13 @@ export const parseIntegers: Parser = (numerator, denominator = 1) => {
 		return null;
 	}
 
-	return roundRatio(numerator, denominator);
+	return getRatio(numerator, denominator);
 };
 
 /**
  * Parses a ratio from float.
  */
-export const parseFloat: Parser = (float) => {
+export const parseFloat: Parser = float => {
 	if (typeof float !== "number" || Number.isInteger(float)) {
 		return null;  
 	}
@@ -24,19 +25,19 @@ export const parseFloat: Parser = (float) => {
 	const denominator = 10 ** floatParts[1].length;
 	const [ integral, fractional ] = floatParts.map(Number);
   
-	return roundRatio(integral * denominator + fractional, denominator);
+	return getRatio(integral * denominator + fractional, denominator);
 };
 
 /**
  * Parses a ratio from tuple integer input.
  */
-export const parseArray: Parser = (input) => {
+export const parseArray: Parser = input => {
 	if (!Array.isArray(input) || !input.every(Number.isInteger) || input.length > 2) {
 		return null;
 	}
 
 	const [ n, d = 1 ] = input.map(Number);
-	return roundRatio(n, d);
+	return getRatio(n, d);
 };
 
 /**
@@ -48,10 +49,24 @@ export const parseObject: Parser = input => {
 	}
 
 	const { n, d } = input;
+  
+	return getRatio(n, d);
+};
 
-	if (!n || !d) {
+/**
+ * Parses a ratio from string input.
+ */
+export const parseString: Parser = input => {
+	if (typeof input !== "string") {
 		return null;
 	}
-  
-	return roundRatio(n, d);
+
+	for (const parser of stringParsers) {
+		const result = parser(input);
+		if (result) {
+			return result;
+		}
+	}
+
+	return null;
 };

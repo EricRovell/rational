@@ -1,5 +1,9 @@
 # Rational
 
+## 0.3.0 (Unreleased)
+
+- [feature]: new type of input, string in form of fraction ("1/2");
+
 ## 0.2.0 (2021-08-13)
 
 - [improvement]: CommonJS support;
