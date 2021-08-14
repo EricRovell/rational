@@ -30,6 +30,16 @@ describe("Parsing", () => {
 		expect(rational("-3/15").toString()).toBe("-1/5");
 		expect(rational("28/-42").toString()).toBe("-2/3");
 	});
+	it("Parses string with repeting decimal form", () => {
+		expect(rational(".(1)").toString()).toBe("1/9");
+		expect(rational(".0(1)").toString()).toBe("1/90");
+		expect(rational(".12(45)").toString()).toBe("137/1100");
+		expect(rational("-.12(45)").toString()).toBe("-137/1100");
+		expect(rational("10.1(2)").toString()).toBe("911/90");
+		expect(rational("+10.1(2)").toString()).toBe("911/90");
+		expect(rational("10.(2)").toString()).toBe("92/9");
+		expect(rational("-10.(2)").toString()).toBe("-92/9");
+	});
 	it("The ratio simplified correctly", () => {
 		expect(rational([ 25, 40 ]).toString()).toBe("5/8");
 		expect(rational([ 54, 12 ]).toString()).toBe("9/2");
@@ -49,6 +59,7 @@ describe("Parsing", () => {
 		expect(rational([ 5, 2, 1 ]).valid).toBe(false);
 	});
 	it("Do not accept zero as denominator", () => {
+		expect(rational("56/0").valid).toBe(false);
 		expect(rational(2, 0).valid).toBe(false);
 		expect(rational([ 2, 0 ]).valid).toBe(false);
 		expect(rational({ n: 2, d: 0 }).valid).toBe(false);
