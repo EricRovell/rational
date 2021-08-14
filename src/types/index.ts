@@ -25,7 +25,8 @@ export type Input =
   | Fraction
   | Ratio
   | IntegerRatio
-  | number;
+  | number
+  | string;
 
 /**
  * Defines an input for operations where
