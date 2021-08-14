@@ -70,8 +70,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Parses the given input and created a new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   // two integer input
   rational(1, 2);
   // float input
@@ -82,9 +80,12 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational([ 1 ]);
   // fraction object input
   rational({ n: 1, d: 2 });
-  ```  
+  // string: fraction
+  rational("1/2");
+  rational("-1/2");
+  rational("+3/-2");
+  ```
 </details>
-
 
 ### Representation
 
@@ -96,8 +97,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns a string representing a ratio.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).toString() // -> "1/2";
   ```
 </details>
@@ -113,8 +112,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   On failed attempt the rational number defaults to 0.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).valid;  // -> true
   rational("hi!").valid; // -> false
   ```
@@ -128,8 +125,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the numerator value of the rational number.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).numerator; // -> 1
   ```
 </details>
@@ -142,8 +137,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the denominator value of the rational number.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).denominator; // -> 2
   ```
 </details>
@@ -156,8 +149,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the integral part of the rational number.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).integralPart; // -> 0
   rational(3, 2).integralPart; // -> 1
   ```
@@ -171,8 +162,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the fractional part of the rational number as a new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).fractionalPart.toString(); // -> "1/2"
   rational(3, 2).fractionalPart.toString(); // -> "1/2"
   ```
@@ -186,8 +175,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the sign of the rational number.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(0, 2).sign;   // ->  0
   rational(-1, 2).sign;  // -> -1
   rational(1, -2).sign;  // -> -1
@@ -204,8 +191,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).proper; // -> true;
   rational(3, 2).proper; // -> false;
   ```
@@ -219,8 +204,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2).reciprocal.toString(); // -> "2/1";
   rational(3, 2).reciprocal.toString(); // -> "3/2";
   ```
@@ -234,8 +217,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the opposite rational number as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(0, 2).opposite.toString();   // -> "0/2"
   rational(-1, 2).opposite.toString();  // -> "1/2"
   rational(1, -2).opposite.toString();  // -> "1/2"
@@ -252,8 +233,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the absolute value of the rational number as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(0, 2).abs.toString();   // -> "0/2"
   rational(-1, 2).abs.toString();  // -> "1/2"
   rational(1, -2).abs.toString();  // -> "1/2"
@@ -272,8 +251,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the addition and returns the sum as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2)
     .add(1, 4)
     .toString(); // -> "3/4"
@@ -292,8 +269,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the subtraction and returns the difference as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2)
     .sub(1, 4)
     .toString(); // -> "1/4"
@@ -312,8 +287,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the multiplication and returns the product as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2)
     .mul(1, 4)
     .toString(); // -> "1/8"
@@ -332,8 +305,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Performs the division and returns the quotien as new `Rational` instance.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
   rational(1, 2)
     .div(1, 4)
     .toString(); // -> "2/1"
@@ -377,11 +348,9 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the rational number rounded to fixed decimal places.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
-  expect(rational(23, 8).round()).toBe(3);
-  expect(rational(23, 8).round(1)).toBe(2.9);
-  expect(rational(23, 8).round(2)).toBe(2.88);
+  rational(23, 8).round() // -> 3
+  rational(23, 8).round(1) // -> 2.9
+  rational(23, 8).round(2) // -> 2.88
   ```
 </details>
 
@@ -393,11 +362,9 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the rational number rounded up to the next largest decimal place.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
-  expect(rational(29, 7).ceil()).toBe(5);
-  expect(rational(29, 7).ceil(1)).toBe(4.2);
-  expect(rational(29, 7).ceil(2)).toBe(4.15);
+  rational(29, 7).ceil() // -> 5
+  rational(29, 7).ceil(1) // -> 4.2
+  rational(29, 7).ceil(2) // -> 4.15
   ```
 </details>
 
@@ -409,10 +376,8 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Returns the rational number rounded down to the next smallest or equal decimal place.
 
   ```js
-  import { rational } from "@ericrovell/rational";
-
-  expect(rational(29, 7).floor()).toBe(4);
-  expect(rational(29, 7).floor(1)).toBe(4.1);
-  expect(rational(29, 7).floor(2)).toBe(4.14);
+  rational(29, 7).floor() // -> 4
+  rational(29, 7).floor(1) // -> 4.1
+  rational(29, 7).floor(2) // -> 4.14
   ```
 </details>

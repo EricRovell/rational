@@ -23,6 +23,13 @@ describe("Parsing", () => {
 		expect(rational({ n: 25, d: 8 }).toString()).toBe("25/8");
 		expect(rational({ n: 89, d: 2 }).toString()).toBe("89/2");
 	});
+	it("Parses string with fractional form", () => {
+		expect(rational("1/2").toString()).toBe("1/2");
+		expect(rational("4/12").toString()).toBe("1/3");
+		expect(rational("27/9").toString()).toBe("3/1");
+		expect(rational("-3/15").toString()).toBe("-1/5");
+		expect(rational("28/-42").toString()).toBe("-2/3");
+	});
 	it("The ratio simplified correctly", () => {
 		expect(rational([ 25, 40 ]).toString()).toBe("5/8");
 		expect(rational([ 54, 12 ]).toString()).toBe("9/2");
@@ -34,8 +41,8 @@ describe("Parsing", () => {
 		expect(rational({ n: -89, d: -2 }).toString()).toBe("89/2");
 	});
 	it("Tells about unsupported input", () => {
-		// @ts-expect-error
 		expect(rational("fggfg").valid).toBe(false);
+		expect(rational("25/0").valid).toBe(false);
 		// @ts-expect-error
 		expect(rational({ num: 25, den: 8 }).valid).toBe(false);
 		// @ts-expect-error
