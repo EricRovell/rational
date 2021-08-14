@@ -84,6 +84,10 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational("1/2");
   rational("-1/2");
   rational("+3/-2");
+  // string: repeating decimal
+  rational(".(1)");
+  rational("-0.1(2)");
+  rational("1.23(456)");
   ```
 </details>
 

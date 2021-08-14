@@ -2,7 +2,8 @@
 
 ## 0.3.0 (Unreleased)
 
-- [feature]: new type of input, string in form of fraction ("1/2");
+- [feature]: new type of input, string in a form of fraction ("1/2");
+- [feature]: new type of input, string in a form of [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal) (".(1)", "1.23(456)");
 
 ## 0.2.0 (2021-08-13)
 
