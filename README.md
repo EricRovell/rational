@@ -172,11 +172,9 @@ Both can be represented by different data structures, but the main difference is
   ```
 </details>
 
-#### Sign in fractional inputs
+#### Fractional input sign
 
-Fractional inputs unlike ratio allow specify integral part. That complicates determining the sign of Rational number.
-
-Integral part if specified determines the sign of output no matter what sign have numerator and denominator:
+Fractional inputs unlike ratio allow to specify an integral part. That complicates determining the sign of the Rational number. If specified integral part determines the output sign no matter what sign the numerator and the denominator have:
 
 ```js
 rational("-1 2/3").sign   // -> -1
