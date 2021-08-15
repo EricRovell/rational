@@ -1,12 +1,16 @@
 /**
  * Fractional string regex.
  * 
- * Expression produces two groups: values for numerator and denominator,
- * each can be preceeded with minus or plus sign.
+ * RegExp groups:
+ * 	1. Optional integral value;
+ * 	2. Numerator value value;
+ *  3. Denominator value;
  * 
- * Example: 23/98, -23/56, 89/-5, +5/+9.
+ * Each value can be precedeed with optional sign symbol.
+ * 
+ * Example: "23/98", "-23/56", "89/-5", "+5/+9", "1 23/45", "-5 +26/-48". 
  */
-export const matcherFraction = /^([+-]?\d+)\/([+-]?\d+)$/;
+export const matcherFraction = /^(?:([+-]?\d+)(?:\s+))?([+-]?\d+)\/([+-]?\d+)$/;
 
 /**
  * Repeating decimal regex.

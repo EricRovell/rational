@@ -1,5 +1,9 @@
 # Rational
 
+## 0.4.0 (Unreleased)
+
+- [improvement]: fractional string input can include integral part separated with whitespace: "1 2/3";
+
 ## 0.3.0 (2021-08-15)
 
 - [feature]: new type of input, string in a form of fraction ("1/2");

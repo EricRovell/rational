@@ -3,6 +3,7 @@ import {
 	matcherRepeatingDecimal
 } from "./matchers";
 import { getRatio } from "@util/ratio";
+import { getRatioFromFraction } from "@util/fraction";
 import type { Ratio } from "../types";
 
 /**
@@ -17,7 +18,11 @@ function parseFractionString(input: string): Ratio | null {
 		return null;
 	}
 
-	return getRatio(match[1], match[2]);
+	return getRatioFromFraction({
+		int: match[1],
+		n: match[2],
+		d: match[3]
+	});
 }
 
 /**

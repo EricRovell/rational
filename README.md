@@ -88,6 +88,10 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 #### Supported input
 
+There are two types of inputs: `Ratio` and `Fraction`.
+
+Both can be represented by different data structures, but the main difference is that `Fraction` can include **integral** part while `Ratio` is just an ordered pair of numbers.
+
 <details>
   <summary>
     <code>(n: int, d?: int = 1)</code>
@@ -167,6 +171,28 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational("1.23(456)");
   ```
 </details>
+
+#### Sign in fractional inputs
+
+Fractional inputs unlike ratio allow specify integral part. That complicates determining the sign of Rational number.
+
+Integral part if specified determines the sign of output no matter what sign have numerator and denominator:
+
+```js
+rational("-1 2/3").sign   // -> -1
+rational("-1 -2/3").sign  // -> -1
+rational("-1 -2/-3").sign // -> -1
+rational("1 +2/-3").sign  // ->  1
+```
+
+In case the integral part is ommited, the sign determined algebraically by ratio of numerator and denominator:
+
+```js
+rational("2/3").sign   // ->  1
+rational("-2/3").sign  // -> -1
+rational("2/-3").sign  // -> -1
+rational("-2/-3").sign // ->  1
+```
 
 ### Representation
 
