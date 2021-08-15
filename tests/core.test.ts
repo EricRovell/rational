@@ -32,6 +32,10 @@ describe("Parsing", () => {
 		expect(rational("27/9").toString()).toBe("3/1");
 		expect(rational("-3/15").toString()).toBe("-1/5");
 		expect(rational("28/-42").toString()).toBe("-2/3");
+		expect(rational("1 1/2").toString()).toBe("3/2");
+		expect(rational("-2 1/2").toString()).toBe("-5/2");
+		expect(rational("2 -1/2").toString()).toBe("5/2");
+		expect(rational("4 -4/-12").toString()).toBe("13/3");
 	});
 	it("Parses string with repeting decimal form", () => {
 		expect(rational(".(1)").toString()).toBe("1/9");
@@ -54,8 +58,10 @@ describe("Parsing", () => {
 		expect(rational({ n: -89, d: -2 }).toString()).toBe("89/2");
 	});
 	it("Tells about unsupported input", () => {
+		expect(rational(2 ** 53 + 1).valid).toBe(false);
 		expect(rational("fggfg").valid).toBe(false);
 		expect(rational("25/0").valid).toBe(false);
+		expect(rational("4.5 25/0").valid).toBe(false);
 		// @ts-expect-error
 		expect(rational({ num: 25, den: 8 }).valid).toBe(false);
 		// @ts-expect-error
