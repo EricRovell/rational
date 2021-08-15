@@ -1,9 +1,10 @@
 # Rational
 
-## 0.3.0 (Unreleased)
+## 0.3.0 (2021-08-15)
 
 - [feature]: new type of input, string in a form of fraction ("1/2");
 - [feature]: new type of input, string in a form of [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal) (".(1)", "1.23(456)");
+- [improvement]: fractional object type extended, now the parser handles [the integral parts of the fraction](https://github.com/EricRovell/rational#supported-input);
 
 ## 0.2.0 (2021-08-13)
 

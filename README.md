@@ -62,6 +62,8 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 ### Parsing
 
+#### Parsing API
+
 <details>
   <summary>
     <code>rational(input)</code>
@@ -70,21 +72,96 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   Parses the given input and created a new `Rational` instance.
 
   ```js
-  // two integer input
   rational(1, 2);
-  // float input
   rational(0.5);
-  // ratio tuple input
   rational([ 1, 2 ]);
-  // integer ratio tuple input (denominator default to 1)
   rational([ 1 ]);
-  // fraction object input
   rational({ n: 1, d: 2 });
-  // string: fraction
   rational("1/2");
   rational("-1/2");
   rational("+3/-2");
-  // string: repeating decimal
+  rational(".(1)");
+  rational("-0.1(2)");
+  rational("1.23(456)");
+  ```
+</details>
+
+#### Supported input
+
+<details>
+  <summary>
+    <code>(n: int, d?: int = 1)</code>
+  </summary>
+
+  Parses the given input from *two integer arguments* and creates a new `Rational` instance.
+
+  ```js
+  rational(1, 2);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>(input: float)</code>
+  </summary>
+
+  Parses the given *float* and creates a new `Rational` instance.
+
+  ```js
+  rational(0.5);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>(input: [ n: int, d?: int = 1 ])</code>
+  </summary>
+
+  Parses the given ratio *(2-integer tuple)* and creates a new `Rational` instance.
+  There is also a special case of integer input.
+
+  ```js
+  rational([ 1, 2 ]);
+  rational([ 2 ]);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>(input: { int?: number = 0, n: int, d?: int = 1 })</code>
+  </summary>
+
+  Parses the given *fraction* object and creates a new `Rational` instance.
+
+  ```js
+  rational({ n: 1, d: 2 });
+  rational({ int: -1, n: 2, d: 3 });
+  ```
+
+  In case if integral part of the fraction specified it determines the sign of the result and
+  the sign's of the numerator and denominator is ignored. 
+</details>
+
+<details>
+  <summary>
+    <code>(input: string) as fraction</code>
+  </summary>
+
+  Parses the given *fractional* string in form `int/int` and creates a new `Rational` instance.
+
+  ```js
+  rational("1/2");
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>(input: string) as repeating decimal</code>
+  </summary>
+
+  Parses the given *repeating decimal* string in form `{int?}.{non-repeating}?({repeating})` and creates a new `Rational` instance.
+
+  ```js
   rational(".(1)");
   rational("-0.1(2)");
   rational("1.23(456)");
