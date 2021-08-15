@@ -1,4 +1,5 @@
 import { getRatio } from "@util/ratio";
+import { getRatioFromFraction } from "@util/fraction";
 import { stringParsers } from "./parsers-string";
 import { Parser } from "../types";
 
@@ -47,10 +48,8 @@ export const parseObject: Parser = input => {
 	if (typeof input !== "object" || Array.isArray(input) || input === null) {
 		return null;
 	}
-
-	const { n, d } = input;
   
-	return getRatio(n, d);
+	return getRatioFromFraction(input);
 };
 
 /**

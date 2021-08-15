@@ -22,6 +22,9 @@ describe("Parsing", () => {
 		expect(rational({ n: 5, d: 8 }).toString()).toBe("5/8");
 		expect(rational({ n: 25, d: 8 }).toString()).toBe("25/8");
 		expect(rational({ n: 89, d: 2 }).toString()).toBe("89/2");
+		expect(rational({ int: 1, n: 5, d: 8 }).toString()).toBe("13/8");
+		expect(rational({ int: -1, n: 7, d: 8 }).toString()).toBe("-15/8");
+		expect(rational({ int: 1, n: -89, d: 2 }).toString()).toBe("91/2");
 	});
 	it("Parses string with fractional form", () => {
 		expect(rational("1/2").toString()).toBe("1/2");
