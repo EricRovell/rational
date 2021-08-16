@@ -512,7 +512,7 @@ rational("-2/-3").sign // ->  1
 
   ```js
   rational("13/3").mod("7/8").toString()   // -> "5/6"
-	rational("13/7").mod("19/11").toString() // -> "10/77"
+  rational("13/7").mod("19/11").toString() // -> "10/77"
   ```
 </details>
 
@@ -525,6 +525,6 @@ rational("-2/-3").sign // ->  1
 
   ```js
   rational("-13/3").mathmod("7/8")   // -> 1/24
-	rational("-13/7").mathmod("19/11") // -> 123/77
+  rational("-13/7").mathmod("19/11") // -> 123/77
   ```
 </details>
