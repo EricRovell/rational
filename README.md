@@ -502,3 +502,29 @@ rational("-2/-3").sign // ->  1
   rational(29, 7).floor(2) // -> 4.14
   ```
 </details>
+
+<details>
+  <summary>
+    <code>.mod(rational | Input)</code>
+  </summary>
+
+  Calculates the modulo of two rational numbers.
+
+  ```js
+  rational("13/3").mod("7/8").toString()   // -> "5/6"
+	rational("13/7").mod("19/11").toString() // -> "10/77"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.mathmod(rational | Input)</code>
+  </summary>
+
+  Calculates the [mathematical correct modulo](https://en.wikipedia.org/wiki/Modulo_(mathematics)) of two rational numbers.
+
+  ```js
+  rational("-13/3").mathmod("7/8")   // -> 1/24
+	rational("-13/7").mathmod("19/11") // -> 123/77
+  ```
+</details>

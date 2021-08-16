@@ -173,6 +173,30 @@ export class Rational {
 	}
 
 	/**
+	 * Calculates the modulo of two rational numbers.
+	 */
+	mod(input: InputRational, arg2?: number): Rational {
+		const another = rational(input, arg2);
+		return new Rational(
+			(this.n * another.d) % (this.d * another.n),
+			this.d * another.d
+		);
+	}
+
+	/**
+	 * Calculates the [mathematical correct modulo](https://en.wikipedia.org/wiki/Modulo_(mathematics)) of two rational numbers.
+	 * 
+	 * [More info and source of the implementation](https://stackoverflow.com/questions/2691025/mathematical-modulus-in-c-sharp)
+	 */
+	mathmod(input: InputRational, arg2?: number): Rational {
+		const another = rational(input, arg2);
+		return new Rational(
+			(Math.abs(this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
+			this.d * another.d
+		);
+	}
+
+	/**
 	 * Returns the rational number rounded down to the next smallest or equal decimal place.
 	 */
 	floor(places = 0): number {
