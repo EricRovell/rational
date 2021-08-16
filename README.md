@@ -83,6 +83,8 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational(".(1)");
   rational("-0.1(2)");
   rational("1.23(456)");
+  rational("1.12'5''");
+  rational("7'5''");
   ```
 </details>
 
@@ -148,7 +150,7 @@ Both can be represented by different data structures, but the main difference is
 
 <details>
   <summary>
-    <code>(input: string) as fraction</code>
+    <code>(input: string)</code> as fraction
   </summary>
 
   Parses the given *fractional* string in form `int/int` and creates a new `Rational` instance.
@@ -160,15 +162,29 @@ Both can be represented by different data structures, but the main difference is
 
 <details>
   <summary>
-    <code>(input: string) as repeating decimal</code>
+    <code>(input: string)</code> as repeating decimal
   </summary>
 
-  Parses the given *repeating decimal* string in form `{int?}.{non-repeating}?({repeating})` and creates a new `Rational` instance.
+  Parses the given *repeating decimal* string in form `{sign?}{int?}.{non-repeating}?({repeating})` and creates a new `Rational` instance.
 
   ```js
-  rational(".(1)");
-  rational("-0.1(2)");
-  rational("1.23(456)");
+  rational(".(1)");      // ->  1/9
+  rational("-0.1(2)");   // -> -2/15
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>(input: string)</code> as degrees value
+  </summary>
+
+  Parses the given *degrees value* string in form `{sign?}{degrees?}.{minutes'?}{seconds''?}` and creates a new `Rational` instance.
+
+  ```js
+  rational("1.12'5''").toString() // -> "173/144"
+  rational("-1.2'5''").toString() // -> "-149/144"
+  rational("7'5''").toString()    // -> "17/144"
+  rational("-2'5''").toString()   // -> "-5/144"
   ```
 </details>
 
