@@ -47,6 +47,14 @@ describe("Parsing", () => {
 		expect(rational("10.(2)").toString()).toBe("92/9");
 		expect(rational("-10.(2)").toString()).toBe("-92/9");
 	});
+	it("Parses string with degrees value", () => {
+		expect(rational("1.12'5''").toString()).toBe("173/144");
+		expect(rational("-1.2'5''").toString()).toBe("-149/144");
+		expect(rational("7'5''").toString()).toBe("17/144");
+		expect(rational("-2'5''").toString()).toBe("-5/144");
+		expect(rational("5''").toString()).toBe("1/720");
+		expect(rational("-4''").toString()).toBe("-1/900");
+	});
 	it("The ratio simplified correctly", () => {
 		expect(rational([ 25, 40 ]).toString()).toBe("5/8");
 		expect(rational([ 54, 12 ]).toString()).toBe("9/2");

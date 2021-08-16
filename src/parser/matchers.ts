@@ -26,3 +26,16 @@ export const matcherFraction = /^(?:([+-]?\d+)(?:\s+))?([+-]?\d+)\/([+-]?\d+)$/;
  * Example: -1.23(456) -> -23433/99900
  */
 export const matcherRepeatingDecimal = /^([+-]?)?(\d*)?\.(\d*)?\((\d+)\)$/;
+
+/**
+ * Degrees string regex.
+ * 
+ * RegExp groups:
+ * 	1. Optional sign of the input (+|-);
+ * 	2. Optional degrees value;
+ *  3. Optional minutes value;
+ *  4. Optional seconds value;
+ * 
+ * Example: 123.45'67'' -> 123 degrees, 45 minutes, and 67 seconds.
+ */
+export const matcherDegrees = /^([+-])?(?:(\d*)(?:\.))?(?:(\d*)(?:'))?(?:(\d*)(?:''))?$/;

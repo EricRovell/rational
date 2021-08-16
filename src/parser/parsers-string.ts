@@ -1,6 +1,7 @@
 import {
 	matcherFraction,
-	matcherRepeatingDecimal
+	matcherRepeatingDecimal,
+	matcherDegrees
 } from "./matchers";
 import { getRatio } from "@util/ratio";
 import { getRatioFromFraction } from "@util/fraction";
@@ -51,7 +52,31 @@ function parseRepeatedDecimalString(input: string): Ratio | null {
 	);
 }
 
+/**
+ * Parses a string as degrees value.
+ * 
+ * Example: 1.2'3'' -> 1 + 2/60 + 3/3600.
+ */
+function parseDegreesString(input: string): Ratio | null {
+	const match = matcherDegrees.exec(input);
+
+	if (!match) {
+		return null;
+	}
+
+	const sign = (match[1] && match[1] === "-") ? -1 : 1;
+	const [ degrees, minutes, seconds ] = match.slice(2, 5).map(value => {
+		return value ? Number(value) : 0;
+	});
+
+	return getRatio(
+		sign * (degrees * 3600 + minutes * 60 + seconds),
+		3600
+	);
+}
+
 export const stringParsers = [
 	parseFractionString,
-	parseRepeatedDecimalString
+	parseRepeatedDecimalString,
+	parseDegreesString
 ];
