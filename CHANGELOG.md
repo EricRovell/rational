@@ -4,6 +4,8 @@
 
 - [improvement]: fractional string input can include integral part separated with whitespace: "1 2/3";
 - [feature]: new type of input, degrees/minutes/seconds string: (1.23'45'');
+- [feature]: `.mod()` method for calculating the modulo of two rational numbers;
+- [feature]: `.mathmod()` method for calculating the [mathematical correct modulo](https://en.wikipedia.org/wiki/Modulo_(mathematics)) of two rational numbers;
 
 ## 0.3.0 (2021-08-15)
 
