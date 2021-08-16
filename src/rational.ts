@@ -1,4 +1,5 @@
 import { parse } from "./parser";
+import { pow } from "./operations/power";
 import { gcd, lcm, round, ceil, floor } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
@@ -7,7 +8,7 @@ export class Rational {
 	private readonly n: number;
 	private readonly d: number;
 
-	constructor(input: Input, denominator?: number) {
+	constructor(input: Input = 0, denominator = 1) {
 		this.parsed = parse(input, denominator);
 		const [ n, d ] = this.parsed ?? [ 0, 1 ];
 		const divisor = gcd(n, d);
@@ -202,9 +203,22 @@ export class Rational {
 	floor(places = 0): number {
 		return floor(this.n / this.d, places);
 	}
+
+	/**
+	 * Calculates the rational number to some rational exponent.
+	 * For irrational results returns null.
+	 */
+	pow(input: InputRational, arg2?: number): Rational | null {
+		const exponent = rational(input, arg2);
+		const result = pow(this, exponent);
+
+		return result
+			? new Rational(result)
+			: null;
+	}
 }
 
-export function rational(input: Input | Rational, denominator = 1): Rational {
+export function rational(input: Input | Rational = 0, denominator = 1): Rational {
 	if (input instanceof Rational) {
 		return input;
 	}

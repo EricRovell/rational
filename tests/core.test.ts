@@ -208,4 +208,14 @@ describe("Operations", () => {
 		expect(rational("-13/3").mathmod("7/8").toString()).toBe("1/24");
 		expect(rational("-13/7").mathmod("19/11").toString()).toBe("123/77");
 	});
+	it("Calculates the power of two rational numbers", () => {
+		expect(rational(2).pow("1/2")).toBeNull();
+		expect(rational(0).pow("1/2")?.toString()).toBe("0/1");
+		expect(rational(27).pow("2/3")?.toString()).toBe("9/1");
+		expect(rational(243, 1024).pow(2, 5)?.toString()).toBe("9/16");
+		expect(rational(-0.6).pow(4)?.toString()).toBe("81/625");
+		expect(rational(1).pow("123/489")?.toString()).toBe("1/1");
+		expect(rational(4, 7).pow(15, 26)).toBeNull();
+		expect(rational(64, 49).pow(4, 8)?.toString()).toBe("8/7");
+	});
 });

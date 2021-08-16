@@ -39,3 +39,19 @@ export function gcd(number1: number, number2: number): number {
 export function lcm(a: number, b: number): number {
 	return Math.abs(a * b) / gcd(a, b);
 }
+
+export function factorize(integer: number): Record<number, number> {
+	const factors: Record<number, number> = {};
+
+	let [ number, divisor ] = [ integer, 2 ];
+	while (number >= 2) {
+		if (number % divisor === 0) {
+			factors[divisor] = (factors[divisor] ?? 0) + 1;
+			number /= divisor;
+		} else {
+			divisor++;
+		}
+	}
+
+	return factors;
+}

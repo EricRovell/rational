@@ -1,4 +1,4 @@
-import { gcd, lcm } from "@util/helpers";
+import { gcd, lcm, factorize } from "@util/helpers";
 
 describe("GCD/LCM test", () => {
 	it("GCD cases", () => {
@@ -22,5 +22,10 @@ describe("GCD/LCM test", () => {
 		expect(lcm(16, 40)).toBe(80);
 		expect(lcm(252, 105)).toBe(1260);
 		expect(lcm(248, 45296)).toBe(1404176);
+	});
+	it("Calculates the prime factorization", () => {
+		expect(factorize(18)).toMatchObject({ 2: 1, 3: 2 });
+		expect(factorize(15)).toMatchObject({ 3: 1, 5: 1 });
+		expect(factorize(4)).toMatchObject({ 2: 2 });
 	});
 });
