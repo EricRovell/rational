@@ -366,7 +366,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.add(rational | Input)</code>
+    <code>.add(Rational | Input)</code>
   </summary>
 
   Performs the addition and returns the sum as new `Rational` instance.
@@ -384,7 +384,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.sub(rational | Input)</code>
+    <code>.sub(Rational | Input)</code>
   </summary>
 
   Performs the subtraction and returns the difference as new `Rational` instance.
@@ -402,7 +402,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.mul(rational | Input)</code>
+    <code>.mul(Rational | Input)</code>
   </summary>
 
   Performs the multiplication and returns the product as new `Rational` instance.
@@ -420,7 +420,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.div(rational | Input)</code>
+    <code>.div(Rational | Input)</code>
   </summary>
 
   Performs the division and returns the quotien as new `Rational` instance.
@@ -438,7 +438,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.compare(rational | Input)</code>
+    <code>.compare(Rational | Input)</code>
   </summary>
 
   Compares the rational number with another. Results are interpreted as:
@@ -505,7 +505,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.mod(rational | Input)</code>
+    <code>.mod(Rational | Input)</code>
   </summary>
 
   Calculates the modulo of two rational numbers.
@@ -518,7 +518,7 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.mathmod(rational | Input)</code>
+    <code>.mathmod(Rational | Input)</code>
   </summary>
 
   Calculates the [mathematical correct modulo](https://en.wikipedia.org/wiki/Modulo_(mathematics)) of two rational numbers.
@@ -526,5 +526,20 @@ rational("-2/-3").sign // ->  1
   ```js
   rational("-13/3").mathmod("7/8")   // -> 1/24
   rational("-13/7").mathmod("19/11") // -> 123/77
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.pow(Rational | Input)</code>
+  </summary>
+
+  Calculates the exponentiation result of two rational numbers.
+  If the result is rational returns a new `Rational` instance.
+  If the result **irrational** the `null` returned instead.
+
+  ```js
+  rational(27).pow(2, 3)?.toString() // -> "9/1"
+  rational(2).pow(1, 2)?.toString()  // -> null
   ```
 </details>
