@@ -174,6 +174,13 @@ export class Rational {
 	}
 
 	/**
+	 * Returns the rational number rounded down to the next smallest or equal decimal place.
+	 */
+	floor(places = 0): number {
+		return floor(this.n / this.d, places);
+	}
+
+	/**
 	 * Calculates the modulo of two rational numbers.
 	 */
 	mod(input: InputRational, arg2?: number): Rational {
@@ -195,14 +202,7 @@ export class Rational {
 			(Math.abs(this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
 			this.d * another.d
 		);
-	}
-
-	/**
-	 * Returns the rational number rounded down to the next smallest or equal decimal place.
-	 */
-	floor(places = 0): number {
-		return floor(this.n / this.d, places);
-	}
+	}	
 
 	/**
 	 * Calculates the rational number to some rational exponent.
