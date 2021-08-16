@@ -200,4 +200,12 @@ describe("Operations", () => {
 		expect(rational(29, 7).floor(5)).toBe(4.14285);
 		expect(rational(43, 9).floor(7)).toBe(4.7777777);
 	});
+	it("Calculates the modulo of two rational numbers", () => {
+		expect(rational("13/3").mod("7/8").toString()).toBe("5/6");
+		expect(rational("13/7").mod("19/11").toString()).toBe("10/77");
+	});
+	it("Calculates the mathematical modulo of two rational numbers", () => {
+		expect(rational("-13/3").mathmod("7/8").toString()).toBe("1/24");
+		expect(rational("-13/7").mathmod("19/11").toString()).toBe("123/77");
+	});
 });
