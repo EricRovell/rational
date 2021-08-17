@@ -12,22 +12,12 @@ export class Rational {
 	private readonly parsed: Ratio | null;
 	private readonly n: number;
 	private readonly d: number;
-	private readonly s: number;
 
-	/**
-	 * Rational number's state consists of three parts:
-	 * 	
-	 * - n: numerator;
-	 * - d: denominator;
-	 * - s: sign
-	 * 
-	 */
 	constructor(input: Input = 0, denominator = 1) {
 		this.parsed = parse(input, denominator);
 		const [ n, d ] = this.parsed ?? [ 0, 1 ];
-		this.n = Math.abs(n);
-		this.d = Math.abs(d);
-		this.s = Math.sign(n);
+		this.n = n;
+		this.d = d;
 	}
 
 	/**
@@ -84,7 +74,7 @@ export class Rational {
 	 */
 	get fractionalPart(): Rational {
 		return new Rational([
-			this.s * (this.n - this.integralPart * this.d),
+			this.n - this.integralPart * this.d,
 			this.d
 		]);
 	}
@@ -93,7 +83,7 @@ export class Rational {
 	 * Returns the sign of the rational number.
 	 */
 	get sign(): number {
-		return this.s;
+		return Math.sign(this.n);
 	}
 
 	/**
@@ -101,7 +91,7 @@ export class Rational {
 	 * as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
 	 */
 	get proper(): boolean {
-		return this.n < this.d;
+		return Math.abs(this.n) < Math.abs(this.d);
 	}
 
 	/**
@@ -117,14 +107,14 @@ export class Rational {
 	 * as new `Rational` instance.
 	 */
 	get reciprocal(): Rational {
-		return new Rational([ this.s * this.d, this.n ]);
+		return new Rational([ this.d, this.n ]);
 	}
 
 	/**
 	 * Returns the opposite rational number as new `Rational` instance.
 	 */
 	get opposite(): Rational {
-		return new Rational(this.s * this.n * (-1), this.d);
+		return new Rational(-1 * this.n, this.d);
 	}
 
 	/**
@@ -135,7 +125,7 @@ export class Rational {
 		const multiple = lcm(this.d, addend.d);
 
 		return new Rational(
-			this.s * this.numerator * (multiple / this.d) + addend.s * addend.n * (multiple / addend.d),
+			this.numerator * (multiple / this.d) + addend.n * (multiple / addend.d),
 			multiple
 		);
 	}
@@ -154,7 +144,7 @@ export class Rational {
 		const factor = rational(input, arg2);
 
 		return new Rational({
-			n: this.s * this.n * factor.n,
+			n: this.n * factor.n,
 			d: this.d * factor.d
 		});
 	}
@@ -171,7 +161,7 @@ export class Rational {
 	 */
 	get abs(): Rational {
 		return new Rational(
-			this.n,
+			Math.abs(this.n),
 			this.d
 		);
 	}
@@ -190,7 +180,7 @@ export class Rational {
 	 */
 	compare(input: InputRational, arg2?: number): -1 | 0 | 1 {
 		const comparable = rational(input, arg2);
-		const difference = this.s * this.n * comparable.d - comparable.s * comparable.n * this.d;
+		const difference = this.n * comparable.d - comparable.n * this.d;
 		return difference === 0
 			? 0
 			: difference > 0
@@ -202,21 +192,21 @@ export class Rational {
 	 * Returns the rational number rounded to fixed decimal places.
 	 */
 	round(places = 0): number {
-		return round(this.s * this.n / this.d, places);
+		return round(this.n / this.d, places);
 	}
 
 	/**
 	 * Returns the rational number rounded up to the next largest decimal place.
 	 */
 	ceil(places = 0): number {
-		return ceil(this.s * this.n / this.d, places);
+		return ceil(this.n / this.d, places);
 	}
 
 	/**
 	 * Returns the rational number rounded down to the next smallest or equal decimal place.
 	 */
 	floor(places = 0): number {
-		return floor(this.s * this.n / this.d, places);
+		return floor(this.n / this.d, places);
 	}
 
 	/**
@@ -225,7 +215,7 @@ export class Rational {
 	mod(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
 		return new Rational(
-			(this.s * this.n * another.d) % (this.d * another.n * another.s),
+			(this.n * another.d) % (this.d * another.n),
 			this.d * another.d
 		);
 	}
@@ -238,7 +228,7 @@ export class Rational {
 	mathmod(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
 		return new Rational(
-			(Math.abs(this.s * this.n * another.d * this.d * another.s * another.n) + (this.s * this.n * another.d)) % (this.d * another.n * another.s),
+			(Math.abs( this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
 			this.d * another.d
 		);
 	}	
