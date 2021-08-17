@@ -1,5 +1,5 @@
 import { parse } from "./parser";
-import { pow } from "./operations/power";
+import { pow, detectRepeatingDecimal } from "./operations";
 import { gcd, lcm, round, ceil, floor } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
@@ -71,6 +71,14 @@ export class Rational {
 	 */
 	get proper(): boolean {
 		return this.n < this.d;
+	}
+
+	/**
+	 * Returns the boolean indicating if the rational number
+	 * could be represented by repeating decimal (do not terminates).
+	 */
+	get repeating(): boolean {
+		return detectRepeatingDecimal(this);
 	}
 
 	/**
