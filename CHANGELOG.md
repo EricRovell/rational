@@ -5,6 +5,7 @@
 - [feature]: new type of input, degrees value object;
 - [feature]: new type of input, repeating decimal object;
 - [feature]: `.repeating` property for [repeating decimals](https://en.wikipedia.org/wiki/Repeating_decimal) checks;
+- [fix]: invalid `.proper` property check for negative rationals;
 
 ## 0.4.0 (2021-08-17)
 
