@@ -70,7 +70,7 @@ export class Rational {
 	 * as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
 	 */
 	get proper(): boolean {
-		return this.n < this.d;
+		return Math.abs(this.n) < Math.abs(this.d);
 	}
 
 	/**
