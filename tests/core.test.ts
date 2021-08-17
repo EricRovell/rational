@@ -100,6 +100,21 @@ describe("Parsing", () => {
 	});
 });
 
+describe("String representation", () => {
+	it("Transforms a rational number into fractional string", () => {
+		expect(rational(1, 2).toFractionString()).toBe("1/2");
+		expect(rational(-58, 36).toFractionString()).toBe("-29/18");
+	});
+	it("Transforms a rational number into decimal string", () => {
+		expect(rational(1, 2).toDecimalString(1)).toBe("0.5");
+		expect(rational(3, 4).toDecimalString(2)).toBe("0.75");
+	});
+	it("Transforms a rational number into repeating decimal string", () => {
+		expect(rational(1, 9).toDecimalString()).toBe("0.(1)");
+		expect(rational(58, 36).toDecimalString(5)).toBe("1.6(1)");
+	});
+});
+
 describe("Properties", () => {
 	it("Calculates the integral part", () => {
 		expect(rational(25, 40).integralPart).toBe(0);

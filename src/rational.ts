@@ -1,5 +1,10 @@
 import { parse } from "./parser";
-import { pow, detectRepeatingDecimal } from "./operations";
+import {
+	pow,
+	detectRepeatingDecimal,
+	rational2decimalString,
+	rational2fractionString
+} from "./operations";
 import { lcm, round, ceil, floor } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
@@ -29,7 +34,21 @@ export class Rational {
 	 * Returns a string representing a ratio.
 	 */
 	toString(): string {
-		return `${this.s * this.n}/${this.d}`;
+		return rational2fractionString(this);
+	}
+
+	/**
+	 * Transforms a rational number into decimal string.
+	 */
+	toDecimalString(places?: number): string {
+		return rational2decimalString(this, places);
+	}
+
+	/**
+	 * Transforms a rational number into decimal string.
+	 */
+	toFractionString(): string {
+		return rational2fractionString(this);
 	}
 
 	/**
