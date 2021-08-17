@@ -1,26 +1,35 @@
 import { parse } from "./parser";
 import { pow, detectRepeatingDecimal } from "./operations";
-import { gcd, lcm, round, ceil, floor } from "@util/helpers";
+import { lcm, round, ceil, floor } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {
 	private readonly parsed: Ratio | null;
 	private readonly n: number;
 	private readonly d: number;
+	private readonly s: number;
 
+	/**
+	 * Rational number's state consists of three parts:
+	 * 	
+	 * - n: numerator;
+	 * - d: denominator;
+	 * - s: sign
+	 * 
+	 */
 	constructor(input: Input = 0, denominator = 1) {
 		this.parsed = parse(input, denominator);
 		const [ n, d ] = this.parsed ?? [ 0, 1 ];
-		const divisor = gcd(n, d);
-		this.n = n / divisor;
-		this.d = d / divisor;
+		this.n = Math.abs(n);
+		this.d = Math.abs(d);
+		this.s = Math.sign(n);
 	}
 
 	/**
 	 * Returns a string representing a ratio.
 	 */
 	toString(): string {
-		return `${this.n}/${this.d}`;
+		return `${this.s * this.n}/${this.d}`;
 	}
 
 	/**
@@ -55,14 +64,17 @@ export class Rational {
 	 * Gets the gractional part of the rational number as a new `Rational` instance.
 	 */
 	get fractionalPart(): Rational {
-		return new Rational([ this.n - this.integralPart * this.d, this.d ]);
+		return new Rational([
+			this.s * (this.n - this.integralPart * this.d),
+			this.d
+		]);
 	}
 
 	/**
 	 * Returns the sign of the rational number.
 	 */
 	get sign(): number {
-		return Math.sign(this.n / this.d);
+		return this.s;
 	}
 
 	/**
@@ -70,7 +82,7 @@ export class Rational {
 	 * as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
 	 */
 	get proper(): boolean {
-		return Math.abs(this.n) < Math.abs(this.d);
+		return this.n < this.d;
 	}
 
 	/**
@@ -86,14 +98,14 @@ export class Rational {
 	 * as new `Rational` instance.
 	 */
 	get reciprocal(): Rational {
-		return new Rational([ this.d, this.n ]);
+		return new Rational([ this.s * this.d, this.n ]);
 	}
 
 	/**
 	 * Returns the opposite rational number as new `Rational` instance.
 	 */
 	get opposite(): Rational {
-		return new Rational(-this.n, this.d);
+		return new Rational(this.s * this.n * (-1), this.d);
 	}
 
 	/**
@@ -101,10 +113,10 @@ export class Rational {
 	 */
 	add(input: InputRational, arg2?: number): Rational {
 		const addend = rational(input, arg2);
-		const multiple = lcm(this.denominator, addend.denominator);
+		const multiple = lcm(this.d, addend.d);
 
 		return new Rational(
-			this.numerator * (multiple / this.denominator) + addend.numerator * (multiple / addend.denominator),
+			this.s * this.numerator * (multiple / this.d) + addend.s * addend.n * (multiple / addend.d),
 			multiple
 		);
 	}
@@ -123,7 +135,7 @@ export class Rational {
 		const factor = rational(input, arg2);
 
 		return new Rational({
-			n: this.n * factor.n,
+			n: this.s * this.n * factor.n,
 			d: this.d * factor.d
 		});
 	}
@@ -140,8 +152,8 @@ export class Rational {
 	 */
 	get abs(): Rational {
 		return new Rational(
-			Math.abs(this.n),
-			Math.abs(this.d)
+			this.n,
+			this.d
 		);
 	}
 
@@ -159,7 +171,7 @@ export class Rational {
 	 */
 	compare(input: InputRational, arg2?: number): -1 | 0 | 1 {
 		const comparable = rational(input, arg2);
-		const difference = this.numerator * comparable.denominator - comparable.numerator * this.denominator;
+		const difference = this.s * this.n * comparable.d - comparable.s * comparable.n * this.d;
 		return difference === 0
 			? 0
 			: difference > 0
@@ -171,21 +183,21 @@ export class Rational {
 	 * Returns the rational number rounded to fixed decimal places.
 	 */
 	round(places = 0): number {
-		return round(this.n / this.d, places);
+		return round(this.s * this.n / this.d, places);
 	}
 
 	/**
 	 * Returns the rational number rounded up to the next largest decimal place.
 	 */
 	ceil(places = 0): number {
-		return ceil(this.n / this.d, places);
+		return ceil(this.s * this.n / this.d, places);
 	}
 
 	/**
 	 * Returns the rational number rounded down to the next smallest or equal decimal place.
 	 */
 	floor(places = 0): number {
-		return floor(this.n / this.d, places);
+		return floor(this.s * this.n / this.d, places);
 	}
 
 	/**
@@ -194,7 +206,7 @@ export class Rational {
 	mod(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
 		return new Rational(
-			(this.n * another.d) % (this.d * another.n),
+			(this.s * this.n * another.d) % (this.d * another.n * another.s),
 			this.d * another.d
 		);
 	}
@@ -207,7 +219,7 @@ export class Rational {
 	mathmod(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
 		return new Rational(
-			(Math.abs(this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
+			(Math.abs(this.s * this.n * another.d * this.d * another.s * another.n) + (this.s * this.n * another.d)) % (this.d * another.n * another.s),
 			this.d * another.d
 		);
 	}	
