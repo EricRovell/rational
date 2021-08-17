@@ -137,6 +137,13 @@ describe("Properties", () => {
 		expect(rational({ n: 25, d: -8 }).opposite.sign).toBe(1);
 		expect(rational({ n: -89, d: -2 }).opposite.sign).toBe(-1);
 	});
+	it("Detects if the rational number can be represented as repeating decimal", () => {
+		expect(rational(1, 2).repeating).toBe(false);
+		expect(rational(1, 9).repeating).toBe(true);
+		expect(rational(23, 90).repeating).toBe(true);
+		expect(rational(-156, 9990).repeating).toBe(true);
+		expect(rational(1, 75).repeating).toBe(true);
+	});
 });
 
 describe("Operations", () => {
