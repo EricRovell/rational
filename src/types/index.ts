@@ -28,11 +28,29 @@ export interface FractionUnknown {
 	d?: unknown;
 }
 
+export interface Degrees {
+  deg?: number;
+  min?: number;
+  sec?: number; 
+}
+
+export interface RepeatingDecimal {
+  sign?: number;
+  int?: number | string;
+  nonrepeat?: string | number;
+  repeat: string | number;
+}
+
+export type InputObject =
+  | Fraction
+  | Degrees
+  | RepeatingDecimal;
+
 /**
  * Valid user input to build a Rational number from.
  */
 export type Input =
-  | Fraction
+  | InputObject
   | Ratio
   | IntegerRatio
   | number
