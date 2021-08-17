@@ -1,6 +1,6 @@
 import { getRatio } from "@util/ratio";
-import { getRatioFromFraction } from "@util/fraction";
 import { stringParsers } from "./parsers-string";
+import { objectParsers } from "./parsers-object";
 import { Parser } from "../types";
 
 /**
@@ -49,7 +49,14 @@ export const parseObject: Parser = input => {
 		return null;
 	}
   
-	return getRatioFromFraction(input);
+	for (const parser of objectParsers) {
+		const result = parser(input);
+		if (result) {
+			return result;
+		}
+	}
+
+	return null;
 };
 
 /**

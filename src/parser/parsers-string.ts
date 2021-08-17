@@ -6,6 +6,7 @@ import {
 import { getRatio } from "@util/ratio";
 import { getRatioFromFraction } from "@util/fraction";
 import type { Ratio } from "../types";
+import { getRatioFromRepeatingDecimal } from "@util/repeating-decimal";
 
 /**
  * Parse a string as fraction and produces a ratio.
@@ -38,18 +39,12 @@ function parseRepeatedDecimalString(input: string): Ratio | null {
 		return null;
 	}
 
-	const sign = (match[1] && match[1] === "-") ? -1 : 1;
-	const integralPart = match[2] ? Number(match[2]) : 0;
-	const nonRepeating = match[3] ?? "";
-	const repeating = match[4] ?? "";
-
-	const denominator = Number(`${"9".repeat(repeating.length)}${"0".repeat(nonRepeating.length)}`); 
-	const numerator =  Number(`${nonRepeating}${repeating}`) - Number(nonRepeating);
-
-	return getRatio(
-		sign * (integralPart * denominator + numerator),
-		denominator
-	);
+	return getRatioFromRepeatingDecimal({
+		sign: match[1] && match[1] === "-" ? -1 : 1,
+		int: match[2],
+		nonrepeat: match[3],
+		repeat: match[4]
+	});
 }
 
 /**

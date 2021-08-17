@@ -1,5 +1,10 @@
 # Rational
 
+## 0.5.0 (Unreleased)
+
+- [feature]: new type of input, degrees value object;
+- [feature]: new type of input, repeating decimal object;
+
 ## 0.4.0 (2021-08-17)
 
 - [improvement]: fractional string input can include integral part separated with whitespace: "1 2/3";

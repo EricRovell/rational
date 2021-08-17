@@ -18,13 +18,20 @@ describe("Parsing", () => {
 		expect(rational([ 89, 2 ]).toString()).toBe("89/2");
 		expect(rational([ 5 ]).toString()).toBe("5/1");
 	});
-	it("Parses object input", () => {
+	it("Parses fraction object input", () => {
 		expect(rational({ n: 5, d: 8 }).toString()).toBe("5/8");
 		expect(rational({ n: 25, d: 8 }).toString()).toBe("25/8");
 		expect(rational({ n: 89, d: 2 }).toString()).toBe("89/2");
 		expect(rational({ int: 1, n: 5, d: 8 }).toString()).toBe("13/8");
 		expect(rational({ int: -1, n: 7, d: 8 }).toString()).toBe("-15/8");
 		expect(rational({ int: 1, n: -89, d: 2 }).toString()).toBe("91/2");
+	});
+	it("Parses degrees object input", () => {
+		expect(rational({ deg: 1, min: 2, sec: 3 }).toString()).toBe("1241/1200");
+		expect(rational({ min: 2, sec: 3 }).toString()).toBe("41/1200");
+		expect(rational({ sec: 3 }).toString()).toBe("1/1200");
+		expect(rational({ deg: 3 }).toString()).toBe("3/1");
+		expect(rational({ deg: 2, sec: 2 }).toString()).toBe("3601/1800");
 	});
 	it("Parses string with fractional form", () => {
 		expect(rational("1/2").toString()).toBe("1/2");
@@ -46,6 +53,16 @@ describe("Parsing", () => {
 		expect(rational("+10.1(2)").toString()).toBe("911/90");
 		expect(rational("10.(2)").toString()).toBe("92/9");
 		expect(rational("-10.(2)").toString()).toBe("-92/9");
+	});
+	it("Parses repeting decimal object", () => {
+		expect(rational({ repeat: "1" }).toString()).toBe("1/9");
+		expect(rational({ nonrepeat: "0", repeat: "1" }).toString()).toBe("1/90");
+		expect(rational({ nonrepeat: "12", repeat: "45" }).toString()).toBe("137/1100");
+		expect(rational({ sign: -1, nonrepeat: "12", repeat: "45" }).toString()).toBe("-137/1100");
+		expect(rational({ int: 10, nonrepeat: 1, repeat: 2 }).toString()).toBe("911/90");
+		expect(rational({ sign: -1, int: 10, nonrepeat: 1, repeat: 2 }).toString()).toBe("-911/90");
+		expect(rational({ int: 10, repeat: 2 }).toString()).toBe("92/9");
+		expect(rational({ sign: -1, int: 10, repeat: 2 }).toString()).toBe("-92/9");
 	});
 	it("Parses string with degrees value", () => {
 		expect(rational("1.12'5''").toString()).toBe("173/144");
