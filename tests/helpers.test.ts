@@ -1,4 +1,5 @@
 import { gcd, lcm, factorize } from "@util/helpers";
+import { ratio2repeatingDecimal } from "../src/operations";
 
 describe("GCD/LCM test", () => {
 	it("GCD cases", () => {
@@ -27,5 +28,11 @@ describe("GCD/LCM test", () => {
 		expect(factorize(18)).toMatchObject({ 2: 1, 3: 2 });
 		expect(factorize(15)).toMatchObject({ 3: 1, 5: 1 });
 		expect(factorize(4)).toMatchObject({ 2: 2 });
+	});
+	it("Transforms a ratio to repeating decimal, if possible", () => {
+		expect(ratio2repeatingDecimal(1, 2)).toBe("");
+		expect(ratio2repeatingDecimal(12, 90)).toBe("0.1(3)");
+		expect(ratio2repeatingDecimal(45, 77)).toBe("0.(584415)");
+		expect(ratio2repeatingDecimal(120, 33)).toBe("3.(63)");
 	});
 });
