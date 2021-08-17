@@ -8,9 +8,9 @@ export function detectRepeatingDecimal(rational: Rational): boolean {
 	const factors = factorize(rational.denominator);
 	for (const factor of Object.keys(factors)) {
 		if (factor !== "2" && factor !== "5") {
-			return false;
+			return true;
 		}
 	}
 
-	return true;
+	return false;
 }
