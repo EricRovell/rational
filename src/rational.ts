@@ -21,10 +21,10 @@ export class Rational {
 	}
 
 	/**
-	 * Returns a string representing a ratio.
+	 * Returns a string representation of a ratio.
 	 */
 	toString(): string {
-		return rational2fractionString(this);
+		return rational2fractionString(this, false);
 	}
 
 	/**
@@ -35,10 +35,11 @@ export class Rational {
 	}
 
 	/**
-	 * Transforms a rational number into decimal string.
+	 * Transforms a rational number into fractional string.
+	 * By default, the fraction is proper.
 	 */
-	toFractionString(): string {
-		return rational2fractionString(this);
+	toFractionString(proper = true): string {
+		return rational2fractionString(this, proper);
 	}
 
 	/**
@@ -66,7 +67,7 @@ export class Rational {
 	 * Gets the integral part of the rational number.
 	 */
 	get integralPart(): number {
-		return Math.floor(this.n / this.d);
+		return this.sign * Math.floor(Math.abs(this.n) / this.d);
 	}
 
 	/**
