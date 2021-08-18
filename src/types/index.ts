@@ -14,6 +14,7 @@ export type IntegerRatio = [ numerator: number ];
  * Represents a fraction.
  */
 export interface Fraction {
+  sign?: number;
   int?: number;
   n: number;
   d: number;

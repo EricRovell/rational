@@ -7,7 +7,8 @@
 - [feature]: `.repeating` property for [repeating decimals](https://en.wikipedia.org/wiki/Repeating_decimal) checks;
 - [fix]: invalid `.proper` property check for negative rationals;
 - [feature]: `.toDecimalString(places)` method for transforming rational numbers into decimal strings. Handles repeating decimals;
-- [feature]: `.toFractionString()` method for transforming rational numbers into fractional strings;
+- [feature]: `.toFractionString()` method for transforming rational numbers into fractional strings. Differs from `.toString()` by producing proper fractions by default;
+- [fix]: `.integralPart` invalid calculation for negative values;
 
 ## 0.4.0 (2021-08-17)
 

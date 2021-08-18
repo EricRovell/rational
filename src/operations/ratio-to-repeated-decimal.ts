@@ -7,7 +7,10 @@
  * 	1. (12, 90) -> "0.1(3)"
  * 	2. (1, 2)   -> ""
  */
-export function ratio2repeatingDecimal(n: number, d: number): string {
+export function ratio2repeatingDecimal(a: number, b: number): string {
+	const [ n, d ] = [ Math.abs(a), Math.abs(b) ];
+	const int = Math.sign(a / b) * Math.floor(n / d);
+
 	let result = "";
 
 	/**
@@ -17,8 +20,7 @@ export function ratio2repeatingDecimal(n: number, d: number): string {
 	 */
 	const remainders = new Map<number, number>();
 	remainders.clear();
-  
-	const int = Math.floor(n / d);
+	
 	let remainder = n % d;
 
 	/**

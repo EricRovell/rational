@@ -1,3 +1,4 @@
+import { gcd } from "@util/helpers";
 import { getRatioFromFraction } from "./fraction";
 import type { Ratio } from "../types";
 
@@ -17,4 +18,12 @@ export function handleRatioSign(n: number, m: number): Ratio {
  */
 export function getRatio(n: unknown, d: unknown): Ratio | null {
 	return getRatioFromFraction({	n, d });
+}
+
+/**
+ * Simplifies the ratio.
+ */
+export function simplifyRatio([ n = 0, d = 1 ]: Ratio): Ratio {
+	const divisor = gcd(n, d);
+	return [ n / divisor, d / divisor ];
 }

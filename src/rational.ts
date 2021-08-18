@@ -5,7 +5,7 @@ import {
 	rational2decimalString,
 	rational2fractionString
 } from "./operations";
-import { gcd, lcm, round, ceil, floor } from "@util/helpers";
+import { lcm, round, ceil, floor } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {
@@ -16,16 +16,15 @@ export class Rational {
 	constructor(input: Input = 0, denominator = 1) {
 		this.parsed = parse(input, denominator);
 		const [ n, d ] = this.parsed ?? [ 0, 1 ];
-		const divisor = gcd(n, d);
-		this.n = n / divisor;
-		this.d = d / divisor;
+		this.n = n;
+		this.d = d;
 	}
 
 	/**
-	 * Returns a string representing a ratio.
+	 * Returns a string representation of a ratio.
 	 */
 	toString(): string {
-		return rational2fractionString(this);
+		return rational2fractionString(this, false);
 	}
 
 	/**
@@ -36,10 +35,11 @@ export class Rational {
 	}
 
 	/**
-	 * Transforms a rational number into decimal string.
+	 * Transforms a rational number into fractional string.
+	 * By default, the fraction is proper.
 	 */
-	toFractionString(): string {
-		return rational2fractionString(this);
+	toFractionString(proper = true): string {
+		return rational2fractionString(this, proper);
 	}
 
 	/**
@@ -67,21 +67,24 @@ export class Rational {
 	 * Gets the integral part of the rational number.
 	 */
 	get integralPart(): number {
-		return Math.floor(this.n / this.d);
+		return this.sign * Math.floor(Math.abs(this.n) / this.d);
 	}
 
 	/**
 	 * Gets the gractional part of the rational number as a new `Rational` instance.
 	 */
 	get fractionalPart(): Rational {
-		return new Rational([ this.n - this.integralPart * this.d, this.d ]);
+		return new Rational([
+			this.n - this.integralPart * this.d,
+			this.d
+		]);
 	}
 
 	/**
 	 * Returns the sign of the rational number.
 	 */
 	get sign(): number {
-		return Math.sign(this.n / this.d);
+		return Math.sign(this.n);
 	}
 
 	/**
@@ -112,7 +115,7 @@ export class Rational {
 	 * Returns the opposite rational number as new `Rational` instance.
 	 */
 	get opposite(): Rational {
-		return new Rational(-this.n, this.d);
+		return new Rational(-1 * this.n, this.d);
 	}
 
 	/**
@@ -120,10 +123,10 @@ export class Rational {
 	 */
 	add(input: InputRational, arg2?: number): Rational {
 		const addend = rational(input, arg2);
-		const multiple = lcm(this.denominator, addend.denominator);
+		const multiple = lcm(this.d, addend.d);
 
 		return new Rational(
-			this.numerator * (multiple / this.denominator) + addend.numerator * (multiple / addend.denominator),
+			this.numerator * (multiple / this.d) + addend.n * (multiple / addend.d),
 			multiple
 		);
 	}
@@ -160,7 +163,7 @@ export class Rational {
 	get abs(): Rational {
 		return new Rational(
 			Math.abs(this.n),
-			Math.abs(this.d)
+			this.d
 		);
 	}
 
@@ -178,7 +181,7 @@ export class Rational {
 	 */
 	compare(input: InputRational, arg2?: number): -1 | 0 | 1 {
 		const comparable = rational(input, arg2);
-		const difference = this.numerator * comparable.denominator - comparable.numerator * this.denominator;
+		const difference = this.n * comparable.d - comparable.n * this.d;
 		return difference === 0
 			? 0
 			: difference > 0
@@ -226,7 +229,7 @@ export class Rational {
 	mathmod(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
 		return new Rational(
-			(Math.abs(this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
+			(Math.abs( this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
 			this.d * another.d
 		);
 	}	

@@ -1,3 +1,4 @@
+import { simplifyRatio } from "@util/ratio";
 import { 
 	parseIntegers,
 	parseFloat,
@@ -29,7 +30,7 @@ export function parse(numerator: Input, denominator: number | undefined): Ratio 
 	for (const parser of parsers) {
 		const parsed = parser(numerator, denominator);
 		if (parsed) {
-			return parsed;
+			return simplifyRatio(parsed);
 		}
 	}
 
