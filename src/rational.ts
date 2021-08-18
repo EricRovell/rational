@@ -5,7 +5,7 @@ import {
 	rational2decimalString,
 	rational2fractionString
 } from "./operations";
-import { lcm, round, ceil, floor } from "@util/helpers";
+import { lcm, round, ceil, floor, gcd } from "@util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {
@@ -155,6 +155,30 @@ export class Rational {
 	 */
 	div(input: InputRational, arg2?: number): Rational {
 		return this.mul(rational(input, arg2).reciprocal);
+	}
+
+	/**
+	 * Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers
+	 * and returns the result as new `Rational` instance.
+	 */
+	gcd(input: InputRational, arg2?: number): Rational {
+		const another = rational(input, arg2);
+		return new Rational(
+			gcd(this.n, another.n),
+			lcm(this.d, another.d)
+		);
+	}
+
+	/**
+	 * Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers
+	 * and returns the result as new `Rational` instance.
+	 */
+	lcm(input: InputRational, arg2?: number): Rational {
+		const another = rational(input, arg2);
+		return new Rational(
+			lcm(this.n, another.n),
+			gcd(this.d, another.d)
+		);
 	}
 
 	/**

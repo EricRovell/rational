@@ -9,6 +9,8 @@
 - [feature]: `.toDecimalString(places)` method for transforming rational numbers into decimal strings. Handles repeating decimals;
 - [feature]: `.toFractionString()` method for transforming rational numbers into fractional strings. Differs from `.toString()` by producing proper fractions by default;
 - [fix]: `.integralPart` invalid calculation for negative values;
+- [feature]: `.gcd()` method for calculating [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers;
+- - [feature]: `.lcm()` method for calculating [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers;
 
 ## 0.4.0 (2021-08-17)
 
