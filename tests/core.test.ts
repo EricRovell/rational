@@ -269,4 +269,11 @@ describe("Operations", () => {
 		expect(rational(4, 7).pow(15, 26)).toBeNull();
 		expect(rational(64, 49).pow(4, 8)?.toString()).toBe("8/7");
 	});
+	it("Calculates the GCD of two rational numbers", () => {
+		expect(rational(5, 8).gcd(3, 7).toString()).toBe("1/56");
+		expect(rational(2, 3).gcd(7, 5).toString()).toBe("1/15");
+	});
+	it("Calculates the LCM of two rational numbers", () => {
+		expect(rational(5, 8).lcm(3, 7).toString()).toBe("15/1");
+	});
 });
