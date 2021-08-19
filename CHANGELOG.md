@@ -1,6 +1,6 @@
 # Rational
 
-## 0.5.0 (Unreleased)
+## 0.5.0 (2021-08-19)
 
 - [feature]: new type of input, degrees value object;
 - [feature]: new type of input, repeating decimal object;
