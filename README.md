@@ -90,19 +90,16 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 #### Supported input
 
-There are two types of inputs: `Ratio` and `Fraction`.
-
-Both can be represented by different data structures, but the main difference is that `Fraction` can include **integral** part while `Ratio` is just an ordered pair of numbers.
-
 <details>
   <summary>
-    <code>(n: int, d?: int = 1)</code>
+    <code>(n?: int = 0, d?: int = 1)</code>
   </summary>
 
-  Parses the given input from *two integer arguments* and creates a new `Rational` instance.
+  Parses the given input from *two integer arguments* and returns a new `Rational` instance.
 
   ```js
-  rational(1, 2);
+  rational(1, 2); // 1/2
+  rational(5);    // 5/1
   ```
 </details>
 
@@ -111,24 +108,24 @@ Both can be represented by different data structures, but the main difference is
     <code>(input: float)</code>
   </summary>
 
-  Parses the given *float* and creates a new `Rational` instance.
+  Parses the given *float* and returns a new `Rational` instance.
 
   ```js
-  rational(0.5);
+  rational(0.5); // 1/2
   ```
 </details>
 
 <details>
   <summary>
-    <code>(input: [ n: int, d?: int = 1 ])</code>
+    <code>(input: [ n: int = 0, d?: int = 1 ])</code>
   </summary>
 
-  Parses the given ratio *(2-integer tuple)* and creates a new `Rational` instance.
-  There is also a special case of integer input.
+  Parses the given ratio from *(2-integer tuple)* and returns a new `Rational` instance.
 
   ```js
-  rational([ 1, 2 ]);
-  rational([ 2 ]);
+  rational([]);        // 0/1
+  rational([ 2 ]);     // 2/1
+  rational([ 1, 2 ]);  // 1/2
   ```
 </details>
 
@@ -137,15 +134,18 @@ Both can be represented by different data structures, but the main difference is
     <code>(input: { int?: number = 0, n: int, d?: int = 1 })</code>
   </summary>
 
-  Parses the given *fraction* object and creates a new `Rational` instance.
+  Parses the given `Fraction` object and returns a new `Rational` instance.
 
   ```js
-  rational({ n: 1, d: 2 });
-  rational({ int: -1, n: 2, d: 3 });
+  rational({ n: -1, d: 2 });          // -1/2
+  rational({ int: -1, n: 2, d: 3 });  // -1 2/3
   ```
 
-  In case if integral part of the fraction specified it determines the sign of the result and
-  the sign's of the numerator and denominator is ignored. 
+  Note: integral part if specified determines the sign of the result.
+
+  ```js
+  rational({ int: -1, n: -2, d: 3 });  // -1 2/3
+  ```
 </details>
 
 <details>
@@ -153,10 +153,31 @@ Both can be represented by different data structures, but the main difference is
     <code>(input: string)</code> as fraction
   </summary>
 
-  Parses the given *fractional* string in form `int/int` and creates a new `Rational` instance.
+  Parses the given *fractional* string in form `{sign?}{int?} {sign?}{numerator}/{sign?}{denominator}` and returns a new `Rational` instance.
 
   ```js
-  rational("1/2");
+  rational("1/2");    // 1/2
+  rational("1 1/2");  // 1 1/2
+  rational("-2 1/4"); // -2 1/4
+  ```
+
+  Note: integral part if specified determines the sign of the result.
+
+  ```js
+  rational("-2 -1/4"); // -2 1/4
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>(input: RepeatingDecimal)</code>
+  </summary>
+
+  Parses the given `RepeatingDecimal` object and returns a new `Rational` instance.
+
+  ```js
+  rational({ sign: -1, int: 1, nonrepeat: "2", repeat: "3" }); //  -7/30
+  rational({ repeat: 5 });                                     // 5/9
   ```
 </details>
 
@@ -165,48 +186,41 @@ Both can be represented by different data structures, but the main difference is
     <code>(input: string)</code> as repeating decimal
   </summary>
 
-  Parses the given *repeating decimal* string in form `{sign?}{int?}.{non-repeating}?({repeating})` and creates a new `Rational` instance.
+  Parses the given *repeating decimal* string in form `{sign?}{int?}.{non-repeating}?({repeating})` and returns a new `Rational` instance.
 
   ```js
-  rational(".(1)");      // ->  1/9
-  rational("-0.1(2)");   // -> -2/15
+  rational(".(1)");    //  1/9
+  rational("-0.1(2)"); // -2/15
   ```
 </details>
 
 <details>
   <summary>
-    <code>(input: string)</code> as degrees value
+    <code>(input: Degrees)</code>
   </summary>
 
-  Parses the given *degrees value* string in form `{sign?}{degrees?}.{minutes'?}{seconds''?}` and creates a new `Rational` instance.
+  Parses the given `Degrees` object and returns a new `Rational` instance.
 
   ```js
-  rational("1.12'5''").toString() // -> "173/144"
-  rational("-1.2'5''").toString() // -> "-149/144"
-  rational("7'5''").toString()    // -> "17/144"
-  rational("-2'5''").toString()   // -> "-5/144"
+  rational({ deg: 1, min: 1, sec: 1 }); // 3661/3600
+  rational({ sec: 7 });                 // 7/60
   ```
 </details>
 
-#### Fractional input sign
+<details>
+  <summary>
+    <code>(input: string)</code> as degrees
+  </summary>
 
-Fractional inputs unlike ratio allow to specify an integral part. That complicates determining the sign of the Rational number. If specified integral part determines the output sign no matter what sign the numerator and the denominator have:
+  Parses the given *degrees* string in form `{sign?}{degrees?}.{minutes'?}{seconds''?}` and returns a new `Rational` instance.
 
-```js
-rational("-1 2/3").sign   // -> -1
-rational("-1 -2/3").sign  // -> -1
-rational("-1 -2/-3").sign // -> -1
-rational("1 +2/-3").sign  // ->  1
-```
-
-In case the integral part is ommited, the sign determined algebraically by ratio of numerator and denominator:
-
-```js
-rational("2/3").sign   // ->  1
-rational("-2/3").sign  // -> -1
-rational("2/-3").sign  // -> -1
-rational("-2/-3").sign // ->  1
-```
+  ```js
+  rational("1.12'5''") //  173/144
+  rational("-1.2'5''") // -149/144
+  rational("7'5''")    //   17/144
+  rational("-2'5''")   //   -5/144
+  ```
+</details>
 
 ### Representation
 
@@ -215,10 +229,60 @@ rational("-2/-3").sign // ->  1
     <code>.toString()</code>
   </summary>
 
-  Returns a string representing a ratio.
+  Returns a `Ratio` string representation.
 
   ```js
-  rational(1, 2).toString() // -> "1/2";
+  rational(1, 2).toString()                  // -> "1/2";
+  rational("1 1/2").toString()               // -> "3/2";
+  rational({ int: 1, n: 1, d: 3}).toString() // -> "4/3";
+  rational("0.12(34)").toString()            // -> "611/4950";
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.valueOf()</code>
+  </summary>
+
+  Returns a decimal representation of a rational number.
+
+  ```js
+  rational(1, 2).valueOf()                  // -> 0.5;
+  rational("1 1/2").valueOf()               // -> 1.5;
+  rational({ int: 1, n: 1, d: 3}).valueOf() // -> 1.3333333333333333;
+  rational("0.12(34)").valueOf()            // -> 0.12343434343434344;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toFractionString(proper = true)</code>
+  </summary>
+
+  Transforms a rational number into fractional string.
+  The difference between `.toString()` method as it provides control to get proper/improper fractions.
+
+  `.toString()` is easier to use for tests and might me usefull for coercion.
+
+  ```js
+  rational(1, 2).toFractionString()                       // -> "1/2";
+  rational("1 1/2").toFractionString()                    // -> "1 1/2";
+  rational({ int: 1, n: 1, d: 3}).toFractionString()      // -> "1 1/3";
+  rational({ int: 1, n: 1, d: 3}).toFractionString(false) // -> "4/3";
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.toDecimalString(places = 15)</code>
+  </summary>
+
+  Transforms a rational number into decimal string.
+
+  ```js
+  rational(1, 2).toDecimalString()                        // -> "0.5";
+  rational("1 1/2").toDecimalString()                     // -> "1.5";
+  rational({ int: 1, n: 1, d: 3}).toDecimalString(4)      // -> "1.3333";
   ```
 </details>
 
@@ -314,6 +378,19 @@ rational("-2/-3").sign // ->  1
   ```js
   rational(1, 2).proper; // -> true;
   rational(3, 2).proper; // -> false;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.repeating</code>
+  </summary>
+
+  Returns the boolean indicating if the rational number could be represents a [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal).
+
+  ```js
+  rational(1, 3).repeating; // -> true;
+  rational(1, 4).repeating; // -> false;
   ```
 </details>
 
@@ -438,6 +515,46 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
+    <code>.pow(Rational | Input)</code>
+  </summary>
+
+  Calculates the exponentiation result of two rational numbers.
+  If the result is rational returns a new `Rational` instance.
+  If the result **irrational** the `null` returned instead.
+
+  ```js
+  rational(27).pow(2, 3)?.toString() // -> "9/1"
+  rational(2).pow(1, 2)?.toString()  // -> null
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.gcd(Rational | Input)</code>
+  </summary>
+
+  Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers and returns a new `Rational` instance.
+
+  ```js
+  rational(5, 8).gcd(3, 7) // 1/56
+  rational(2, 3).gcd(7, 5) // 1/15
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.gcd(Rational | Input)</code>
+  </summary>
+
+  Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers and returns a new `Rational` instance.
+
+  ```js
+  rational(5, 8).lcm(3, 7) // 15/1
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.compare(Rational | Input)</code>
   </summary>
 
@@ -531,15 +648,13 @@ rational("-2/-3").sign // ->  1
 
 <details>
   <summary>
-    <code>.pow(Rational | Input)</code>
+    <code>.divisible(Rational | Input)</code>
   </summary>
 
-  Calculates the exponentiation result of two rational numbers.
-  If the result is rational returns a new `Rational` instance.
-  If the result **irrational** the `null` returned instead.
+  Checks if two rational numbers are divisible.
 
   ```js
-  rational(27).pow(2, 3)?.toString() // -> "9/1"
-  rational(2).pow(1, 2)?.toString()  // -> null
+  rational(1, 2).divisible(1, 4) // -> true
+  rational(5, 8).divisible(2, 7) // -> false
   ```
 </details>

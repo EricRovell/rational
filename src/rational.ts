@@ -21,7 +21,7 @@ export class Rational {
 	}
 
 	/**
-	 * Returns a string representation of a ratio.
+	 * Returns a ratio string representation.
 	 */
 	toString(): string {
 		return rational2fractionString(this, false);
@@ -169,7 +169,7 @@ export class Rational {
 
 	/**
 	 * Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers
-	 * and returns the result as new `Rational` instance.
+	 * and returns a new `Rational` instance.
 	 */
 	gcd(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
@@ -181,7 +181,7 @@ export class Rational {
 
 	/**
 	 * Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers
-	 * and returns the result as new `Rational` instance.
+	 * and returns a new `Rational` instance.
 	 */
 	lcm(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
