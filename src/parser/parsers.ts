@@ -37,7 +37,7 @@ export const parseArray: Parser = input => {
 		return null;
 	}
 
-	const [ n, d = 1 ] = input.map(Number);
+	const [ n = 0, d = 1 ] = input.map(Number);
 	return getRatio(n, d);
 };
 
