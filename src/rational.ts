@@ -43,6 +43,16 @@ export class Rational {
 	}
 
 	/**
+	 * Returns a decimal representation of a rational number.
+	 * 
+	 * `rational(1, 2).valueOf()  // -> 0.5`
+	 * `rational(18, 7).valueOf() // -> 2.5714285714285716`
+	 */
+	valueOf(): number {
+		return this.n / this.d;
+	}
+
+	/**
 	 * Indicates whether or not the parsing was successful.
 	 */
 	get valid(): boolean {
