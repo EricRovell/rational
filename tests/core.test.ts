@@ -276,4 +276,12 @@ describe("Operations", () => {
 	it("Calculates the LCM of two rational numbers", () => {
 		expect(rational(5, 8).lcm(3, 7).toString()).toBe("15/1");
 	});
+	it("Checks divisibility of two rational numbers", () => {
+		expect(rational(20, 8).divisible(1, 4)).toBe(true);
+		expect(rational(-20, -8).divisible(1, -4)).toBe(true);
+		expect(rational(-20, 8).divisible(-1, 4)).toBe(true);
+		expect(rational(20, -8).divisible(1, 4)).toBe(true);
+		expect(rational(98, 5).divisible(3, 2)).toBe(false);
+		expect(rational(23, 9).divisible(69, -81)).toBe(true);
+	});
 });

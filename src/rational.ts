@@ -256,7 +256,14 @@ export class Rational {
 			(Math.abs( this.n * another.d * this.d * another.n) + (this.n * another.d)) % (this.d * another.n),
 			this.d * another.d
 		);
-	}	
+	}
+
+	/**
+	 * Checks if two rational numbers are divisible.
+	 */
+	divisible(input: InputRational, arg2: number): boolean {
+		return this.mod(input, arg2).n === 0;
+	}
 
 	/**
 	 * Calculates the rational number to some rational exponent.
