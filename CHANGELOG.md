@@ -12,6 +12,7 @@
 - [feature]: `.gcd()` method for calculating [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers;
 - [feature]: `.lcm()` method for calculating [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers;
 - [feature]: `.divisible()` method for divisibility checks;
+- [feature]: `.valueOf()` method for transformation into decimal and coercion;
 
 ## 0.4.0 (2021-08-17)
 

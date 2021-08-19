@@ -100,7 +100,7 @@ describe("Parsing", () => {
 	});
 });
 
-describe("String representation", () => {
+describe("Representation", () => {
 	it("Transforms a rational number into fractional string", () => {
 		expect(rational(1, 2).toFractionString()).toBe("1/2");
 		expect(rational(58, 36).toFractionString()).toBe("1 11/18");
@@ -124,6 +124,12 @@ describe("String representation", () => {
 		expect(rational(58, 36).toDecimalString(5)).toBe("1.6(1)");
 		expect(rational(-58, 36).toDecimalString(5)).toBe("-1.6(1)");
 		expect(rational(58, -36).toDecimalString(5)).toBe("-1.6(1)");
+	});
+	it("Transforms a rational number into decimal", () => {
+		expect(rational(1, 2).valueOf()).toBe(0.5);
+		expect(rational(18, 7).valueOf()).toBe(2.5714285714285716);
+		expect(rational(-7, 6).valueOf()).toBe(-1.1666666666666667);
+		expect(rational(25, -5).valueOf()).toBe(-5);
 	});
 });
 
