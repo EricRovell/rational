@@ -1,4 +1,12 @@
-# Rational
+<div align="center">
+  <img
+    alt="Set of rational numbers symbol"
+    src="assets/logo.svg"
+    width="125px"
+    height="125px"
+    padding="25px"
+  />
+</div>
 
 <div align="center">
   <a href="https://github.com/EricRovell/rational/actions">
@@ -38,6 +46,8 @@
     <img alt="tree-shaking" src="https://badgen.net/bundlephobia/tree-shaking/@ericrovell/rational/" />
   </a>
 </div>
+
+# Rational
 
 Rational is JavaScript library for rational numbers manipulations.
 
