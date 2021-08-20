@@ -1,7 +1,7 @@
 # Rational
 
 <div align="center">
-  [![build Actions Status](https://github.com/EricRovell/rational/workflows/node/badge.svg)](https://github.com/EricRovell/rational/actions)
+  [![build Actions Status](https://github.com/EricRovell/rational/workflows/node-cli/badge.svg)](https://github.com/EricRovell/rational/actions)
 </div>
 
 <div align="center">
