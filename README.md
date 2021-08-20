@@ -1,6 +1,10 @@
 # Rational
 
 <div align="center">
+  [![build Actions Status](https://github.com/EricRovell/rational/workflows/node/badge.svg)](https://github.com/EricRovell/rational/actions)
+</div>
+
+<div align="center">
   <a href="https://www.npmjs.com/package/@ericrovell/rational">
     <img alt="npm package version" src="https://badgen.net/npm/v/@ericrovell/rational/" />
   </a>
