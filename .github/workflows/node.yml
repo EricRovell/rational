@@ -1,4 +1,4 @@
-name: node-cli
+name: build
 on:
   push:
     paths-ignore:
