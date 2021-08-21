@@ -12,6 +12,9 @@
   <a href="https://github.com/EricRovell/rational/actions">
     <img alt="build action status" src="https://github.com/EricRovell/rational/workflows/build/badge.svg" />
   </a>
+  <a href="https://codecov.io/gh/EricRovell/rational">
+    <img src="https://codecov.io/gh/EricRovell/rational/branch/main/graph/badge.svg?token=OCTMR1R41W"/>
+  </a>
 </div>
 
 <div align="center">
