@@ -26,4 +26,4 @@ jobs:
       - name: Code Coverage Report
         uses: codecov/codecov-action@v2
         with:
-          token: token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
