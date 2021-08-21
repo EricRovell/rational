@@ -25,3 +25,5 @@ jobs:
       - run: npm run test
       - name: Code Coverage Report
         uses: codecov/codecov-action@v2
+        with:
+          token: token: ${{ secrets.CODECOV_TOKEN }}
