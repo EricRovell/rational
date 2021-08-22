@@ -3,7 +3,7 @@ import type { Rational } from "../rational";
 /**
  * Represents a ratio.
  */
-export type Ratio = [ numerator: number, denominator: number ];
+export type Ratio = [ numerator?: number, denominator?: number ];
 
 /**
  * Defines an integer ratio when the "denominator" equals 1.
@@ -17,7 +17,7 @@ export interface Fraction {
   sign?: number;
   int?: number;
   n: number;
-  d: number;
+  d?: number;
 }
 
 /**

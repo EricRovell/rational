@@ -15,7 +15,7 @@ export class Rational {
 
 	constructor(input: Input = 0, denominator = 1) {
 		this.parsed = parse(input, denominator);
-		const [ n, d ] = this.parsed ?? [ 0, 1 ];
+		const [ n = 0, d = 1 ] = this.parsed ?? [ 0, 1 ];
 		this.n = n;
 		this.d = d;
 	}
