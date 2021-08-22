@@ -1,6 +1,6 @@
 import { factorize } from "@util/helpers";
 import type { Rational } from "../rational";
-import type { Ratio } from "../types";
+import type { Input, Ratio } from "../types";
 
 interface Factors {
 	type: "num" | "den";
@@ -67,12 +67,17 @@ export function expRational(base: Rational, exponent: Rational): Ratio | null {
  * Returns the power of the actual number, raised to the rational exponent.
  * If the result becomes irrational the function returns null.
  */
-export function pow(base: Rational, exponent: Rational): Ratio | null {
+export function pow(base: Rational, exponent: Rational): Input | null {
 	// integer case
 	if (exponent.denominator === 1) {
+		// integer ^ integer
+		if (base.denominator === 1) {
+			return base.numerator ** exponent.numerator;
+		}
+
 		const [ n, m ] = [
-			base.numerator ** exponent.numerator,
-			base.denominator ** exponent.numerator
+			Math.abs(base.numerator) ** Math.abs(exponent.numerator),
+			Math.abs(base.denominator) ** Math.abs(exponent.numerator)
 		];
 
 		return exponent.sign > 0
@@ -91,7 +96,7 @@ export function pow(base: Rational, exponent: Rational): Ratio | null {
 	}
 
 	// rational case
-	const result = expRational(base, exponent);
+	const result = expRational(base, exponent.abs);
 
 	if (result) {
 		const [ n, d ] = result;
