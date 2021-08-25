@@ -1,5 +1,9 @@
 # Rational
 
+## 0.5.1 (2021-08-25)
+
+- [fix]: Incorrect ESM Module path;
+
 ## 0.5.1 (2021-08-22)
 
 - [improvement]: Improved test coverage to 99.63%;

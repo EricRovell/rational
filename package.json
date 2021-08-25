@@ -1,9 +1,9 @@
 {
   "name": "@ericrovell/rational",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Rational is rational numbers library written in JavaScript",
   "main": "index.js",
-  "module": "./index.js",
+  "module": "index.mjs",
   "scripts": {
     "lint": "eslint src/**/*.ts tests/**/*.ts",
     "check-types": "tsc --noEmit true",
