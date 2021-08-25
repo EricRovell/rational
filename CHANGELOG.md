@@ -1,6 +1,6 @@
 # Rational
 
-## 0.5.1 (2021-08-25)
+## 0.5.2 (2021-08-25)
 
 - [fix]: Incorrect ESM Module path;
 
