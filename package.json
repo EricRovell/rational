@@ -47,7 +47,8 @@
       "import": "./index.mjs",
       "require": "./index.js",
       "default": "./index.mjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "homepage": "https://github.com/ericrovell/rational#readme",
   "directories": {
