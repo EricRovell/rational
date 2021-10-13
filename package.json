@@ -6,11 +6,12 @@
   "module": "index.mjs",
   "scripts": {
     "lint": "eslint src/**/*.ts tests/**/*.ts",
-    "check-types": "tsc --noEmit true",
+    "typecheck": "tsc --noEmit true",
     "test": "jest --config ./jest.config.json --coverage",
     "build": "rm -rf ./dist/* && rollup --config",
-    "build:post": "cp *.json dist && cp *.md dist",
-    "release": "cd dist && npm publish --access public"
+    "postbuild": "cp *.json dist && cp *.md dist",
+    "release": "standard-version",
+    "publish:npm": "npm run build && npm run postbuild && cd dist && npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -56,5 +57,12 @@
   },
   "engines": {
     "node": ">=12.0"
+  },
+  "lint-staged": {
+    "*.{ts,js}": "eslint"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "pre-push": "npm run lint && npm run typecheck"
   }
 }
