@@ -15,10 +15,10 @@ jobs:
         with:
           node-version: 14.x
           registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run publish:npm
+      - run: npm install -g pnpm && pnpm install
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm run test
+      - run: pnpm run publish:npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
