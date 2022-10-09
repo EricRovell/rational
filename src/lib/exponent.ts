@@ -1,4 +1,4 @@
-import { factorize } from "../util/helpers";
+import { factorize } from "../utils";
 import type { Rational } from "../rational";
 import type { Input, Ratio } from "../types";
 

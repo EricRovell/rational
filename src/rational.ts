@@ -2,7 +2,7 @@ import { parse } from "./parser";
 import { detectRepeatingDecimal } from "./lib/repeating-decimal";
 import { pow } from "./lib/exponent";
 import { rational2decimalString, rational2fractionString } from "./operations";
-import { lcm, round, ceil, floor, gcd } from "./util/helpers";
+import { lcm, round, ceil, floor, gcd } from "./utils";
 import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {

@@ -1,4 +1,4 @@
-import { gcd } from "../util/helpers";
+import { gcd } from "../utils";
 import type { Ratio, Fraction, FractionUnknown } from "../types";
 
 /**

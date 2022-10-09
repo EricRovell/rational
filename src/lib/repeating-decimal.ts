@@ -1,5 +1,5 @@
 import { getRatio } from "../lib/ratio";
-import { factorize } from "../util/helpers";
+import { factorize } from "../utils";
 import type { Rational } from "../rational";
 import type { Ratio, RepeatingDecimal } from "../types";
 
