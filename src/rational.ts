@@ -1,10 +1,7 @@
 import { parse } from "./parser";
 import { detectRepeatingDecimal } from "./lib/repeating-decimal";
 import { pow } from "./lib/exponent";
-import {
-	rational2decimalString,
-	rational2fractionString
-} from "./operations";
+import { rational2decimalString, rational2fractionString } from "./operations";
 import { lcm, round, ceil, floor, gcd } from "./util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 

@@ -1,5 +1,4 @@
-import { getRatio } from "../util/ratio";
-import { getRatioFromFraction } from "../util/fraction";
+import { getRatio, getRatioFromFraction } from "../lib/ratio";
 import type { Ratio, InputObject } from "../types";
 import { getRatioFromRepeatingDecimal } from "../util/repeating-decimal";
 

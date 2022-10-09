@@ -1,4 +1,4 @@
-import { getRatio } from "./ratio";
+import { getRatio } from "../lib/ratio";
 import type { Ratio, RepeatingDecimal } from "../types";
 
 /**

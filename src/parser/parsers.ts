@@ -1,4 +1,4 @@
-import { getRatio } from "../util/ratio";
+import { getRatio } from "../lib/ratio";
 import { stringParsers } from "./parsers-string";
 import { objectParsers } from "./parsers-object";
 import { Parser } from "../types";

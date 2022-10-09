@@ -1,4 +1,4 @@
-import { simplifyRatio } from "../util/ratio";
+import { simplifyRatio } from "../lib/ratio";
 import {
 	parseIntegers,
 	parseFloat,

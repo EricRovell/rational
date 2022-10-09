@@ -1,5 +1,31 @@
+import { gcd } from "../util/helpers";
 import type { Ratio, Fraction, FractionUnknown } from "../types";
-import { handleRatioSign } from "./ratio";
+
+/**
+ * Handles the sign of the input ratio.
+ * If the ratio is negative, the numerator should hold the sign,
+ * the denominator is always positive (Q = Z / N).
+ */
+function handleRatioSign(n: number, m: number): Ratio {
+	return (n / m >= 0)
+		? [ Math.abs(n), Math.abs(m) ]
+		: [ -Math.abs(n), Math.abs(m) ];
+}
+
+/**
+ * Produces a ratio.
+ */
+export function getRatio(n: unknown, d: unknown): Ratio | null {
+	return getRatioFromFraction({	n, d });
+}
+
+/**
+ * Simplifies the ratio.
+ */
+export function simplifyRatio([ n = 0, d = 1 ]: Ratio): Ratio {
+	const divisor = gcd(n, d);
+	return [ n / divisor, d / divisor ];
+}
 
 /**
  * Handles the sign of the input fraction.

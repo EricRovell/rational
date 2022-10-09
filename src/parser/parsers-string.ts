@@ -1,10 +1,5 @@
-import {
-	matcherFraction,
-	matcherRepeatingDecimal,
-	matcherDegrees
-} from "./matchers";
-import { getRatio } from "../util/ratio";
-import { getRatioFromFraction } from "../util/fraction";
+import { matcherFraction, matcherRepeatingDecimal, matcherDegrees } from "./matchers";
+import { getRatio, getRatioFromFraction } from "../lib/ratio";
 import type { Ratio } from "../types";
 import { getRatioFromRepeatingDecimal } from "../util/repeating-decimal";
 
