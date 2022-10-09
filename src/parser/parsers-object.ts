@@ -1,6 +1,6 @@
 import { getRatio, getRatioFromFraction } from "../lib/ratio";
+import { getRatioFromRepeatingDecimal } from "../lib/repeating-decimal";
 import type { Ratio, InputObject } from "../types";
-import { getRatioFromRepeatingDecimal } from "../util/repeating-decimal";
 
 /**
  * Parse a fraction object and produces a ratio.

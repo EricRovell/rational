@@ -1,7 +1,7 @@
 import { matcherFraction, matcherRepeatingDecimal, matcherDegrees } from "./matchers";
 import { getRatio, getRatioFromFraction } from "../lib/ratio";
+import { getRatioFromRepeatingDecimal } from "../lib/repeating-decimal";
 import type { Ratio } from "../types";
-import { getRatioFromRepeatingDecimal } from "../util/repeating-decimal";
 
 /**
  * Parse a string as fraction and produces a ratio.
