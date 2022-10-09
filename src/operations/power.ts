@@ -28,7 +28,7 @@ interface Factors {
  *
  * Same is done with denominator.
  */
-export function expRational(base: Rational, exponent: Rational): Ratio | null {
+function expRational(base: Rational, exponent: Rational): Ratio | null {
 
 	const baseFactors: Factors[] = [
 		{

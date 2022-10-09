@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { rational } from "../src";
+import { rational, Rational } from "../src";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
-		const instance = rational(1, 2);
+		const instance = new Rational(1, 2);
 		expect(rational(instance).toString()).toBe("1/2");
 	});
 });
