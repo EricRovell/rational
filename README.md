@@ -578,7 +578,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   </summary>
 
   Compares the rational number with another. Results are interpreted as:
-	
+
 	- comparable is greater ->  1;
 	- comparable is smaller -> -1;
 	- comparable is equal   ->  0.
