@@ -32,7 +32,7 @@ export interface FractionUnknown {
 export interface Degrees {
   deg?: number;
   min?: number;
-  sec?: number; 
+  sec?: number;
 }
 
 export interface RepeatingDecimal {

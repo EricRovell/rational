@@ -1,9 +1,9 @@
 /**
  * Converts a ratio to repeated decimal string.
  * If resulting decimal is terminating, returns an empty string instead.
- * 
+ *
  * Example:
- * 	
+ *
  * 	1. (12, 90) -> "0.1(3)"
  * 	2. (1, 2)   -> ""
  */
@@ -20,7 +20,7 @@ export function ratio2repeatingDecimal(a: number, b: number): string {
 	 */
 	const remainders = new Map<number, number>();
 	remainders.clear();
-	
+
 	let remainder = n % d;
 
 	/**
@@ -28,15 +28,15 @@ export function ratio2repeatingDecimal(a: number, b: number): string {
 	 */
 	while (remainder != 0 && !remainders.has(remainder)) {
 		remainders.set(remainder, result.length);
-  
+
 		remainder = remainder * 10;
-  
+
 		const result_part = Math.floor(remainder / d);
 		result += result_part.toString();
-  
+
 		remainder = remainder % d;
 	}
-  
+
 	if (remainder == 0) {
 		return "";
 	} else if (remainders.has(remainder)) {

@@ -1,11 +1,11 @@
-import { getRatio } from "@util/ratio";
-import { getRatioFromFraction } from "@util/fraction";
+import { getRatio } from "../util/ratio";
+import { getRatioFromFraction } from "../util/fraction";
 import type { Ratio, InputObject } from "../types";
-import { getRatioFromRepeatingDecimal } from "@util/repeating-decimal";
+import { getRatioFromRepeatingDecimal } from "../util/repeating-decimal";
 
 /**
  * Parse a fraction object and produces a ratio.
- * 
+ *
  * Example: { n: 23, d: 45 } -> [ 23, 45 ].
  */
 function parseFractionObject(input: InputObject): Ratio | null {
@@ -18,7 +18,7 @@ function parseFractionObject(input: InputObject): Ratio | null {
 
 /**
  * Parse a degrees object and produces a ratio.
- * 
+ *
  * Example: { deg: -1, min: 2, sec: 5 } -> [ -149, 144 ].
  */
 function parseDegreesObject(input: InputObject): Ratio | null {
@@ -35,7 +35,7 @@ function parseDegreesObject(input: InputObject): Ratio | null {
 
 /**
  * Parse a repeating decimal object and produces a ratio.
- * 
+ *
  * Example: { int: 1, repeat: 1 } -> [ 10, 9 ].
  */
 function parseRepeatingDecimalObject(input: InputObject): Ratio | null {

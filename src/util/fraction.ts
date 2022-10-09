@@ -3,14 +3,14 @@ import { handleRatioSign } from "./ratio";
 
 /**
  * Handles the sign of the input fraction.
- * 
+ *
  * If the integral part is present, it determines the sign.
  * Otherwise, the sign calculated from ratio.
- * 
+ *
  * If the ratio is negative, the numerator should hold the sign,
  * the denominator is always positive (Q = Z / N).
  */
-export function handleFractionSign({ int = 0, n, d = 1 }: Fraction): Ratio {
+function handleFractionSign({ int = 0, n, d = 1 }: Fraction): Ratio {
 	if (!int) {
 		return handleRatioSign(n, d);
 	}

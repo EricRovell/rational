@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { rational } from "@";
+import { describe, expect, it } from "vitest";
+import { rational, Rational } from "../src";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
-		const instance = rational(1, 2);
+		const instance = new Rational(1, 2);
 		expect(rational(instance).toString()).toBe("1/2");
 	});
 });
@@ -110,13 +110,13 @@ describe("Parsing", () => {
 		expect(rational("fggfg").valid).toBe(false);
 		expect(rational("25/0").valid).toBe(false);
 		expect(rational("4.5 25/0").valid).toBe(false);
-		// @ts-expect-error
+		// @ts-expect-error testing wrong input
 		expect(rational({ num: 25, den: 8 }).valid).toBe(false);
-		// @ts-expect-error
+		// @ts-expect-error testing wrong input
 		expect(rational([ 5, 2, 1 ]).valid).toBe(false);
-		// @ts-expect-error
+		// @ts-expect-error testing wrong input
 		expect(rational([ "str", "str" ]).valid).toBe(false);
-		// @ts-ignore
+		// @ts-expect-error testing wrong input
 		expect(rational({ n: "O", d: "3" }).valid).toBe(false);
 	});
 	it("Do not accept zero as denominator", () => {

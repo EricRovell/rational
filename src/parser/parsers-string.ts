@@ -3,14 +3,14 @@ import {
 	matcherRepeatingDecimal,
 	matcherDegrees
 } from "./matchers";
-import { getRatio } from "@util/ratio";
-import { getRatioFromFraction } from "@util/fraction";
+import { getRatio } from "../util/ratio";
+import { getRatioFromFraction } from "../util/fraction";
 import type { Ratio } from "../types";
-import { getRatioFromRepeatingDecimal } from "@util/repeating-decimal";
+import { getRatioFromRepeatingDecimal } from "../util/repeating-decimal";
 
 /**
  * Parse a string as fraction and produces a ratio.
- * 
+ *
  * Example: "23/45" -> [ 23, 45 ].
  */
 function parseFractionString(input: string): Ratio | null {
@@ -29,7 +29,7 @@ function parseFractionString(input: string): Ratio | null {
 
 /**
  * Parses a string as repeating decimal and produces a ratio.
- * 
+ *
  * Example: "23/45" -> [ 23, 45 ].
  */
 function parseRepeatedDecimalString(input: string): Ratio | null {
@@ -49,7 +49,7 @@ function parseRepeatedDecimalString(input: string): Ratio | null {
 
 /**
  * Parses a string as degrees value.
- * 
+ *
  * Example: 1.2'3'' -> 1 + 2/60 + 3/3600.
  */
 function parseDegreesString(input: string): Ratio | null {

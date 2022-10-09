@@ -17,8 +17,11 @@
 	],
 	"rules": {
 		"indent": [	"error", "tab", { "SwitchCase": 1 } ],
-		"linebreak-style": [ "error", "windows"	],
-		"quotes": [	"error","double" ],
-		"semi": [	"error", "always"	]
+		"linebreak-style": 0,
+		"quotes": [ "error","double" ],
+		"semi": [ "error", "always" ],
+		"eol-last": [ "error", "always" ],
+		"array-bracket-spacing": [ "error", "always" ],
+		"object-curly-spacing": [ "error", "always" ]
 	}
 }

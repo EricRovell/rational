@@ -21,7 +21,7 @@ export function floor(number: number, digits = 0, base = Math.pow(10, digits)): 
 
 /**
  * Calculates the Greatest Common Divisor.
- * 
+ *
  * Euclidean Algorithm is used.
  * https://en.wikipedia.org/wiki/Euclidean_algorithm
  */
