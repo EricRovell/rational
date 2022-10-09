@@ -1,4 +1,5 @@
-import { gcd, lcm, factorize } from "@util/helpers";
+import { describe, expect, it } from "vitest";
+import { gcd, lcm, factorize } from "../src/util/helpers";
 import { ratio2repeatingDecimal } from "../src/operations";
 
 describe("GCD/LCM test", () => {
