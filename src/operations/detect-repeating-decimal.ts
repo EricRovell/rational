@@ -1,4 +1,4 @@
-import { factorize } from "@util/helpers";
+import { factorize } from "../util/helpers";
 import type { Rational } from "../rational";
 
 /**

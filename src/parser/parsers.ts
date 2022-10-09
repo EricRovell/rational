@@ -1,4 +1,4 @@
-import { getRatio } from "@util/ratio";
+import { getRatio } from "../util/ratio";
 import { stringParsers } from "./parsers-string";
 import { objectParsers } from "./parsers-object";
 import { Parser } from "../types";
@@ -19,13 +19,13 @@ export const parseIntegers: Parser = (numerator, denominator = 1) => {
  */
 export const parseFloat: Parser = float => {
 	if (typeof float !== "number" || Number.isInteger(float)) {
-		return null;  
+		return null;
 	}
 
 	const floatParts = float.toString().split(".");
 	const denominator = 10 ** floatParts[1].length;
 	const [ integral, fractional ] = floatParts.map(Number);
-  
+
 	return getRatio(integral * denominator + fractional, denominator);
 };
 
@@ -48,7 +48,7 @@ export const parseObject: Parser = input => {
 	if (typeof input !== "object" || Array.isArray(input) || input === null) {
 		return null;
 	}
-  
+
 	for (const parser of objectParsers) {
 		const result = parser(input);
 		if (result) {

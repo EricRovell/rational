@@ -5,7 +5,7 @@ import {
 	rational2decimalString,
 	rational2fractionString
 } from "./operations";
-import { lcm, round, ceil, floor, gcd } from "@util/helpers";
+import { lcm, round, ceil, floor, gcd } from "./util/helpers";
 import type { Input, InputRational, Ratio } from "./types";
 
 export class Rational {
@@ -44,7 +44,7 @@ export class Rational {
 
 	/**
 	 * Returns a decimal representation of a rational number.
-	 * 
+	 *
 	 * `rational(1, 2).valueOf()  // -> 0.5`
 	 * `rational(18, 7).valueOf() // -> 2.5714285714285716`
 	 */
@@ -203,13 +203,13 @@ export class Rational {
 
 	/* Compares the rational number with another.
 	 * Results are interpreted as:
-	 * 
+	 *
 	 * 	- comparable is greater ->  1;
 	 *  - comparable is smaller -> -1;
 	 *  - comparable is equal   ->  0.
-	 * 
+	 *
 	 * Non-strict inequalities can be performed as such:
-	 * 
+	 *
 	 *  - rational.compare(1/2) >= 0 the same as >=
 	 *  - rational.compare(1/2) <= 0 the same as <=
 	 */
@@ -257,7 +257,7 @@ export class Rational {
 
 	/**
 	 * Calculates the [mathematical correct modulo](https://en.wikipedia.org/wiki/Modulo_(mathematics)) of two rational numbers.
-	 * 
+	 *
 	 * [More info and source of the implementation](https://stackoverflow.com/questions/2691025/mathematical-modulus-in-c-sharp)
 	 */
 	mathmod(input: InputRational, arg2?: number): Rational {

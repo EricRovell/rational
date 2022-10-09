@@ -1,4 +1,4 @@
-import { factorize } from "@util/helpers";
+import { factorize } from "../util/helpers";
 import type { Rational } from "../rational";
 import type { Input, Ratio } from "../types";
 
@@ -10,22 +10,22 @@ interface Factors {
 /**
  * Attemps to raise a rational number to the power of another rational number.
  * If result is irrational, returns null.
- * 
+ *
  * The idea is:
- * 
+ *
  * 1. Use prime factorization to break the numerator and denominator.
  * 2. As (a^b)^c -> a^(b * c) raise the power of each factor by exponent's numerator.
  * 3. Check divisibility of each factors power by exponents denominator.
  * 4. If each factor of both numerator and denominator passes the test, the result IS rational.
- * 
+ *
  * Simplified example:
- * 
+ *
  * (27/1) ^ (2/3):
- * 
+ *
  * 1. (3^3)^(2/3)
  * 2. (3^6)^(1/3)
  * 3. as 6 / 3 === 0 -> check passed.
- * 
+ *
  * Same is done with denominator.
  */
 export function expRational(base: Rational, exponent: Rational): Ratio | null {

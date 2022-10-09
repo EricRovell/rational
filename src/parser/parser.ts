@@ -1,5 +1,5 @@
-import { simplifyRatio } from "@util/ratio";
-import { 
+import { simplifyRatio } from "../util/ratio";
+import {
 	parseIntegers,
 	parseFloat,
 	parseArray,
@@ -19,7 +19,7 @@ const parsers = [
 
 /**
  * Parses input into Ratio.
- * 
+ *
  * Supported input:
  *  + parse(int, int);
  *  + parse(float);

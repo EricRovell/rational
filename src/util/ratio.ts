@@ -1,4 +1,4 @@
-import { gcd } from "@util/helpers";
+import { gcd } from "./helpers";
 import { getRatioFromFraction } from "./fraction";
 import type { Ratio } from "../types";
 
