@@ -1,7 +1,7 @@
 import { parse } from "./parser";
 import { detectRepeatingDecimal } from "./lib/repeating-decimal";
+import { pow } from "./lib/exponent";
 import {
-	pow,
 	rational2decimalString,
 	rational2fractionString
 } from "./operations";
