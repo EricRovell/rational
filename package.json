@@ -2,22 +2,17 @@
 	"name": "@ericrovell/rational",
 	"version": "0.5.2",
 	"description": "Rational is rational numbers library written in JavaScript",
-	"main": "index.js",
-	"module": "index.mjs",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
 	"scripts": {
+		"build": "rm -rf ./dist/* && rollup --config",
 		"lint": "eslint src/**/*.ts tests/**/*.ts",
+		"publish:npm": "pnpm publish --access public",
 		"typecheck": "tsc --noEmit true",
 		"test": "vitest run --coverage",
-		"test:watch": "vitest",
-		"build": "rm -rf ./dist/* && rollup --config",
-		"postbuild": "cp *.json dist && cp *.md dist",
-		"release": "standard-version",
-		"publish:npm": "npm run build && npm run postbuild && cd dist && npm publish --access public"
+		"test:watch": "vitest"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ericrovell/rational.git"
-	},
+	"repository": "github:EricRovell/rational",
 	"keywords": [
 		"math",
 		"numbers",
@@ -26,7 +21,7 @@
 		"parser"
 	],
 	"author": "Eric Rovell",
-	"types": "index.d.ts",
+	"types": "./dist/index.d.ts",
 	"license": "MIT",
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.39.0",
@@ -45,9 +40,10 @@
 	},
 	"exports": {
 		".": {
-			"import": "./index.mjs",
-			"require": "./index.js",
-			"default": "./index.mjs"
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js",
+			"default": "./dist/index.mjs",
+			"types": "./dist/index.d.ts"
 		},
 		"./package.json": "./package.json"
 	},
@@ -55,14 +51,15 @@
 	"directories": {
 		"test": "tests"
 	},
-	"engines": {
-		"node": ">=12.0"
-	},
 	"lint-staged": {
 		"*.{ts,js}": "eslint"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "npx lint-staged",
 		"pre-push": "npm run lint && npm run typecheck"
-	}
+	},
+	"files": [
+		"CHANGELOG.md",
+		"dist"
+	]
 }
