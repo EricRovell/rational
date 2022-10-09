@@ -1,5 +1,5 @@
 import type { Rational } from "../rational";
-import { ratio2repeatingDecimal } from "./ratio-to-repeated-decimal";
+import { ratio2repeatingDecimal } from "../lib/repeating-decimal";
 
 /**
  * Transforms a rational number into fractional string.

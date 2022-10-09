@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { gcd, lcm, factorize } from "../src/util/helpers";
-import { ratio2repeatingDecimal } from "../src/operations";
+import { ratio2repeatingDecimal } from "../src/lib/repeating-decimal";
 
 describe("GCD/LCM test", () => {
 	it("GCD cases", () => {
