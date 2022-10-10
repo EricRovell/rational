@@ -154,9 +154,15 @@ describe("Representation", () => {
 	});
 	it("Transforms a rational number into decimal", () => {
 		expect(rational(1, 2).valueOf()).toBe(0.5);
-		expect(rational(18, 7).valueOf()).toBe(2.5714285714285716);
-		expect(rational(-7, 6).valueOf()).toBe(-1.1666666666666667);
 		expect(rational(25, -5).valueOf()).toBe(-5);
+		expect(rational(18, 7).valueOf()).toBe(2.571428571428572);
+		expect(rational(-7, 6).valueOf()).toBe(-1.166666666666667);
+		expect(rational(18, 7).valueOf(10)).toBe(2.5714285714);
+	});
+	it("Transforms into a primitive value", () => {
+		// @ts-expect-error test case
+		expect(rational(1, 2) + rational(1, 4)).toBe(0.75);
+		expect(+rational(1, 5)).toBe(0.2);
 	});
 });
 

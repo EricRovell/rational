@@ -283,16 +283,23 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.valueOf()</code>
+    <code>.valueOf(places = 15)</code>
   </summary>
 
-  Returns a decimal representation of a rational number.
+  Returns a rational number decimal approximation:
 
   ```js
-  rational(1, 2).valueOf()                  // -> 0.5;
-  rational("1 1/2").valueOf()               // -> 1.5;
-  rational({ int: 1, n: 1, d: 3}).valueOf() // -> 1.3333333333333333;
-  rational("0.12(34)").valueOf()            // -> 0.12343434343434344;
+  rational(1, 2).valueOf()                     // -> 0.5;
+  rational("1 1/2").valueOf()                  // -> 1.5;
+  rational({ int: 1, n: 1, d: 3}).valueOf(5)   // -> 1.33333;
+  rational("0.12(34)").valueOf()               // -> 0.123434343434343;
+  ```
+
+  Method is useful for coercion:
+
+  ```js
+  rational(1, 2) + rational(1, 4) // -> 0.75
+  +rational(1, 5) // -> 0.2
   ```
 </details>
 
