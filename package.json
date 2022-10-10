@@ -14,11 +14,16 @@
 	},
 	"repository": "github:EricRovell/rational",
 	"keywords": [
-		"math",
-		"numbers",
-		"rational",
+		"calculations",
 		"fraction",
-		"parser"
+		"fractions",
+		"math",
+		"number",
+		"numbers",
+		"parser",
+		"rational",
+		"rationals",
+		"rational numbers"
 	],
 	"author": "Eric Rovell",
 	"types": "./dist/index.d.ts",
