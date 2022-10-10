@@ -17,106 +17,13 @@ export class Rational {
 	}
 
 	/**
-	 * Returns a ratio string representation.
+	 * Returns the absolute value of the rational number as new `Rational` instance.
 	 */
-	toString(proper = false, places?: number): string {
-		if (typeof places === "number" && places >= 0) {
-			return this.repeating
-				? ratio2repeatingDecimal(this.n, this.d)
-				: this.round(places).toString();
-		}
-
-		if (!this.proper && proper) {
-			return `${this.integralPart} ${this.fractionalPart.abs.toString(proper)}`;
-		}
-
-		return `${this.n}/${this.d}`;
-	}
-
-	/**
-	 * Returns a decimal representation of a rational number.
-	 *
-	 * `rational(1, 2).valueOf()  // -> 0.5`
-	 * `rational(18, 7).valueOf() // -> 2.5714285714285716`
-	 */
-	valueOf(places = 15): number {
-		return round(this.n / this.d, places);
-	}
-
-	/**
-	 * Indicates whether or not the parsing was successful.
-	 */
-	get valid(): boolean {
-		return this.parsed !== null;
-	}
-
-	/**
-	 * Gets the numerator value of the fraction.
-	 */
-	get numerator(): number {
-		return this.n;
-	}
-
-	/**
-	 * Gets the denominator value of the fraction.
-	 */
-	get denominator(): number {
-		return this.d;
-	}
-
-	/**
-	 * Gets the integral part of the rational number.
-	 */
-	get integralPart(): number {
-		return this.sign * Math.floor(Math.abs(this.n) / this.d);
-	}
-
-	/**
-	 * Gets the gractional part of the rational number as a new `Rational` instance.
-	 */
-	get fractionalPart(): Rational {
-		return new Rational([
-			this.n - this.integralPart * this.d,
+	get abs(): Rational {
+		return new Rational(
+			Math.abs(this.n),
 			this.d
-		]);
-	}
-
-	/**
-	 * Returns the sign of the rational number.
-	 */
-	get sign(): number {
-		return Math.sign(this.n);
-	}
-
-	/**
-	 * Returns the boolean indicating if the rational number could be represented
-	 * as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
-	 */
-	get proper(): boolean {
-		return Math.abs(this.n) < Math.abs(this.d);
-	}
-
-	/**
-	 * Returns the boolean indicating if the rational number
-	 * could be represented by repeating decimal (do not terminates).
-	 */
-	get repeating(): boolean {
-		return detectRepeatingDecimal(this);
-	}
-
-	/**
-	 * Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22)
-	 * as new `Rational` instance.
-	 */
-	get reciprocal(): Rational {
-		return new Rational([ this.d, this.n ]);
-	}
-
-	/**
-	 * Returns the opposite rational number as new `Rational` instance.
-	 */
-	get opposite(): Rational {
-		return new Rational(-1 * this.n, this.d);
+		);
 	}
 
 	/**
@@ -129,66 +36,6 @@ export class Rational {
 		return new Rational(
 			this.numerator * (multiple / this.d) + addend.n * (multiple / addend.d),
 			multiple
-		);
-	}
-
-	/**
-	 * Performs the subtraction and returns the difference as new `Rational` instance.
-	 */
-	sub(input: InputRational, arg2?: number): Rational {
-		return this.add(rational(input, arg2).opposite);
-	}
-
-	/**
-	 * Performs the multiplication and returns the product as new `Rational` instance.
-	 */
-	mul(input: InputRational, arg2?: number): Rational {
-		const factor = rational(input, arg2);
-
-		return new Rational({
-			n: this.n * factor.n,
-			d: this.d * factor.d
-		});
-	}
-
-	/**
-	 * Performs the division and returns the quotien as new `Rational` instance.
-	 */
-	div(input: InputRational, arg2?: number): Rational {
-		return this.mul(rational(input, arg2).reciprocal);
-	}
-
-	/**
-	 * Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers
-	 * and returns a new `Rational` instance.
-	 */
-	gcd(input: InputRational, arg2?: number): Rational {
-		const another = rational(input, arg2);
-		return new Rational(
-			gcd(this.n, another.n),
-			lcm(this.d, another.d)
-		);
-	}
-
-	/**
-	 * Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers
-	 * and returns a new `Rational` instance.
-	 */
-	lcm(input: InputRational, arg2?: number): Rational {
-		const another = rational(input, arg2);
-		return new Rational(
-			lcm(this.n, another.n),
-			gcd(this.d, another.d)
-		);
-	}
-
-	/**
-	 * Returns the absolute value of the rational number as new `Rational` instance.
-	 */
-	get abs(): Rational {
-		return new Rational(
-			Math.abs(this.n),
-			this.d
 		);
 	}
 
@@ -215,17 +62,31 @@ export class Rational {
 	}
 
 	/**
-	 * Returns the rational number rounded to fixed decimal places.
-	 */
-	round(places = 0): number {
-		return round(this.n / this.d, places);
-	}
-
-	/**
 	 * Returns the rational number rounded up to the next largest decimal place.
 	 */
 	ceil(places = 0): number {
 		return ceil(this.n / this.d, places);
+	}
+
+	/**
+	 * Gets the denominator value of the fraction.
+	 */
+	get denominator(): number {
+		return this.d;
+	}
+
+	/**
+	 * Performs the division and returns the quotien as new `Rational` instance.
+	 */
+	div(input: InputRational, arg2?: number): Rational {
+		return this.mul(rational(input, arg2).reciprocal);
+	}
+
+	/**
+	 * Checks if two rational numbers are divisible.
+	 */
+	divisible(input: InputRational, arg2: number): boolean {
+		return this.mod(input, arg2).n === 0;
 	}
 
 	/**
@@ -236,13 +97,43 @@ export class Rational {
 	}
 
 	/**
-	 * Calculates the modulo of two rational numbers.
+	 * Gets the gractional part of the rational number as a new `Rational` instance.
 	 */
-	mod(input: InputRational, arg2?: number): Rational {
+	get fractionalPart(): Rational {
+		return new Rational([
+			this.n - this.integralPart * this.d,
+			this.d
+		]);
+	}
+
+	/**
+	 * Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers
+	 * and returns a new `Rational` instance.
+	 */
+	gcd(input: InputRational, arg2?: number): Rational {
 		const another = rational(input, arg2);
 		return new Rational(
-			(this.n * another.d) % (this.d * another.n),
-			this.d * another.d
+			gcd(this.n, another.n),
+			lcm(this.d, another.d)
+		);
+	}
+
+	/**
+	 * Gets the integral part of the rational number.
+	 */
+	get integralPart(): number {
+		return this.sign * Math.floor(Math.abs(this.n) / this.d);
+	}
+
+	/**
+	 * Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers
+	 * and returns a new `Rational` instance.
+	 */
+	lcm(input: InputRational, arg2?: number): Rational {
+		const another = rational(input, arg2);
+		return new Rational(
+			lcm(this.n, another.n),
+			gcd(this.d, another.d)
 		);
 	}
 
@@ -260,10 +151,48 @@ export class Rational {
 	}
 
 	/**
-	 * Checks if two rational numbers are divisible.
+	 * Calculates the modulo of two rational numbers.
 	 */
-	divisible(input: InputRational, arg2: number): boolean {
-		return this.mod(input, arg2).n === 0;
+	mod(input: InputRational, arg2?: number): Rational {
+		const another = rational(input, arg2);
+		return new Rational(
+			(this.n * another.d) % (this.d * another.n),
+			this.d * another.d
+		);
+	}
+
+	/**
+	 * Performs the multiplication and returns the product as new `Rational` instance.
+	 */
+	mul(input: InputRational, arg2?: number): Rational {
+		const factor = rational(input, arg2);
+
+		return new Rational({
+			n: this.n * factor.n,
+			d: this.d * factor.d
+		});
+	}
+
+	/**
+	 * Gets the numerator value of the fraction.
+	 */
+	get numerator(): number {
+		return this.n;
+	}
+
+	/**
+	 * Returns the opposite rational number as new `Rational` instance.
+	 */
+	get opposite(): Rational {
+		return new Rational(-1 * this.n, this.d);
+	}
+
+	/**
+	 * Returns the boolean indicating if the rational number could be represented
+	 * as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
+	 */
+	get proper(): boolean {
+		return Math.abs(this.n) < Math.abs(this.d);
 	}
 
 	/**
@@ -277,6 +206,77 @@ export class Rational {
 		return result
 			? new Rational(result)
 			: null;
+	}
+
+	/**
+	 * Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22)
+	 * as new `Rational` instance.
+	 */
+	get reciprocal(): Rational {
+		return new Rational([ this.d, this.n ]);
+	}
+
+	/**
+	 * Returns the boolean indicating if the rational number
+	 * could be represented by repeating decimal (do not terminates).
+	 */
+	get repeating(): boolean {
+		return detectRepeatingDecimal(this);
+	}
+
+	/**
+	 * Returns the rational number rounded to fixed decimal places.
+	 */
+	round(places = 0): number {
+		return round(this.n / this.d, places);
+	}
+
+	/**
+	 * Returns the sign of the rational number.
+	 */
+	get sign(): number {
+		return Math.sign(this.n);
+	}
+
+	/**
+	 * Performs the subtraction and returns the difference as new `Rational` instance.
+	 */
+	sub(input: InputRational, arg2?: number): Rational {
+		return this.add(rational(input, arg2).opposite);
+	}
+
+	/**
+	 * Returns a ratio string representation.
+	 */
+	toString(proper = false, places?: number): string {
+		if (typeof places === "number" && places >= 0) {
+			return this.repeating
+				? ratio2repeatingDecimal(this.n, this.d)
+				: this.round(places).toString();
+		}
+
+		if (!this.proper && proper) {
+			return `${this.integralPart} ${this.fractionalPart.abs.toString(proper)}`;
+		}
+
+		return `${this.n}/${this.d}`;
+	}
+
+	/**
+	 * Indicates whether or not the parsing was successful.
+	 */
+	get valid(): boolean {
+		return this.parsed !== null;
+	}
+
+	/**
+	 * Returns a decimal representation of a rational number.
+	 *
+	 * `rational(1, 2).valueOf()  // -> 0.5`
+	 * `rational(18, 7).valueOf() // -> 2.5714285714285716`
+	 */
+	valueOf(places = 15): number {
+		return this.round(places);
 	}
 }
 

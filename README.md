@@ -307,27 +307,17 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.valid</code>
+    <code>.abs</code>
   </summary>
 
-  Returns a boolean indicating the parsing operation success.
-  On failed attempt the rational number defaults to 0.
+  Returns the absolute value of the rational number as new `Rational` instance.
 
   ```js
-  rational(1, 2).valid;  // -> true
-  rational("hi!").valid; // -> false
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.numerator</code>
-  </summary>
-
-  Returns the numerator value of the rational number.
-
-  ```js
-  rational(1, 2).numerator; // -> 1
+  rational(0, 2).abs.toString();   // -> "0/2"
+  rational(-1, 2).abs.toString();  // -> "1/2"
+  rational(1, -2).abs.toString();  // -> "1/2"
+  rational(-1, -2).abs.toString(); // -> "1/2"
+  rational(1, 2).abs.toString();   // -> "1/2"
   ```
 </details>
 
@@ -340,19 +330,6 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
   ```js
   rational(1, 2).denominator; // -> 2
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.integralPart</code>
-  </summary>
-
-  Returns the integral part of the rational number.
-
-  ```js
-  rational(1, 2).integralPart; // -> 0
-  rational(3, 2).integralPart; // -> 1
   ```
 </details>
 
@@ -371,56 +348,26 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.sign</code>
+    <code>.integralPart</code>
   </summary>
 
-  Returns the sign of the rational number.
+  Returns the integral part of the rational number.
 
   ```js
-  rational(0, 2).sign;   // ->  0
-  rational(-1, 2).sign;  // -> -1
-  rational(1, -2).sign;  // -> -1
-  rational(-1, -2).sign; // ->  1
-  rational(1, 2).sign;   // ->  1
+  rational(1, 2).integralPart; // -> 0
+  rational(3, 2).integralPart; // -> 1
   ```
 </details>
 
 <details>
   <summary>
-    <code>.proper</code>
+    <code>.numerator</code>
   </summary>
 
-  Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
+  Returns the numerator value of the rational number.
 
   ```js
-  rational(1, 2).proper; // -> true;
-  rational(3, 2).proper; // -> false;
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.repeating</code>
-  </summary>
-
-  Returns the boolean indicating if the rational number could be represents a [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal).
-
-  ```js
-  rational(1, 3).repeating; // -> true;
-  rational(1, 4).repeating; // -> false;
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.reciprocal</code>
-  </summary>
-
-  Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
-
-  ```js
-  rational(1, 2).reciprocal.toString(); // -> "2/1";
-  rational(3, 2).reciprocal.toString(); // -> "3/2";
+  rational(1, 2).numerator; // -> 1
   ```
 </details>
 
@@ -442,17 +389,70 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.abs</code>
+    <code>.proper</code>
   </summary>
 
-  Returns the absolute value of the rational number as new `Rational` instance.
+  Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
 
   ```js
-  rational(0, 2).abs.toString();   // -> "0/2"
-  rational(-1, 2).abs.toString();  // -> "1/2"
-  rational(1, -2).abs.toString();  // -> "1/2"
-  rational(-1, -2).abs.toString(); // -> "1/2"
-  rational(1, 2).abs.toString();   // -> "1/2"
+  rational(1, 2).proper; // -> true;
+  rational(3, 2).proper; // -> false;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.reciprocal</code>
+  </summary>
+
+  Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
+
+  ```js
+  rational(1, 2).reciprocal.toString(); // -> "2/1";
+  rational(3, 2).reciprocal.toString(); // -> "3/2";
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.repeating</code>
+  </summary>
+
+  Returns the boolean indicating if the rational number could be represents a [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal).
+
+  ```js
+  rational(1, 3).repeating; // -> true;
+  rational(1, 4).repeating; // -> false;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.sign</code>
+  </summary>
+
+  Returns the sign of the rational number.
+
+  ```js
+  rational(0, 2).sign;   // ->  0
+  rational(-1, 2).sign;  // -> -1
+  rational(1, -2).sign;  // -> -1
+  rational(-1, -2).sign; // ->  1
+  rational(1, 2).sign;   // ->  1
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.valid</code>
+  </summary>
+
+  Returns a boolean indicating the parsing operation success.
+  On failed attempt the rational number defaults to 0.
+
+  ```js
+  rational(1, 2).valid;  // -> true
+  rational("hi!").valid; // -> false
   ```
 </details>
 
@@ -473,100 +473,6 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   rational(1, 2)
     .add(rational(1, 4))
     .toString(); // -> "3/4"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.sub(Rational | Input)</code>
-  </summary>
-
-  Performs the subtraction and returns the difference as new `Rational` instance.
-
-  ```js
-  rational(1, 2)
-    .sub(1, 4)
-    .toString(); // -> "1/4"
-
-  rational(1, 2)
-    .sub(rational(1, 4))
-    .toString(); // -> "1/4"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.mul(Rational | Input)</code>
-  </summary>
-
-  Performs the multiplication and returns the product as new `Rational` instance.
-
-  ```js
-  rational(1, 2)
-    .mul(1, 4)
-    .toString(); // -> "1/8"
-
-  rational(1, 2)
-    .mul(rational(1, 4))
-    .toString(); // -> "1/8"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.div(Rational | Input)</code>
-  </summary>
-
-  Performs the division and returns the quotien as new `Rational` instance.
-
-  ```js
-  rational(1, 2)
-    .div(1, 4)
-    .toString(); // -> "2/1"
-
-  rational(1, 2)
-    .div(rational(1, 4))
-    .toString(); // -> "2/1"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.pow(Rational | Input)</code>
-  </summary>
-
-  Calculates the exponentiation result of two rational numbers.
-  If the result is rational returns a new `Rational` instance.
-  If the result **irrational** the `null` returned instead.
-
-  ```js
-  rational(27).pow(2, 3)?.toString() // -> "9/1"
-  rational(2).pow(1, 2)?.toString()  // -> null
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.gcd(Rational | Input)</code>
-  </summary>
-
-  Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers and returns a new `Rational` instance.
-
-  ```js
-  rational(5, 8).gcd(3, 7) // 1/56
-  rational(2, 3).gcd(7, 5) // 1/15
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.gcd(Rational | Input)</code>
-  </summary>
-
-  Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers and returns a new `Rational` instance.
-
-  ```js
-  rational(5, 8).lcm(3, 7) // 15/1
   ```
 </details>
 
@@ -597,20 +503,6 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.round(places = 0)</code>
-  </summary>
-
-  Returns the rational number rounded to fixed decimal places.
-
-  ```js
-  rational(23, 8).round() // -> 3
-  rational(23, 8).round(1) // -> 2.9
-  rational(23, 8).round(2) // -> 2.88
-  ```
-</details>
-
-<details>
-  <summary>
     <code>.ceil(places = 0)</code>
   </summary>
 
@@ -620,6 +512,37 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   rational(29, 7).ceil() // -> 5
   rational(29, 7).ceil(1) // -> 4.2
   rational(29, 7).ceil(2) // -> 4.15
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.div(Rational | Input)</code>
+  </summary>
+
+  Performs the division and returns the quotien as new `Rational` instance.
+
+  ```js
+  rational(1, 2)
+    .div(1, 4)
+    .toString(); // -> "2/1"
+
+  rational(1, 2)
+    .div(rational(1, 4))
+    .toString(); // -> "2/1"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.divisible(Rational | Input)</code>
+  </summary>
+
+  Checks if two rational numbers are divisible.
+
+  ```js
+  rational(1, 2).divisible(1, 4) // -> true
+  rational(5, 8).divisible(2, 7) // -> false
   ```
 </details>
 
@@ -639,14 +562,26 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.mod(Rational | Input)</code>
+    <code>.gcd(Rational | Input)</code>
   </summary>
 
-  Calculates the modulo of two rational numbers.
+  Calculates the [GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of two rational numbers and returns a new `Rational` instance.
 
   ```js
-  rational("13/3").mod("7/8").toString()   // -> "5/6"
-  rational("13/7").mod("19/11").toString() // -> "10/77"
+  rational(5, 8).gcd(3, 7) // 1/56
+  rational(2, 3).gcd(7, 5) // 1/15
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.lcm(Rational | Input)</code>
+  </summary>
+
+  Calculates the [LCM](https://en.wikipedia.org/wiki/Least_common_multiple) of two rational numbers and returns a new `Rational` instance.
+
+  ```js
+  rational(5, 8).lcm(3, 7) // 15/1
   ```
 </details>
 
@@ -665,14 +600,79 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.divisible(Rational | Input)</code>
+    <code>.mod(Rational | Input)</code>
   </summary>
 
-  Checks if two rational numbers are divisible.
+  Calculates the modulo of two rational numbers.
 
   ```js
-  rational(1, 2).divisible(1, 4) // -> true
-  rational(5, 8).divisible(2, 7) // -> false
+  rational("13/3").mod("7/8").toString()   // -> "5/6"
+  rational("13/7").mod("19/11").toString() // -> "10/77"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.mul(Rational | Input)</code>
+  </summary>
+
+  Performs the multiplication and returns the product as new `Rational` instance.
+
+  ```js
+  rational(1, 2)
+    .mul(1, 4)
+    .toString(); // -> "1/8"
+
+  rational(1, 2)
+    .mul(rational(1, 4))
+    .toString(); // -> "1/8"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.pow(Rational | Input)</code>
+  </summary>
+
+  Calculates the exponentiation result of two rational numbers.
+  If the result is rational returns a new `Rational` instance.
+  If the result **irrational** the `null` returned instead.
+
+  ```js
+  rational(27).pow(2, 3)?.toString() // -> "9/1"
+  rational(2).pow(1, 2)?.toString()  // -> null
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.round(places = 0)</code>
+  </summary>
+
+  Returns the rational number rounded to fixed decimal places.
+
+  ```js
+  rational(23, 8).round() // -> 3
+  rational(23, 8).round(1) // -> 2.9
+  rational(23, 8).round(2) // -> 2.88
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.sub(Rational | Input)</code>
+  </summary>
+
+  Performs the subtraction and returns the difference as new `Rational` instance.
+
+  ```js
+  rational(1, 2)
+    .sub(1, 4)
+    .toString(); // -> "1/4"
+
+  rational(1, 2)
+    .sub(rational(1, 4))
+    .toString(); // -> "1/4"
   ```
 </details>
 
