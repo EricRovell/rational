@@ -169,7 +169,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 <details>
   <summary>
-    <code>(input: string)</code> as fraction
+    <code>(input: StringFraction)</code>
   </summary>
 
   Parses the given *fractional* string in form `{sign?}{int?} {sign?}{numerator}/{sign?}{denominator}` and returns a new `Rational` instance.
@@ -202,7 +202,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 <details>
   <summary>
-    <code>(input: string)</code> as repeating decimal
+    <code>(input: StringRepeatingDecimal)</code>
   </summary>
 
   Parses the given *repeating decimal* string in form `{sign?}{int?}.{non-repeating}?({repeating})` and returns a new `Rational` instance.
@@ -228,7 +228,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 <details>
   <summary>
-    <code>(input: string)</code> as degrees
+    <code>(input: StringDegrees)</code>
   </summary>
 
   Parses the given *degrees* string in form `{sign?}{degrees?}.{minutes'?}{seconds''?}` and returns a new `Rational` instance.
@@ -667,3 +667,19 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational(5, 8).divisible(2, 7) // -> false
   ```
 </details>
+
+### Types
+
+Tha package includes all necessary types, they are available for export:
+
+```ts
+export type {
+	Degrees,
+	Fraction,
+	Ratio,
+	RepeatingDecimal,
+	StringDegrees,
+	StringFraction,
+	StringRepeatingDecimal
+} from "@ericrovell/rational";
+```
