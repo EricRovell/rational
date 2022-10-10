@@ -1,5 +1,9 @@
 # Rational
 
+## Unreleased
+
+- [breaking]: `.toDecimalString()` and `.toFractionString()` is removed in favor for improved `.toString()` method to not dublicate the functionality;
+
 ## 0.5.2 (2021-08-25)
 
 - [fix]: Incorrect ESM Module path;
