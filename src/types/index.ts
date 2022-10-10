@@ -47,6 +47,22 @@ export type InputObject =
 	| Degrees
 	| RepeatingDecimal;
 
+export type StringDegrees =
+	| `${number}.${number}'${number}''`
+	| `${number}.${number}'`
+	| `${number}.${number}''`
+	| `${number}`;
+
+export type StringFraction =
+	| `${number}/${number}`
+	| `${number} ${number}/${number}`;
+
+export type StringRepeatingDecimal =
+	| `.(${number})`
+	| `.${number}(${number})`
+	| `${number}.(${number})`
+	| `${number}.${number}(${number})`;
+
 /**
  * Valid user input to build a Rational number from.
  */
@@ -55,7 +71,9 @@ export type Input =
 	| Ratio
 	| IntegerRatio
 	| number
-	| string;
+	| StringDegrees
+	| StringFraction
+	| StringRepeatingDecimal;
 
 /**
  * Defines an input for operations where
@@ -66,4 +84,4 @@ export type InputRational = Input | Rational;
 /**
  * Parser function that attempts to produce a Ratio.
  */
-export type Parser = (numerator: Input, denominator?: number) => Ratio | null;
+export type Parser<T = Input> = (numerator: T, denominator?: number) => Ratio | null;
