@@ -14,10 +14,10 @@ export type IntegerRatio = [ numerator: number ];
  * Represents a fraction.
  */
 export interface Fraction {
-  sign?: number;
-  int?: number;
-  n: number;
-  d?: number;
+	sign?: number;
+	int?: number;
+	n: number;
+	d?: number;
 }
 
 /**
@@ -30,32 +30,32 @@ export interface FractionUnknown {
 }
 
 export interface Degrees {
-  deg?: number;
-  min?: number;
-  sec?: number;
+	deg?: number;
+	min?: number;
+	sec?: number;
 }
 
 export interface RepeatingDecimal {
-  sign?: number;
-  int?: number | string;
-  nonrepeat?: string | number;
-  repeat: string | number;
+	sign?: number;
+	int?: number | string;
+	nonrepeat?: string | number;
+	repeat: string | number;
 }
 
 export type InputObject =
-  | Fraction
-  | Degrees
-  | RepeatingDecimal;
+	| Fraction
+	| Degrees
+	| RepeatingDecimal;
 
 /**
  * Valid user input to build a Rational number from.
  */
 export type Input =
-  | InputObject
-  | Ratio
-  | IntegerRatio
-  | number
-  | string;
+	| InputObject
+	| Ratio
+	| IntegerRatio
+	| number
+	| string;
 
 /**
  * Defines an input for operations where

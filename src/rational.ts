@@ -1,7 +1,6 @@
 import { parse } from "./parser";
-import { detectRepeatingDecimal } from "./lib/repeating-decimal";
+import { detectRepeatingDecimal, ratio2repeatingDecimal } from "./lib/repeating-decimal";
 import { pow } from "./lib/exponent";
-import { rational2decimalString, rational2fractionString } from "./operations";
 import { lcm, round, ceil, floor, gcd } from "./utils";
 import type { Input, InputRational, Ratio } from "./types";
 
@@ -20,23 +19,18 @@ export class Rational {
 	/**
 	 * Returns a ratio string representation.
 	 */
-	toString(): string {
-		return rational2fractionString(this, false);
-	}
+	toString(proper = false, places?: number): string {
+		if (typeof places === "number" && places >= 0) {
+			return this.repeating
+				? ratio2repeatingDecimal(this.n, this.d)
+				: this.round(places).toString();
+		}
 
-	/**
-	 * Transforms a rational number into decimal string.
-	 */
-	toDecimalString(places?: number): string {
-		return rational2decimalString(this, places);
-	}
+		if (!this.proper && proper) {
+			return `${this.integralPart} ${this.fractionalPart.abs.toString(proper)}`;
+		}
 
-	/**
-	 * Transforms a rational number into fractional string.
-	 * By default, the fraction is proper.
-	 */
-	toFractionString(proper = true): string {
-		return rational2fractionString(this, proper);
+		return `${this.n}/${this.d}`;
 	}
 
 	/**
