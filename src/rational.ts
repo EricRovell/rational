@@ -39,8 +39,8 @@ export class Rational {
 	 * `rational(1, 2).valueOf()  // -> 0.5`
 	 * `rational(18, 7).valueOf() // -> 2.5714285714285716`
 	 */
-	valueOf(): number {
-		return this.n / this.d;
+	valueOf(places = 15): number {
+		return round(this.n / this.d, places);
 	}
 
 	/**

@@ -4,6 +4,7 @@
 
 - [breaking]: `.toDecimalString()` and `.toFractionString()` is removed in favor for improved `.toString()` method to not dublicate the functionality;
 - [feat]: expose input types for a user;
+- [feat]: improve `.valueOf(places?)` method with optional argument to round the decimal approximation;
 
 ## 0.5.2 (2021-08-25)
 
