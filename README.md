@@ -245,7 +245,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
 
 <details>
   <summary>
-    <code>.toString()</code>
+    <code>.toString(proper = false, places?: number)</code>
   </summary>
 
   Returns a `Ratio` string representation.
@@ -255,6 +255,28 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational("1 1/2").toString()               // -> "3/2";
   rational({ int: 1, n: 1, d: 3}).toString() // -> "4/3";
   rational("0.12(34)").toString()            // -> "611/4950";
+  ```
+
+  To get a proper fraction string, use the first argument:
+
+  ```js
+  rational("1 1/2").toString(true)                    // -> "1 1/2";
+  rational(1, 2).toString(true)                       // -> "1/2";
+  rational({ int: 1, n: 1, d: 3 }).toString(true)      // -> "1 1/3";
+  ```
+
+  If the second argument is provided, the decimal string is returned.
+  The value represents number of places:
+
+  ```js
+  rational(1, 2).toString(false, 1)                    // -> "0.5";
+  rational("1 1/2").toString(false, 5)                 // -> "1.5";
+  ```
+
+  In case the rational is a repeating decimal, it's representation is preserved:
+
+  ```js
+  rational("1 1/3").toString(false, 5)   // -> "1.(3)";
   ```
 </details>
 
@@ -270,38 +292,6 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   rational("1 1/2").valueOf()               // -> 1.5;
   rational({ int: 1, n: 1, d: 3}).valueOf() // -> 1.3333333333333333;
   rational("0.12(34)").valueOf()            // -> 0.12343434343434344;
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.toFractionString(proper = true)</code>
-  </summary>
-
-  Transforms a rational number into fractional string.
-  The difference between `.toString()` method as it provides control to get proper/improper fractions.
-
-  `.toString()` is easier to use for tests and might me usefull for coercion.
-
-  ```js
-  rational(1, 2).toFractionString()                       // -> "1/2";
-  rational("1 1/2").toFractionString()                    // -> "1 1/2";
-  rational({ int: 1, n: 1, d: 3}).toFractionString()      // -> "1 1/3";
-  rational({ int: 1, n: 1, d: 3}).toFractionString(false) // -> "4/3";
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.toDecimalString(places = 15)</code>
-  </summary>
-
-  Transforms a rational number into decimal string.
-
-  ```js
-  rational(1, 2).toDecimalString()                        // -> "0.5";
-  rational("1 1/2").toDecimalString()                     // -> "1.5";
-  rational({ int: 1, n: 1, d: 3}).toDecimalString(4)      // -> "1.3333";
   ```
 </details>
 
