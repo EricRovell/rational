@@ -56,10 +56,11 @@ Rational is JavaScript library for rational numbers manipulations.
 
 ## Features
 
-- Chainable API;
-- Immutable;
 - Build-in Types;
 - Dependency-free;
+- Feature rich;
+- Immutable;
+- Simple chainable API;
 
 ## Getting started
 
@@ -72,9 +73,9 @@ npm i @ericrovell/rational
 ```js
 import { rational } from "@ericrovell/rational";
 
-rational(2, 3).toString();           // -> "2/3"
-rational([ 2, 3] ).toString();       // -> "2/3"
-rational({ n: 2, d: 3 }).toString(); // -> "2/3"
+rational(2, 3).toString();            // -> "2/3"
+rational([ 2, 3] ).toString();        // -> "2/3"
+rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 ```
 
 ## API
@@ -668,7 +669,7 @@ rational({ n: 2, d: 3 }).toString(); // -> "2/3"
   ```
 </details>
 
-### Types
+## Types
 
 Tha package includes all necessary types, they are available for export:
 
