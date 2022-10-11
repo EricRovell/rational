@@ -55,9 +55,12 @@ Rational is JavaScript library for rational numbers manipulations.
 
 - Build-in Types;
 - Dependency-free;
+- Extendable;
 - Feature rich;
 - Immutable;
 - Simple chainable API;
+- Types included;
+- Works in a browser and Node.js;
 
 ## Getting started
 
@@ -75,11 +78,7 @@ rational([ 2, 3] ).toString();        // -> "2/3"
 rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 ```
 
-## API
-
-### Parsing
-
-#### Parsing API
+## Parsing
 
 <details>
   <summary>
@@ -105,7 +104,7 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   ```
 </details>
 
-#### Supported input
+### Supported input
 
 <details>
   <summary>
@@ -239,68 +238,7 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   ```
 </details>
 
-### Representation
-
-<details>
-  <summary>
-    <code>.toString(proper = false, places?: number)</code>
-  </summary>
-
-  Returns a `Ratio` string representation.
-
-  ```js
-  rational(1, 2).toString()                  // -> "1/2";
-  rational("1 1/2").toString()               // -> "3/2";
-  rational({ int: 1, n: 1, d: 3}).toString() // -> "4/3";
-  rational("0.12(34)").toString()            // -> "611/4950";
-  ```
-
-  To get a proper fraction string, use the first argument:
-
-  ```js
-  rational("1 1/2").toString(true)                    // -> "1 1/2";
-  rational(1, 2).toString(true)                       // -> "1/2";
-  rational({ int: 1, n: 1, d: 3 }).toString(true)      // -> "1 1/3";
-  ```
-
-  If the second argument is provided, the decimal string is returned.
-  The value represents number of places:
-
-  ```js
-  rational(1, 2).toString(false, 1)                    // -> "0.5";
-  rational("1 1/2").toString(false, 5)                 // -> "1.5";
-  ```
-
-  In case the rational is a repeating decimal, it's representation is preserved:
-
-  ```js
-  rational("1 1/3").toString(false, 5)   // -> "1.(3)";
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.valueOf(places = 15)</code>
-  </summary>
-
-  Returns a rational number decimal approximation:
-
-  ```js
-  rational(1, 2).valueOf()                     // -> 0.5;
-  rational("1 1/2").valueOf()                  // -> 1.5;
-  rational({ int: 1, n: 1, d: 3}).valueOf(5)   // -> 1.33333;
-  rational("0.12(34)").valueOf()               // -> 0.123434343434343;
-  ```
-
-  Method is useful for coercion:
-
-  ```js
-  rational(1, 2) + rational(1, 4) // -> 0.75
-  +rational(1, 5) // -> 0.2
-  ```
-</details>
-
-### Properties
+## API
 
 <details>
   <summary>
@@ -320,156 +258,6 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.continued</code>
-  </summary>
-
-  Returns the [continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) representation of the rational.
-  The first element holds the integral part.
-
-  ```js
-  rational(415, 93).continued // -> [ 4, 2, 6, 7 ]
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.denominator</code>
-  </summary>
-
-  Returns the denominator value of the rational number.
-
-  ```js
-  rational(1, 2).denominator; // -> 2
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.fractionalPart</code>
-  </summary>
-
-  Returns the fractional part of the rational number as a new `Rational` instance.
-
-  ```js
-  rational(1, 2).fractionalPart.toString(); // -> "1/2"
-  rational(3, 2).fractionalPart.toString(); // -> "1/2"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.integralPart</code>
-  </summary>
-
-  Returns the integral part of the rational number.
-
-  ```js
-  rational(1, 2).integralPart; // -> 0
-  rational(3, 2).integralPart; // -> 1
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.numerator</code>
-  </summary>
-
-  Returns the numerator value of the rational number.
-
-  ```js
-  rational(1, 2).numerator; // -> 1
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.opposite</code>
-  </summary>
-
-  Returns the opposite rational number as new `Rational` instance.
-
-  ```js
-  rational(0, 2).opposite.toString();   // -> "0/2"
-  rational(-1, 2).opposite.toString();  // -> "1/2"
-  rational(1, -2).opposite.toString();  // -> "1/2"
-  rational(-1, -2).opposite.toString(); // -> "-1/2"
-  rational(1, 2).opposite.toString();   // -> "-1/2"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.proper</code>
-  </summary>
-
-  Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
-
-  ```js
-  rational(1, 2).proper; // -> true;
-  rational(3, 2).proper; // -> false;
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.reciprocal</code>
-  </summary>
-
-  Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
-
-  ```js
-  rational(1, 2).reciprocal.toString(); // -> "2/1";
-  rational(3, 2).reciprocal.toString(); // -> "3/2";
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.repeating</code>
-  </summary>
-
-  Returns the boolean indicating if the rational number could be represents a [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal).
-
-  ```js
-  rational(1, 3).repeating; // -> true;
-  rational(1, 4).repeating; // -> false;
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.sign</code>
-  </summary>
-
-  Returns the sign of the rational number.
-
-  ```js
-  rational(0, 2).sign;   // ->  0
-  rational(-1, 2).sign;  // -> -1
-  rational(1, -2).sign;  // -> -1
-  rational(-1, -2).sign; // ->  1
-  rational(1, 2).sign;   // ->  1
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.valid</code>
-  </summary>
-
-  Returns a boolean indicating the parsing operation success.
-  On failed attempt the rational number defaults to 0.
-
-  ```js
-  rational(1, 2).valid;  // -> true
-  rational("hi!").valid; // -> false
-  ```
-</details>
-
-### Operations
-
-<details>
-  <summary>
     <code>.add(Rational | Input)</code>
   </summary>
 
@@ -483,6 +271,20 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   rational(1, 2)
     .add(rational(1, 4))
     .toString(); // -> "3/4"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.ceil(places = 0)</code>
+  </summary>
+
+  Returns the rational number rounded up to the next largest decimal place.
+
+  ```js
+  rational(29, 7).ceil() // -> 5
+  rational(29, 7).ceil(1) // -> 4.2
+  rational(29, 7).ceil(2) // -> 4.15
   ```
 </details>
 
@@ -513,15 +315,26 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
-    <code>.ceil(places = 0)</code>
+    <code>.continued</code>
   </summary>
 
-  Returns the rational number rounded up to the next largest decimal place.
+  Returns the [continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) representation of the rational.
+  The first element holds the integral part.
 
   ```js
-  rational(29, 7).ceil() // -> 5
-  rational(29, 7).ceil(1) // -> 4.2
-  rational(29, 7).ceil(2) // -> 4.15
+  rational(415, 93).continued // -> [ 4, 2, 6, 7 ]
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.denominator</code>
+  </summary>
+
+  Returns the denominator value of the rational number.
+
+  ```js
+  rational(1, 2).denominator; // -> 2
   ```
 </details>
 
@@ -572,6 +385,19 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
+    <code>.fractionalPart</code>
+  </summary>
+
+  Returns the fractional part of the rational number as a new `Rational` instance.
+
+  ```js
+  rational(1, 2).fractionalPart.toString(); // -> "1/2"
+  rational(3, 2).fractionalPart.toString(); // -> "1/2"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.gcd(Rational | Input)</code>
   </summary>
 
@@ -580,6 +406,19 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   ```js
   rational(5, 8).gcd(3, 7) // 1/56
   rational(2, 3).gcd(7, 5) // 1/15
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.integralPart</code>
+  </summary>
+
+  Returns the integral part of the rational number.
+
+  ```js
+  rational(1, 2).integralPart; // -> 0
+  rational(3, 2).integralPart; // -> 1
   ```
 </details>
 
@@ -641,6 +480,47 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
+    <code>.numerator</code>
+  </summary>
+
+  Returns the numerator value of the rational number.
+
+  ```js
+  rational(1, 2).numerator; // -> 1
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.opposite</code>
+  </summary>
+
+  Returns the opposite rational number as new `Rational` instance.
+
+  ```js
+  rational(0, 2).opposite.toString();   // -> "0/2"
+  rational(-1, 2).opposite.toString();  // -> "1/2"
+  rational(1, -2).opposite.toString();  // -> "1/2"
+  rational(-1, -2).opposite.toString(); // -> "-1/2"
+  rational(1, 2).opposite.toString();   // -> "-1/2"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.proper</code>
+  </summary>
+
+  Returns the boolean indicating if the rational number could be represented as [proper](https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions) fraction.
+
+  ```js
+  rational(1, 2).proper; // -> true;
+  rational(3, 2).proper; // -> false;
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.pow(Rational | Input)</code>
   </summary>
 
@@ -656,6 +536,32 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
+    <code>.reciprocal</code>
+  </summary>
+
+  Returns the [reciprocal](https://en.wikipedia.org/wiki/Fraction#Reciprocals_and_the_%22invisible_denominator%22) as new `Rational` instance.
+
+  ```js
+  rational(1, 2).reciprocal.toString(); // -> "2/1";
+  rational(3, 2).reciprocal.toString(); // -> "3/2";
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.repeating</code>
+  </summary>
+
+  Returns the boolean indicating if the rational number could be represents a [repeating decimal](https://en.wikipedia.org/wiki/Repeating_decimal).
+
+  ```js
+  rational(1, 3).repeating; // -> true;
+  rational(1, 4).repeating; // -> false;
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.round(places = 0)</code>
   </summary>
 
@@ -665,6 +571,22 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   rational(23, 8).round() // -> 3
   rational(23, 8).round(1) // -> 2.9
   rational(23, 8).round(2) // -> 2.88
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.sign</code>
+  </summary>
+
+  Returns the sign of the rational number.
+
+  ```js
+  rational(0, 2).sign;   // ->  0
+  rational(-1, 2).sign;  // -> -1
+  rational(1, -2).sign;  // -> -1
+  rational(-1, -2).sign; // ->  1
+  rational(1, 2).sign;   // ->  1
   ```
 </details>
 
@@ -686,9 +608,103 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
   ```
 </details>
 
+<details>
+  <summary>
+    <code>.toString(proper = false, places?: number)</code>
+  </summary>
+
+  Returns a `Ratio` string representation.
+
+  ```js
+  rational(1, 2).toString()                  // -> "1/2";
+  rational("1 1/2").toString()               // -> "3/2";
+  rational({ int: 1, n: 1, d: 3}).toString() // -> "4/3";
+  rational("0.12(34)").toString()            // -> "611/4950";
+  ```
+
+  To get a proper fraction string, use the first argument:
+
+  ```js
+  rational("1 1/2").toString(true)                    // -> "1 1/2";
+  rational(1, 2).toString(true)                       // -> "1/2";
+  rational({ int: 1, n: 1, d: 3 }).toString(true)      // -> "1 1/3";
+  ```
+
+  If the second argument is provided, the decimal string is returned.
+  The value represents number of places:
+
+  ```js
+  rational(1, 2).toString(false, 1)                    // -> "0.5";
+  rational("1 1/2").toString(false, 5)                 // -> "1.5";
+  ```
+
+  In case the rational is a repeating decimal, it's representation is preserved:
+
+  ```js
+  rational("1 1/3").toString(false, 5)   // -> "1.(3)";
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.valid</code>
+  </summary>
+
+  Returns a boolean indicating the parsing operation success.
+  On failed attempt the rational number defaults to 0.
+
+  ```js
+  rational(1, 2).valid;  // -> true
+  rational("hi!").valid; // -> false
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.valueOf(places = 15)</code>
+  </summary>
+
+  Returns a rational number decimal approximation:
+
+  ```js
+  rational(1, 2).valueOf()                     // -> 0.5;
+  rational("1 1/2").valueOf()                  // -> 1.5;
+  rational({ int: 1, n: 1, d: 3}).valueOf(5)   // -> 1.33333;
+  rational("0.12(34)").valueOf()               // -> 0.123434343434343;
+  ```
+
+  Method is useful for coercion:
+
+  ```js
+  rational(1, 2) + rational(1, 4) // -> 0.75
+  +rational(1, 5) // -> 0.2
+  ```
+</details>
+
+## Extending
+
+To extend the functionality for your needs, [extend](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) the parent `Rational` class:
+
+```js
+import { Rational } from "@ericrovell/rational";
+
+class RationalExtended extends Rational {
+	constructor(input: Input = 0, denominator = 1) {
+		super(input, denominator);
+	}
+
+	get ratio() {
+		return [ this.numerator, this.denominator ];
+	}
+}
+
+const instance = new RationalExtended(1, 2);
+instance.ratio; // -> [ 1, 2 ]
+```
+
 ## Types
 
-Tha package includes all necessary types useful for all possible valid inputs are available for import:
+Tha package includes all necessary types useful for all possible valid input options are available for import:
 
 ```ts
 export type {
@@ -704,4 +720,4 @@ export type {
 
 ## Tests
 
-To run tests use the `npm run test` command.
+To run the tests use the `npm run test` command.
