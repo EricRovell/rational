@@ -39,6 +39,13 @@ export class Rational {
 		);
 	}
 
+	/**
+	 * Returns the rational number rounded up to the next largest decimal place.
+	 */
+	ceil(places = 0): number {
+		return ceil(this.n / this.d, places);
+	}
+
 	/* Compares the rational number with another.
 	 * Results are interpreted as:
 	 *
@@ -62,10 +69,20 @@ export class Rational {
 	}
 
 	/**
-	 * Returns the rational number rounded up to the next largest decimal place.
+	 * Returns continued fraction representation.
+	 *
+	 * https://en.wikipedia.org/wiki/Continued_fraction
 	 */
-	ceil(places = 0): number {
-		return ceil(this.n / this.d, places);
+	get continued() {
+		const result: number[] = [];
+		let [ a, b ] = [ Math.abs(this.n), Math.abs(this.d) ];
+
+		do {
+			result.push(Math.floor(a / b));
+			[ a, b ] = [ b , a % b ];
+		} while (a !== 1);
+
+		return result;
 	}
 
 	/**

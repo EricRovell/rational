@@ -320,6 +320,19 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 <details>
   <summary>
+    <code>.continued</code>
+  </summary>
+
+  Returns the [continued fraction](https://en.wikipedia.org/wiki/Continued_fraction) representation of the rational.
+  The first element holds the integral part.
+
+  ```js
+  rational(415, 93).continued // -> [ 4, 2, 6, 7 ]
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.denominator</code>
   </summary>
 
