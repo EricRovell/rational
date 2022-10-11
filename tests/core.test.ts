@@ -164,6 +164,16 @@ describe("Representation", () => {
 		expect(rational(1, 2) + rational(1, 4)).toBe(0.75);
 		expect(+rational(1, 5)).toBe(0.2);
 	});
+	it("Returns a continued fraction respresentation", () => {
+		expect(rational(0).continued).toEqual([ 0 ]);
+		expect(rational(1).continued).toEqual([ 1 ]);
+		expect(rational(-1).continued).toEqual([ 1 ]);
+		expect(rational(415, 93).continued).toEqual([ 4, 2, 6, 7 ]);
+		expect(rational(-415, 93).continued).toEqual([ 4, 2, 6, 7 ]);
+		expect(rational(415, -93).continued).toEqual([ 4, 2, 6, 7 ]);
+		expect(rational(-415, -93).continued).toEqual([ 4, 2, 6, 7 ]);
+		expect(rational(649, 200).continued).toEqual([ 3, 4, 12, 4 ]);
+	});
 });
 
 describe("Properties", () => {
