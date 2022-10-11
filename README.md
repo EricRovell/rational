@@ -28,9 +28,6 @@
     <img alt="downloads count" src="https://badgen.net/npm/dt/@ericrovell/rational/" />
   </a>
   <a href="https://www.npmjs.com/package/@ericrovell/rational">
-    <img alt="node version" src="https://badgen.net/npm/node/@ericrovell/rational/" />
-  </a>
-  <a href="https://www.npmjs.com/package/@ericrovell/rational">
     <img alt="licence" src="https://badgen.net/npm/license/@ericrovell/rational/" />
   </a>
 </div>
@@ -678,7 +675,7 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
 
 ## Types
 
-Tha package includes all necessary types, they are available for export:
+Tha package includes all necessary types useful for all possible valid inputs are available for import:
 
 ```ts
 export type {
@@ -691,3 +688,7 @@ export type {
 	StringRepeatingDecimal
 } from "@ericrovell/rational";
 ```
+
+## Tests
+
+To run tests use the `npm run test` command.
