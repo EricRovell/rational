@@ -10,7 +10,7 @@ function getPluginsConfig(compilerOptions) {
 			tsconfigOverride: { compilerOptions }
 		}),
 		terser({
-			ecma: 2018,
+			ecma: 2021,
 			module: true,
 			toplevel: true,
 			compress: { pure_getters: true },
