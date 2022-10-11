@@ -4,6 +4,9 @@ import { pow } from "./lib/exponent";
 import { lcm, round, ceil, floor, gcd } from "./utils";
 import type { Input, InputRational, Ratio } from "./types";
 
+/**
+ * Provides functionality to store, transform, and manipulate the Rational numbers.
+ */
 export class Rational {
 	private readonly parsed: Ratio | null;
 	private readonly n: number;
@@ -297,6 +300,9 @@ export class Rational {
 	}
 }
 
+/**
+ * Provides functionality to store, transform, and manipulate the Rational numbers.
+ */
 export function rational(input: Input | Rational = 0, denominator = 1): Rational {
 	if (input instanceof Rational) {
 		return input;
