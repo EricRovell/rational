@@ -1,6 +1,6 @@
 # Rational
 
-## Unreleased
+## 1.0.0 (2022-10-11)
 
 - [breaking]: `.toDecimalString()` and `.toFractionString()` is removed in favor for improved `.toString()` method to not dublicate the functionality;
 - [feat]: expose input types for a user;
