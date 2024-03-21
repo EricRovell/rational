@@ -33,7 +33,7 @@ export function ratio2repeatingDecimal(a: number, b: number): string {
 	let result = "";
 
 	/**
-	 * To store already seen remainers as Map<key: position, value: remainder>
+	 * To store already seen remainders as Map<key: position, value: remainder>
 	 * Position is needed for cases like 1/6, as the recurring sequence does not
 	 * start from the 1st remainder.
 	 */

@@ -28,7 +28,7 @@
     <img alt="downloads count" src="https://badgen.net/npm/dt/@ericrovell/rational/" />
   </a>
   <a href="https://www.npmjs.com/package/@ericrovell/rational">
-    <img alt="licence" src="https://badgen.net/npm/license/@ericrovell/rational/" />
+    <img alt="license" src="https://badgen.net/npm/license/@ericrovell/rational/" />
   </a>
 </div>
 
@@ -343,7 +343,7 @@ rational({ n: 2, d: 3 }).toString();  // -> "2/3"
     <code>.div(Rational | Input)</code>
   </summary>
 
-  Performs the division and returns the quotien as new `Rational` instance.
+  Performs the division and returns the quotient as new `Rational` instance.
 
   ```js
   rational(1, 2)

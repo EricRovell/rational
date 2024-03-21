@@ -6,7 +6,7 @@
  * 	2. Numerator value value;
  *  3. Denominator value;
  *
- * Each value can be precedeed with optional sign symbol.
+ * Each value can be proceeded with optional sign symbol.
  *
  * Example: "23/98", "-23/56", "89/-5", "+5/+9", "1 23/45", "-5 +26/-48".
  */

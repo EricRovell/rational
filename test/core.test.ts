@@ -43,7 +43,7 @@ describe("Parsing", () => {
 		expect(rational({ int: -1, n: 7, d: 8 }).toString()).toBe("-15/8");
 		expect(rational({ int: 1, n: -89, d: 2 }).toString()).toBe("91/2");
 	});
-	it("Parses repeting decimal object", () => {
+	it("Parses repeating decimal object", () => {
 		expect(rational({ repeat: "1" }).toString()).toBe("1/9");
 		expect(rational({ repeat: 2 }).toString()).toBe("2/9");
 		expect(rational({ nonrepeat: "0", repeat: "1" }).toString()).toBe("1/90");
@@ -77,7 +77,7 @@ describe("Parsing", () => {
 		expect(rational("2 -1/2").toString()).toBe("5/2");
 		expect(rational("4 -4/-12").toString()).toBe("13/3");
 	});
-	it("Parses repeting decimal string", () => {
+	it("Parses repeating decimal string", () => {
 		expect(rational(".(1)").toString()).toBe("1/9");
 		expect(rational(".0(1)").toString()).toBe("1/90");
 		expect(rational(".12(45)").toString()).toBe("137/1100");
@@ -164,7 +164,7 @@ describe("Representation", () => {
 		expect(rational(1, 2) + rational(1, 4)).toBe(0.75);
 		expect(+rational(1, 5)).toBe(0.2);
 	});
-	it("Returns a continued fraction respresentation", () => {
+	it("Returns a continued fraction representation", () => {
 		expect(rational(0).continued).toEqual([ 0 ]);
 		expect(rational(1).continued).toEqual([ 1 ]);
 		expect(rational(-1).continued).toEqual([ 1 ]);
