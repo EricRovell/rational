@@ -3,11 +3,12 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		"esModuleInterop": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"declaration": true,
-		"declarationDir": "./dist",
 		"strict": true,
 		"outDir": "./dist"
 	},
-	"include": [ "./src/**/*" ],
+	"include": [
+		"./src/**/*"
+	]
 }
