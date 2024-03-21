@@ -1,8 +1,8 @@
-import { getRatio, getRatioFromFraction } from "../lib/ratio";
+import { getRatio, getRatioFromFraction } from "./lib/ratio";
 import { matcherFraction, matcherRepeatingDecimal, matcherDegrees } from "./matchers";
-import { getRatioFromRepeatingDecimal } from "../lib/repeating-decimal";
-import { isObject } from "../utils";
-import { InputObject, Parser } from "../types";
+import { getRatioFromRepeatingDecimal } from "./lib/repeating-decimal";
+import { isObject } from "./validators";
+import { InputObject, Parser } from "./types";
 
 /**
  * Parses a ratio from two integers.

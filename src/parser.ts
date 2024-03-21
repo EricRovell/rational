@@ -1,6 +1,6 @@
-import { simplifyRatio } from "../lib/ratio";
+import { simplifyRatio } from "./lib/ratio";
 import { parsers } from "./parsers";
-import type { Input, Parser } from "../types";
+import type { Input, Parser } from "./types";
 
 /**
  * Parses input into Ratio.
