@@ -14,7 +14,7 @@
 		"coverage": "pnpm type-coverage",
 		"lint": "eslint src/**/*.ts test/**/*.ts",
 		"lint:types": "tsc --noEmit",
-		"publish": "pnpm publish --access public",
+		"npm-publish": "pnpm publish --access public --no-git-checks",
 		"test": "vitest run",
 		"test:ci": "vitest run --coverage",
 		"test:watch": "vitest"

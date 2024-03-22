@@ -49,6 +49,6 @@ jobs:
           if-no-files-found: error
 
       - name: publish
-        run: pnpm run publish --no-git-checks
+        run: pnpm run npm-publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
