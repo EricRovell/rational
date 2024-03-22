@@ -1,7 +1,7 @@
 import { getRatio } from "./ratio";
-import { factorize } from "./utils";
-import type { Rational } from "./rational";
-import type { Ratio, RepeatingDecimal } from "./types";
+import { factorize } from "../utils";
+import type { Rational } from "../rational";
+import type { Ratio, RepeatingDecimal } from "../types";
 
 /**
  * Detects if the given rational number is terminated decimal.
@@ -56,16 +56,15 @@ export function ratio2repeatingDecimal(a: number, b: number): string {
 		remainder = remainder % d;
 	}
 
-	if (remainder == 0) {
+	if (remainder == 0 || !remainders.has(remainder)) {
 		return "";
-	} else if (remainders.has(remainder)) {
-		const position = remainders.get(remainder);
-		const nonrepeat = result.slice(0, position);
-		const repeat = result.slice(position);
-		return `${int}.${nonrepeat}(${repeat})`;
 	}
 
-	return "";
+	const position = remainders.get(remainder);
+	const nonrepeat = result.slice(0, position);
+	const repeat = result.slice(position);
+
+	return `${int}.${nonrepeat}(${repeat})`;
 }
 
 /**
@@ -79,8 +78,8 @@ export function getRatioFromRepeatingDecimal({ sign = 1, int = 0, nonrepeat = ""
 	const denominator = Number(`${"9".repeat(period.length)}${"0".repeat(nonperiod.length)}`);
 	const numerator =  Number(`${nonperiod}${repeat}`) - Number(nonperiod);
 
-	return getRatio(
-		sign * (integralPart * denominator + numerator),
-		denominator
-	);
+	return getRatio({
+		n: sign * (integralPart * denominator + numerator),
+		d: denominator
+	});
 }

@@ -1,6 +1,5 @@
-import { gcd } from "./utils";
-import type { Ratio, Fraction, FractionUnknown } from "./types";
-import { isValidInteger } from "./validators";
+import { isValidInteger } from "../validators";
+import type { Ratio, Fraction } from "../types";
 
 /**
  * Handles the sign of the input ratio.
@@ -11,14 +10,6 @@ function handleRatioSign(n: number, m: number): Ratio {
 	return (n / m >= 0)
 		? [ Math.abs(n), Math.abs(m) ]
 		: [ -Math.abs(n), Math.abs(m) ];
-}
-
-/**
- * Simplifies the ratio.
- */
-export function simplifyRatio([ n = 0, d = 1 ]: Ratio): Ratio {
-	const divisor = gcd(n, d);
-	return [ n / divisor, d / divisor ];
 }
 
 /**
@@ -44,29 +35,18 @@ function handleFractionSign({ int = 0, n, d = 1 }: Fraction): Ratio {
 /**
  * Produces a ratio from fraction.
  */
-export function getRatioFromFraction({ int = 0, n, d = 1 }: FractionUnknown): Ratio | null {
-	const [ integer, num, den ] = [ int, n, d ].map(value => {
-		return Math.floor(Number(value));
-	});
-
-	if (!isValidInteger(integer) || !isValidInteger(num) || !isValidInteger(den)) {
+export function getRatio({ int = 0, n, d = 1 }: Fraction): Ratio | null {
+	if (!isValidInteger(int) || !isValidInteger(n) || !isValidInteger(d)) {
 		return null;
 	}
 
-	if (den === 0) {
+	if (d === 0) {
 		return null;
 	}
 
 	return handleFractionSign({
-		int: integer,
-		n: num,
-		d: den
+		int,
+		n,
+		d
 	});
-}
-
-/**
- * Produces a ratio.
- */
-export function getRatio(n: unknown, d: unknown): Ratio | null {
-	return getRatioFromFraction({ n, d });
 }

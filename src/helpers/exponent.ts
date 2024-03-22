@@ -1,6 +1,6 @@
-import { factorize } from "./utils";
-import type { Rational } from "./rational";
-import type { Input, Ratio } from "./types";
+import { factorize } from "../utils";
+import type { Rational } from "../rational";
+import type { Input, Ratio } from "../types";
 
 interface Factors {
 	type: "num" | "den";
