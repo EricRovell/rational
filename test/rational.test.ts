@@ -126,7 +126,6 @@ describe("Parsing", () => {
 		expect(rational({ n: 2, d: 0 }).valid).toBe(false);
 	});
 });
-
 describe("Representation", () => {
 	it("Transforms a rational number into fractional string", () => {
 		expect(rational(1, 2).toString()).toBe("1/2");
@@ -175,7 +174,6 @@ describe("Representation", () => {
 		expect(rational(649, 200).continued).toEqual([ 3, 4, 12, 4 ]);
 	});
 });
-
 describe("Properties", () => {
 	it("Returns the numerator", () => {
 		expect(rational(25, 40).numerator).toBe(5);
@@ -234,7 +232,6 @@ describe("Properties", () => {
 		expect(rational(1, 75).repeating).toBe(true);
 	});
 });
-
 describe("Operations", () => {
 	it("Performs summation", () => {
 		expect(rational(1, 2).add(rational({ n: 1, d: 4 })).toString()).toBe("3/4");

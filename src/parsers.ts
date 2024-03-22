@@ -1,14 +1,22 @@
-import { getRatio, getRatioFromFraction } from "./lib/ratio";
+import { getRatio, getRatioFromFraction } from "./ratio";
 import { matcherFraction, matcherRepeatingDecimal, matcherDegrees } from "./matchers";
-import { getRatioFromRepeatingDecimal } from "./lib/repeating-decimal";
-import { isObject } from "./validators";
-import { InputObject, Parser } from "./types";
+import { getRatioFromRepeatingDecimal } from "./repeating-decimal";
+import {
+	isDegreesObject,
+	isFloat,
+	isFractionObject,
+	isNonEmptyString,
+	isRatio,
+	isRepeatingDecimalObject,
+	isValidInteger
+} from "./validators";
+import { Parser } from "./types";
 
 /**
  * Parses a ratio from two integers.
  */
 const parseIntegers: Parser = (numerator, denominator = 1) => {
-	if (typeof numerator !== "number" || !Number.isInteger(numerator) || !Number.isInteger(denominator)) {
+	if (!isValidInteger(numerator) || !isValidInteger(denominator)) {
 		return null;
 	}
 
@@ -19,7 +27,7 @@ const parseIntegers: Parser = (numerator, denominator = 1) => {
  * Parses a ratio from float.
  */
 const parseFloat: Parser = float => {
-	if (typeof float !== "number" || Number.isInteger(float)) {
+	if (!isFloat(float)) {
 		return null;
 	}
 
@@ -34,7 +42,7 @@ const parseFloat: Parser = float => {
  * Parses a ratio from tuple integer input.
  */
 const parseArray: Parser = input => {
-	if (!Array.isArray(input) || !input.every(Number.isInteger) || input.length > 2) {
+	if (!isRatio(input)) {
 		return null;
 	}
 
@@ -47,8 +55,8 @@ const parseArray: Parser = input => {
  *
  * Example: "23/45" -> [ 23, 45 ].
  */
-const parseFractionString: Parser = (input) => {
-	if (typeof input !== "string") {
+const parseFractionString: Parser = input => {
+	if (!isNonEmptyString(input)) {
 		return null;
 	}
 
@@ -70,8 +78,8 @@ const parseFractionString: Parser = (input) => {
  *
  * Example: "23/45" -> [ 23, 45 ].
  */
-const parseRepeatedDecimalString: Parser = (input) => {
-	if (typeof input !== "string") {
+const parseRepeatedDecimalString: Parser = input => {
+	if (!isNonEmptyString(input)) {
 		return null;
 	}
 
@@ -94,8 +102,8 @@ const parseRepeatedDecimalString: Parser = (input) => {
  *
  * Example: 1.2'3'' -> 1 + 2/60 + 3/3600.
  */
-const parseDegreesString: Parser = (input) => {
-	if (typeof input !== "string") {
+const parseDegreesString: Parser = input => {
+	if (!isNonEmptyString(input)) {
 		return null;
 	}
 
@@ -121,16 +129,12 @@ const parseDegreesString: Parser = (input) => {
  *
  * Example: { n: 23, d: 45 } -> [ 23, 45 ].
  */
-const parseFractionObject: Parser = (input) => {
-	if (!isObject<InputObject>(input)) {
+const parseFractionObject: Parser = input => {
+	if (!isFractionObject(input)) {
 		return null;
 	}
 
-	if ("n" in input || "d" in input) {
-		return getRatioFromFraction(input);
-	}
-
-	return null;
+	return getRatioFromFraction(input);
 };
 
 /**
@@ -138,20 +142,13 @@ const parseFractionObject: Parser = (input) => {
  *
  * Example: { deg: -1, min: 2, sec: 5 } -> [ -149, 144 ].
  */
-const parseDegreesObject: Parser = (input) => {
-	if (!isObject<InputObject>(input)) {
+const parseDegreesObject: Parser = input => {
+	if (!isDegreesObject(input)) {
 		return null;
 	}
 
-	if ("deg" in input || "min" in input || "sec" in input) {
-		const { deg = 0, sec = 0, min = 0 } = input;
-		return getRatio(
-			deg * 3600 + min * 60 + sec,
-			3600
-		);
-	}
-
-	return null;
+	const { deg = 0, sec = 0, min = 0 } = input;
+	return getRatio(deg * 3600 + min * 60 + sec, 3600);
 };
 
 /**
@@ -159,16 +156,12 @@ const parseDegreesObject: Parser = (input) => {
  *
  * Example: { int: 1, repeat: 1 } -> [ 10, 9 ].
  */
-const parseRepeatingDecimalObject: Parser = (input) => {
-	if (!isObject<InputObject>(input)) {
+const parseRepeatingDecimalObject: Parser = input => {
+	if (!isRepeatingDecimalObject(input)) {
 		return null;
 	}
 
-	if ("repeat" in input) {
-		return getRatioFromRepeatingDecimal(input);
-	}
-
-	return null;
+	return getRatioFromRepeatingDecimal(input);
 };
 
 export const parsers: Parser[] = [

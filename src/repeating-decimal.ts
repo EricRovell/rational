@@ -1,7 +1,7 @@
-import { getRatio } from "../lib/ratio";
-import { factorize } from "../utils";
-import type { Rational } from "../rational";
-import type { Ratio, RepeatingDecimal } from "../types";
+import { getRatio } from "./ratio";
+import { factorize } from "./utils";
+import type { Rational } from "./rational";
+import type { Ratio, RepeatingDecimal } from "./types";
 
 /**
  * Detects if the given rational number is terminated decimal.

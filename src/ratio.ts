@@ -1,5 +1,6 @@
-import { gcd } from "../utils";
-import type { Ratio, Fraction, FractionUnknown } from "../types";
+import { gcd } from "./utils";
+import type { Ratio, Fraction, FractionUnknown } from "./types";
+import { isValidInteger } from "./validators";
 
 /**
  * Handles the sign of the input ratio.
@@ -55,11 +56,7 @@ export function getRatioFromFraction({ int = 0, n, d = 1 }: FractionUnknown): Ra
 		return Math.floor(Number(value));
 	});
 
-	if ([ integer, num, den ].some(isNaN)) {
-		return null;
-	}
-
-	if (![ integer, num, den ].every(Number.isSafeInteger)) {
+	if (!isValidInteger(integer) || !isValidInteger(num) || !isValidInteger(den)) {
 		return null;
 	}
 

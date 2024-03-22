@@ -1,6 +1,6 @@
 import { parse } from "./parser";
-import { detectRepeatingDecimal, ratio2repeatingDecimal } from "./lib/repeating-decimal";
-import { pow } from "./lib/exponent";
+import { detectRepeatingDecimal, ratio2repeatingDecimal } from "./repeating-decimal";
+import { pow } from "./exponent";
 import { lcm, round, ceil, floor, gcd } from "./utils";
 import type { Input, InputRational, Ratio } from "./types";
 
