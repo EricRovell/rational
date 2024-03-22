@@ -14,13 +14,6 @@ function handleRatioSign(n: number, m: number): Ratio {
 }
 
 /**
- * Produces a ratio.
- */
-export function getRatio(n: unknown, d: unknown): Ratio | null {
-	return getRatioFromFraction({	n, d });
-}
-
-/**
  * Simplifies the ratio.
  */
 export function simplifyRatio([ n = 0, d = 1 ]: Ratio): Ratio {
@@ -69,4 +62,11 @@ export function getRatioFromFraction({ int = 0, n, d = 1 }: FractionUnknown): Ra
 		n: num,
 		d: den
 	});
+}
+
+/**
+ * Produces a ratio.
+ */
+export function getRatio(n: unknown, d: unknown): Ratio | null {
+	return getRatioFromFraction({ n, d });
 }

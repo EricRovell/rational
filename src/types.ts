@@ -13,21 +13,17 @@ export type IntegerRatio = [ numerator: number ];
 /**
  * Represents a fraction.
  */
-export interface Fraction {
-	sign?: number;
-	int?: number;
-	n: number;
-	d?: number;
+export interface Fraction<T = number> {
+	sign?: T;
+	int?: T;
+	n: T;
+	d?: T;
 }
 
 /**
  * Defines a fraction object with unknown types.
  */
-export interface FractionUnknown {
-	int?: unknown;
-	n: unknown;
-	d?: unknown;
-}
+export type FractionUnknown = Partial<Fraction<unknown>>;
 
 export interface Degrees {
 	deg?: number;
