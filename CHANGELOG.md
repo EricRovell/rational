@@ -1,8 +1,13 @@
 # Rational
 
+## 1.0.1 (2024-03-22)
+
+- [chore]: update dependencies and building processes;
+- [chore]: bundle type definitions into one file;
+
 ## 1.0.0 (2022-10-11)
 
-- [breaking]: `.toDecimalString()` and `.toFractionString()` is removed in favor for improved `.toString()` method to not dublicate the functionality;
+- [breaking]: `.toDecimalString()` and `.toFractionString()` is removed in favor for improved `.toString()` method to not duplicate the functionality;
 - [feat]: expose input types for a user;
 - [feat]: improve `.valueOf(places?)` method with optional argument to round the decimal approximation;
 - [feat]: implement `.continued` for continued fraction representation;
@@ -56,4 +61,3 @@
 ## 0.1.0 (2021-07-29)
 
 - Basic API;
--
