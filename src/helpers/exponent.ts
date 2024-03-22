@@ -8,7 +8,7 @@ interface Factors {
 }
 
 /**
- * Attemps to raise a rational number to the power of another rational number.
+ * Attempts to raise a rational number to the power of another rational number.
  * If result is irrational, returns null.
  *
  * The idea is:

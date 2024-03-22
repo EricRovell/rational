@@ -1,3 +1,5 @@
+import { isValidInteger } from "./validators";
+
 /**
  * Round the number up to the desired precision.
  */
@@ -20,16 +22,29 @@ export function floor(number: number, digits = 0, base = Math.pow(10, digits)): 
 }
 
 /**
- * Calculates the Greatest Common Divisor.
+ * Calculates the Greatest Common Divisor for two natural numbers.
  *
  * Euclidean Algorithm is used.
  * https://en.wikipedia.org/wiki/Euclidean_algorithm
  */
-export function gcd(number1: number, number2: number): number {
-	let [ a, b ] = [ number1, number2 ].map(Math.abs);
+export function gcd(a: number, b: number): number {
+	if (!isValidInteger(a) || !isValidInteger(b)) {
+		return NaN;
+	}
+
+	a = Math.abs(a);
+	b = Math.abs(b);
+
+	if (b > a) {
+		const temp = a;
+		a = b;
+		b = temp;
+	}
+
 	while (b) {
 		[ a, b ] = [ b, a % b ];
 	}
+
 	return a;
 }
 
@@ -55,9 +70,3 @@ export function factorize(integer: number): Record<number, number> {
 
 	return factors;
 }
-
-export const isObject = <T = Record<string, unknown>>(input: unknown): input is T => {
-	return typeof input === "object"
-		&& !Array.isArray(input)
-		&& input !== null;
-};

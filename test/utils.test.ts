@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { gcd, lcm, factorize } from "../src/utils";
-import { ratio2repeatingDecimal } from "../src/lib/repeating-decimal";
+import { ratio2repeatingDecimal } from "../src/helpers/repeating-decimal";
 
 describe("GCD/LCM test", () => {
 	it("GCD cases", () => {
@@ -16,6 +16,12 @@ describe("GCD/LCM test", () => {
 		expect(gcd(105, 252)).toBe(21);
 		expect(gcd(7966496, 314080416)).toBe(32);
 		expect(gcd(24826148, 45296490)).toBe(526);
+		expect(gcd(NaN, 45296490)).toBe(NaN);
+		expect(gcd(45296490, NaN)).toBe(NaN);
+		expect(gcd(Infinity, 45296490)).toBe(NaN);
+		expect(gcd(45296490, Infinity)).toBe(NaN);
+		expect(gcd(-Infinity, 45296490)).toBe(NaN);
+		expect(gcd(45296490, -Infinity)).toBe(NaN);
 	});
 	it("LCM cases", () => {
 		expect(lcm(2, 3)).toBe(6);
@@ -24,6 +30,12 @@ describe("GCD/LCM test", () => {
 		expect(lcm(16, 40)).toBe(80);
 		expect(lcm(252, 105)).toBe(1260);
 		expect(lcm(248, 45296)).toBe(1404176);
+		expect(lcm(NaN, 45296490)).toBe(NaN);
+		expect(lcm(45296490, NaN)).toBe(NaN);
+		expect(lcm(Infinity, 45296490)).toBe(NaN);
+		expect(lcm(45296490, Infinity)).toBe(NaN);
+		expect(lcm(-Infinity, 45296490)).toBe(NaN);
+		expect(lcm(45296490, -Infinity)).toBe(NaN);
 	});
 	it("Calculates the prime factorization", () => {
 		expect(factorize(18)).toMatchObject({ 2: 1, 3: 2 });

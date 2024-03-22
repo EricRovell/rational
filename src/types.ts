@@ -1,7 +1,7 @@
-import type { Rational } from "../rational";
+import type { Rational } from "./rational";
 
 /**
- * Represents a ratio.
+ * Represents a ratio tuple.
  */
 export type Ratio = [ numerator?: number, denominator?: number ];
 
@@ -13,17 +13,12 @@ export type IntegerRatio = [ numerator: number ];
 /**
  * Represents a fraction.
  */
-export interface Fraction<T = number> {
-	sign?: T;
-	int?: T;
-	n: T;
-	d?: T;
+export interface Fraction {
+	sign?: number;
+	int?: number;
+	n: number;
+	d?: number;
 }
-
-/**
- * Defines a fraction object with unknown types.
- */
-export type FractionUnknown = Partial<Fraction<unknown>>;
 
 export interface Degrees {
 	deg?: number;
@@ -37,11 +32,6 @@ export interface RepeatingDecimal {
 	nonrepeat?: string | number;
 	repeat: string | number;
 }
-
-export type InputObject =
-	| Fraction
-	| Degrees
-	| RepeatingDecimal;
 
 export type StringDegrees =
 	| `${number}.${number}'${number}''`
@@ -63,13 +53,15 @@ export type StringRepeatingDecimal =
  * Valid user input to build a Rational number from.
  */
 export type Input =
-	| InputObject
-	| Ratio
+	| Degrees
+	| Fraction
 	| IntegerRatio
 	| number
+	| RepeatingDecimal
 	| StringDegrees
 	| StringFraction
-	| StringRepeatingDecimal;
+	| StringRepeatingDecimal
+	| Ratio;
 
 /**
  * Defines an input for operations where

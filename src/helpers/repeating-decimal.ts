@@ -1,4 +1,4 @@
-import { getRatio } from "../lib/ratio";
+import { getRatio } from "./ratio";
 import { factorize } from "../utils";
 import type { Rational } from "../rational";
 import type { Ratio, RepeatingDecimal } from "../types";
@@ -33,7 +33,7 @@ export function ratio2repeatingDecimal(a: number, b: number): string {
 	let result = "";
 
 	/**
-	 * To store already seen remainers as Map<key: position, value: remainder>
+	 * To store already seen remainders as Map<key: position, value: remainder>
 	 * Position is needed for cases like 1/6, as the recurring sequence does not
 	 * start from the 1st remainder.
 	 */
@@ -56,16 +56,15 @@ export function ratio2repeatingDecimal(a: number, b: number): string {
 		remainder = remainder % d;
 	}
 
-	if (remainder == 0) {
+	if (remainder == 0 || !remainders.has(remainder)) {
 		return "";
-	} else if (remainders.has(remainder)) {
-		const position = remainders.get(remainder);
-		const nonrepeat = result.slice(0, position);
-		const repeat = result.slice(position);
-		return `${int}.${nonrepeat}(${repeat})`;
 	}
 
-	return "";
+	const position = remainders.get(remainder);
+	const nonrepeat = result.slice(0, position);
+	const repeat = result.slice(position);
+
+	return `${int}.${nonrepeat}(${repeat})`;
 }
 
 /**
@@ -79,8 +78,8 @@ export function getRatioFromRepeatingDecimal({ sign = 1, int = 0, nonrepeat = ""
 	const denominator = Number(`${"9".repeat(period.length)}${"0".repeat(nonperiod.length)}`);
 	const numerator =  Number(`${nonperiod}${repeat}`) - Number(nonperiod);
 
-	return getRatio(
-		sign * (integralPart * denominator + numerator),
-		denominator
-	);
+	return getRatio({
+		n: sign * (integralPart * denominator + numerator),
+		d: denominator
+	});
 }

@@ -16,6 +16,8 @@
 		"@typescript-eslint"
 	],
 	"rules": {
+		"no-console": "error",
+		"curly": "error",
 		"indent": [	"error", "tab", { "SwitchCase": 1 } ],
 		"linebreak-style": 0,
 		"quotes": [ "error","double" ],

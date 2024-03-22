@@ -43,7 +43,7 @@ describe("Parsing", () => {
 		expect(rational({ int: -1, n: 7, d: 8 }).toString()).toBe("-15/8");
 		expect(rational({ int: 1, n: -89, d: 2 }).toString()).toBe("91/2");
 	});
-	it("Parses repeting decimal object", () => {
+	it("Parses repeating decimal object", () => {
 		expect(rational({ repeat: "1" }).toString()).toBe("1/9");
 		expect(rational({ repeat: 2 }).toString()).toBe("2/9");
 		expect(rational({ nonrepeat: "0", repeat: "1" }).toString()).toBe("1/90");
@@ -77,7 +77,7 @@ describe("Parsing", () => {
 		expect(rational("2 -1/2").toString()).toBe("5/2");
 		expect(rational("4 -4/-12").toString()).toBe("13/3");
 	});
-	it("Parses repeting decimal string", () => {
+	it("Parses repeating decimal string", () => {
 		expect(rational(".(1)").toString()).toBe("1/9");
 		expect(rational(".0(1)").toString()).toBe("1/90");
 		expect(rational(".12(45)").toString()).toBe("137/1100");
@@ -126,7 +126,6 @@ describe("Parsing", () => {
 		expect(rational({ n: 2, d: 0 }).valid).toBe(false);
 	});
 });
-
 describe("Representation", () => {
 	it("Transforms a rational number into fractional string", () => {
 		expect(rational(1, 2).toString()).toBe("1/2");
@@ -164,7 +163,7 @@ describe("Representation", () => {
 		expect(rational(1, 2) + rational(1, 4)).toBe(0.75);
 		expect(+rational(1, 5)).toBe(0.2);
 	});
-	it("Returns a continued fraction respresentation", () => {
+	it("Returns a continued fraction representation", () => {
 		expect(rational(0).continued).toEqual([ 0 ]);
 		expect(rational(1).continued).toEqual([ 1 ]);
 		expect(rational(-1).continued).toEqual([ 1 ]);
@@ -175,7 +174,6 @@ describe("Representation", () => {
 		expect(rational(649, 200).continued).toEqual([ 3, 4, 12, 4 ]);
 	});
 });
-
 describe("Properties", () => {
 	it("Returns the numerator", () => {
 		expect(rational(25, 40).numerator).toBe(5);
@@ -234,7 +232,6 @@ describe("Properties", () => {
 		expect(rational(1, 75).repeating).toBe(true);
 	});
 });
-
 describe("Operations", () => {
 	it("Performs summation", () => {
 		expect(rational(1, 2).add(rational({ n: 1, d: 4 })).toString()).toBe("3/4");

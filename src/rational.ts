@@ -1,6 +1,6 @@
-import { parse } from "./parser";
-import { detectRepeatingDecimal, ratio2repeatingDecimal } from "./lib/repeating-decimal";
-import { pow } from "./lib/exponent";
+import { parse } from "./parsers";
+import { detectRepeatingDecimal, ratio2repeatingDecimal } from "./helpers/repeating-decimal";
+import { pow } from "./helpers/exponent";
 import { lcm, round, ceil, floor, gcd } from "./utils";
 import type { Input, InputRational, Ratio } from "./types";
 
@@ -96,7 +96,7 @@ export class Rational {
 	}
 
 	/**
-	 * Performs the division and returns the quotien as new `Rational` instance.
+	 * Performs the division and returns the quotient as new `Rational` instance.
 	 */
 	div(input: InputRational, arg2?: number): Rational {
 		return this.mul(rational(input, arg2).reciprocal);
@@ -117,7 +117,7 @@ export class Rational {
 	}
 
 	/**
-	 * Gets the gractional part of the rational number as a new `Rational` instance.
+	 * Gets the fractional part of the rational number as a new `Rational` instance.
 	 */
 	get fractionalPart(): Rational {
 		return new Rational([
