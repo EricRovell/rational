@@ -1,0 +1,54 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install pnpm
+        run: npm i pnpm -g
+
+      - name: install dependencies
+        run: pnpm i
+
+      - name: linting
+        run: |
+          pnpm lint
+          pnpm lint:types
+
+      - name: unit tests
+        run: pnpm test:ci
+
+      - name: test coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: ./coverage
+          if-no-files-found: error
+
+      - name: Code Coverage Report
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+        
+      - name: build
+        run: pnpm build
+
+      - name: build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: ./dist
+          if-no-files-found: error
